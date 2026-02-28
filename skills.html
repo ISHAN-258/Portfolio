@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skills | Ishan Tripathi</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Internal CSS -->
+  <style>
+    :root {
+      --dark-blue: #0a192f;
+      --light-blue: #112240;
+      --lightest-slate: #ccd6f6;
+      --slate: #8892b0;
+      --accent-color: #64ffda;
+      --font-main: 'Poppins', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--dark-blue);
+      color: var(--slate);
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      background-color: rgba(10, 25, 47, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: var(--lightest-slate) !important;
+    }
+    
+    .navbar .nav-link {
+      color: var(--lightest-slate);
+      transition: color 0.3s;
+    }
+    
+    .navbar .nav-link:hover, .navbar .nav-link.active {
+      color: var(--accent-color);
+    }
+
+    /* --- General Section Styling --- */
+    .section {
+      padding: 100px 20px;
+    }
+    
+    .page-header {
+      padding-top: 120px;
+      padding-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: var(--lightest-slate);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: var(--accent-color);
+      margin-top: 10px;
+    }
+    
+    /* --- Skill Cards --- */
+    .skill-card {
+      background-color: var(--light-blue);
+      border: 1px solid #1d2d4f;
+      padding: 30px 20px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      text-align: center;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+    }
+    
+    .skill-icon {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .skill-name {
+      color: var(--lightest-slate);
+      font-weight: 600;
+    }
+
+    /* --- Info Cards for Other Skills --- */
+    .info-section {
+        background-color: var(--light-blue);
+    }
+
+    .info-card {
+      background-color: var(--dark-blue);
+      border: 1px solid #1d2d4f;
+      padding: 30px;
+      border-radius: 8px;
+      height: 100%;
+    }
+
+    .info-card-title {
+      color: var(--lightest-slate);
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .info-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .info-card ul li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+    }
+    .info-card ul li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: #081428;
+      color: var(--slate);
+    }
+
+    /* --- Animations --- */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Ishan 🚀</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="skills.html">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <section class="section page-header text-center">
+      <div class="container fade-in-section">
+          <h1 class="section-title">My Skills & Toolkit</h1>
+          <p class="fs-5 lead" style="max-width: 700px; margin: auto;">The technologies and tools I use to build things and be creative.</p>
+      </div>
+  </section>
+
+  <!-- Technical Skills Section -->
+  <section class="section pt-0">
+    <div class="container fade-in-section">
+      <h2 class="text-center mb-5" style="color: var(--lightest-slate);">Technical Skills</h2>
+      <div class="row g-4 justify-content-center">
+        <!-- Skill: HTML -->
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="skill-card"><div class="skill-icon">📜</div><h5 class="skill-name">HTML</h5></div>
+        </div>
+        <!-- Skill: CSS -->
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="skill-card"><div class="skill-icon">🎨</div><h5 class="skill-name">CSS</h5></div>
+        </div>
+        <!-- Skill: JavaScript -->
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="skill-card"><div class="skill-icon">⚡️</div><h5 class="skill-name">JavaScript</h5></div>
+        </div>
+        <!-- Skill: Bootstrap -->
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="skill-card"><div class="skill-icon">🅱️</div><h5 class="skill-name">Bootstrap</h5></div>
+        </div>
+        <!-- Skill: Python -->
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="skill-card"><div class="skill-icon">🐍</div><h5 class="skill-name">Python</h5></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning & Certifications Section -->
+  <section class="section info-section">
+    <div class="container fade-in-section">
+        <h2 class="text-center mb-5" style="color: var(--lightest-slate);">Learning & Certifications</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="info-card d-flex align-items-center">
+                    <div class="skill-icon me-4">🛡️</div>
+                    <div>
+                        <h4 class="info-card-title mb-1">Cybersecurity Analyst Course</h4>
+                        <p class="mb-0">Currently enrolled in the Complete Cybersecurity Analyst Course on Udemy to build foundational skills in threat detection, network security, and risk management.</p>
+                        <small class="text-muted">Source: Udemy</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Other Skills Section -->
+  <section class="section">
+    <div class="container fade-in-section">
+      <div class="row g-4">
+        <!-- Editing & Creativity -->
+        <div class="col-lg-6 d-flex align-items-stretch">
+          <div class="info-card w-100">
+            <h3 class="info-card-title">🎬 Editing & Creativity</h3>
+            <ul>
+              <li>CapCut Pro Editor (Short videos, Reels)</li>
+              <li>Thumbnails and Poster Designing</li>
+              <li>Creative scripting and meme-ifying boring stuff 😎</li>
+            </ul>
+          </div>
+        </div>
+        <!-- My Machine -->
+        <div class="col-lg-6 d-flex align-items-stretch">
+          <div class="info-card w-100">
+            <h3 class="info-card-title">🖥️ My Machine</h3>
+            <ul>
+              <li>Processor: Intel i7 11th Gen</li>
+              <li>RAM: 16 GB</li>
+              <li>Storage: 512 GB internal</li>
+              <li>Phone: Moto G73 5G</li>
+              <li>OS: Android 14 with API Level 34</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4">
+    <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Internal JS -->
+  <script>
+    // --- Scroll-triggered Fade-in Animation ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
+    sectionsToAnimate.forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Ishan Tripathi</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Internal CSS -->
+  <style>
+    :root {
+      --dark-blue: #0a192f;
+      --light-blue: #112240;
+      --lightest-slate: #ccd6f6;
+      --slate: #8892b0;
+      --accent-color: #64ffda;
+      --font-main: 'Poppins', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--dark-blue);
+      color: var(--slate);
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      background-color: rgba(10, 25, 47, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: var(--lightest-slate) !important;
+    }
+    
+    .navbar .nav-link {
+      color: var(--lightest-slate);
+      transition: color 0.3s;
+    }
+    
+    .navbar .nav-link:hover, .navbar .nav-link.active {
+      color: var(--accent-color);
+    }
+
+    /* --- General Section Styling --- */
+    .section {
+      padding: 100px 20px;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: var(--lightest-slate);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: var(--accent-color);
+      margin-top: 10px;
+    }
+
+    /* --- Contact Form --- */
+    .contact-box {
+      background-color: var(--light-blue);
+      border-radius: 8px;
+      padding: 40px;
+      border: 1px solid #1d2d4f;
+    }
+
+    .form-label {
+        color: var(--lightest-slate);
+        font-weight: 600;
+    }
+
+    .form-control {
+        background-color: var(--dark-blue);
+        border: 1px solid #1d2d4f;
+        color: var(--lightest-slate);
+        padding: 12px;
+    }
+
+    .form-control::placeholder {
+        color: var(--slate);
+    }
+
+    .form-control:focus {
+        background-color: var(--dark-blue);
+        color: var(--lightest-slate);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.25rem rgba(100, 255, 218, 0.15);
+    }
+
+    .btn-custom {
+      background-color: transparent;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .btn-custom:hover {
+      background-color: rgba(100, 255, 218, 0.1);
+      color: var(--accent-color);
+    }
+
+    /* --- Social Icons --- */
+    .social-icons a {
+        color: var(--slate);
+        font-size: 1.5rem;
+        margin: 0 15px;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: var(--accent-color);
+        transform: translateY(-3px);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: #081428;
+      color: var(--slate);
+    }
+
+    /* --- Animations --- */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Ishan 🚀</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container fade-in-section">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center">
+            <h1 class="section-title">Let's Connect!</h1>
+            <p class="fs-5 lead mb-5">Have a question or a project in mind? Feel free to reach out. I'd love to hear from you.</p>
+          </div>
+          <div class="contact-box">
+            <form>
+              <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" placeholder="What should I call you?">
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Where can I reply?">
+              </div>
+
+              <div class="mb-3">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Say hi, let's build something awesome!"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-custom mt-3">Send Message</button>
+            </form>
+
+            <div class="text-center mt-5">
+              <h5 style="color: var(--lightest-slate);">Or catch me on:</h5>
+              <div class="social-icons my-3">
+                <!-- Replace # with your actual profile links -->
+                <a href="https://www.instagram.com/ishan_258/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/YOUR_NUMBER" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:your_email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+              </div>
+              <p class="mt-3 text-muted">I'll try to reply faster than your last crush 😎</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4">
+    <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Internal JS -->
+  <script>
+    // --- Scroll-triggered Fade-in Animation ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
+    sectionsToAnimate.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // --- Form Submission Alert ---
+    document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      // You can connect this to a service like Formspree or Netlify Forms
+      alert("Thanks for reaching out! Your message has been received 📩");
+      this.reset(); // Clears the form after submission
+    });
+  </script>
+
+</body>
+</html>
