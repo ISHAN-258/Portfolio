@@ -192,24 +192,27 @@
             <p class="fs-5 lead mb-5">Have a question or a project in mind? Feel free to reach out. I'd love to hear from you.</p>
           </div>
           <div class="contact-box">
-            <form>
-              <div class="mb-3">
-                <label for="name" class="form-label">Your Name</label>
-                <input type="text" class="form-control" id="name" placeholder="What should I call you?">
-              </div>
+            <form name="contact" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="contact">
 
-              <div class="mb-3">
-                <label for="email" class="form-label">Your Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Where can I reply?">
-              </div>
+  <div class="mb-3">
+    <label for="name" class="form-label">Your Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="What should I call you?" required>
+  </div>
 
-              <div class="mb-3">
-                <label for="message" class="form-label">Your Message</label>
-                <textarea class="form-control" id="message" rows="5" placeholder="Say hi, let's build something awesome!"></textarea>
-              </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Your Email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Where can I reply?" required>
+  </div>
 
-              <button type="submit" class="btn btn-custom mt-3">Send Message</button>
-            </form>
+  <div class="mb-3">
+    <label for="message" class="form-label">Your Message</label>
+    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Say hi, let's build something awesome!" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-custom mt-3">Send Message</button>
+</form>
+            
 
             <div class="text-center mt-5">
               <h5 style="color: var(--lightest-slate);">Or catch me on:</h5>
@@ -264,4 +267,5 @@
   </script>
 
 </body>
+
 </html>
