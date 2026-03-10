@@ -11,44 +11,73 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Internal CSS -->
   <style>
     :root {
       --dark-blue: #0a192f;
       --light-blue: #112240;
+      --lightest-blue: #233554;
       --lightest-slate: #ccd6f6;
       --slate: #8892b0;
       --accent-color: #64ffda;
       --font-main: 'Poppins', sans-serif;
+      --font-mono: 'Fira Code', monospace;
     }
 
     body {
       font-family: var(--font-main);
       background-color: var(--dark-blue);
       color: var(--slate);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* --- Navbar --- */
     .navbar {
       background-color: rgba(10, 25, 47, 0.85);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 15px 0;
     }
 
     .navbar-brand {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--lightest-slate) !important;
+      letter-spacing: 0.5px;
     }
     
     .navbar .nav-link {
       color: var(--lightest-slate);
-      transition: color 0.3s;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin: 0 10px;
+      position: relative;
+      transition: color 0.3s ease;
     }
     
     .navbar .nav-link:hover, .navbar .nav-link.active {
       color: var(--accent-color);
+    }
+
+    /* Animated Underline for Nav Links */
+    .navbar .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      display: block;
+      margin-top: 4px;
+      right: 0;
+      background: var(--accent-color);
+      transition: width 0.3s ease, right 0.3s ease;
+    }
+
+    .navbar .nav-link:hover::after, .navbar .nav-link.active::after {
+      width: 100%;
+      left: 0;
     }
 
     /* --- General Section Styling --- */
@@ -57,95 +86,210 @@
     }
     
     .page-header {
-      padding-top: 120px;
+      padding-top: 140px;
       padding-bottom: 60px;
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 700;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       color: var(--lightest-slate);
       position: relative;
       display: inline-block;
+      letter-spacing: -0.5px;
     }
 
     .section-title::after {
       content: '';
-      display: block;
-      width: 50px;
-      height: 4px;
+      position: absolute;
+      width: 60%;
+      height: 3px;
       background: var(--accent-color);
-      margin-top: 10px;
+      bottom: -10px;
+      left: 0;
+      border-radius: 2px;
+    }
+
+    .section-title.center::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, var(--lightest-slate), var(--slate));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      color: var(--accent-color);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: block;
     }
     
-    /* --- About Section --- */
-    .about-img {
-      max-width: 100%;
-      border-radius: 8px;
-      border: 3px solid var(--accent-color);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
-    .about-img:hover {
-        transform: scale(1.03);
-    }
-    
+    /* --- About Text Styling --- */
     .about-text p {
         line-height: 1.8;
+        color: var(--slate);
+        margin-bottom: 1.2rem;
     }
+
     .about-text strong {
         color: var(--accent-color);
-        font-weight: 600;
+        font-weight: 500;
+        font-family: var(--font-mono);
+        font-size: 0.95em;
+    }
+
+    /* --- Profile Image Styling --- */
+    .profile-wrapper {
+      position: relative;
+      max-width: 350px;
+      margin: 0 auto;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .profile-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent-color);
+      border-radius: 12px;
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+
+    .profile-wrapper:hover {
+      transform: translate(-5px, -5px);
+    }
+
+    .profile-wrapper:hover::after {
+      transform: translate(10px, 10px);
+    }
+
+    .about-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      filter: grayscale(10%) contrast(1.05);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    }
+
+    .profile-wrapper:hover .about-img {
+      filter: none;
     }
 
     /* --- Journey / Timeline Section --- */
     .journey-section {
-      background-color: var(--light-blue);
+      background-color: var(--dark-blue);
+      padding-top: 40px;
     }
     
     .journey-card {
-      background-color: var(--dark-blue);
-      border: 1px solid #1d2d4f;
-      padding: 30px;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: var(--light-blue);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 40px 30px;
+      border-radius: 12px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       height: 100%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+      z-index: 1;
+    }
+
+    /* Animated Top Border on Hover */
+    .journey-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-color);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+      z-index: 2;
     }
     
     .journey-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+      box-shadow: 0 20px 40px -15px rgba(2, 12, 27, 0.9);
+      background-color: var(--lightest-blue);
+    }
+
+    .journey-card:hover::before {
+      transform: scaleX(1);
     }
     
     .journey-icon {
-        font-size: 3rem;
-        margin-bottom: 15px;
-        display: block;
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        display: inline-block;
+        background: rgba(100, 255, 218, 0.05);
+        padding: 15px;
+        border-radius: 50%;
+        line-height: 1;
     }
 
     .journey-title {
       color: var(--lightest-slate);
       font-weight: 600;
+      font-size: 1.3rem;
       margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .journey-card p {
+      color: var(--slate);
+      font-size: 0.95rem;
+      margin: 0;
+      line-height: 1.7;
     }
 
     /* --- Footer --- */
     footer {
-      background-color: #081428;
-      color: var(--slate);
+      background-color: #050d1a;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      font-family: var(--font-mono);
+      margin: 0;
     }
 
     /* --- Animations --- */
     .fade-in-section {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      will-change: opacity, transform;
     }
     
     .fade-in-section.is-visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 991px) {
+      .profile-wrapper { margin-bottom: 50px; }
+      .section-title::after { left: 50%; transform: translateX(-50%); }
+      .text-start.section-title { text-align: center !important; }
+      .about-text { text-align: center; }
     }
   </style>
 </head>
@@ -155,13 +299,15 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan 🚀</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" href="index.html">Ishan <span style="font-size: 1.2rem;">🚀</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--accent-color)" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
@@ -174,60 +320,70 @@
   </nav>
 
   <!-- About Me Section -->
-  <section class="section page-header">
+  <section class="section page-header pb-0">
     <div class="container fade-in-section">
-      <div class="text-center">
-          <h1 class="section-title">About Me</h1>
-      </div>
-      <div class="row align-items-center mt-5">
+      <div class="row align-items-center">
+        <!-- Image Column -->
         <div class="col-lg-5 text-center mb-5 mb-lg-0">
-        <img src="profile.jpeg" alt="Ishan Tripathi" class="about-img">
-          
+          <div class="profile-wrapper">
+            <img src="profile.jpeg" alt="Ishan Tripathi" class="about-img" loading="lazy">
+          </div>
         </div>
-       <div class="col-lg-7 about-text">
-  <p class="fs-5">
-    Hello! I’m <strong>Ishan Tripathi</strong>, a technology enthusiast from Jaunpur, Uttar Pradesh, currently pursuing a Master of Computer Applications (MCA). I have a strong interest in web development and enjoy building practical digital solutions.
-  </p>
 
-  <p class="fs-5">
-    My journey into technology is driven by curiosity, discipline, and a constant desire to learn. I am focused on improving my programming and problem-solving skills while working with modern web technologies.
-  </p>
+        <!-- Text Column -->
+        <div class="col-lg-7 about-text ps-lg-5">
+         
+          <h1 class="section-title text-start text-gradient">About Me</h1>
+          
+          <p class="fs-5">
+            Hello! I’m <strong>Ishan Tripathi</strong>, a technology enthusiast from Jaunpur, Uttar Pradesh, currently pursuing a Master of Computer Applications (MCA). I have a strong interest in web development and enjoy building practical digital solutions.
+          </p>
 
-  <p class="fs-5">
-    I am particularly interested in areas such as <strong>Web Development</strong> and <strong>Cybersecurity</strong>, and I enjoy exploring new tools and technologies that help create efficient and user-friendly applications.
-  </p>
+          <p class="fs-5">
+            My journey into technology is driven by curiosity, discipline, and a constant desire to learn. I am focused on improving my programming and problem-solving skills while working with modern web technologies.
+          </p>
 
-  <p class="fs-5">
-    Beyond coding, I also enjoy creative work such as digital editing and content creation, which allows me to combine technical skills with creativity.
-  </p>
-</div>
+          <p class="fs-5">
+            I am particularly interested in areas such as <strong>Web Development</strong> and <strong>Cybersecurity</strong>, and I enjoy exploring new tools and technologies that help create efficient and user-friendly applications.
+          </p>
+
+          <p class="fs-5">
+            Beyond coding, I also enjoy creative work such as digital editing and content creation, which allows me to combine technical skills with creativity.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- My Journey Section -->
   <section class="section journey-section">
-      <div class="container fade-in-section">
-          <h2 class="section-title text-center">My Journey</h2>
+      <div class="container">
+          <div class="text-center fade-in-section">
+            <span class="eyebrow">// Timeline</span>
+            <h2 class="section-title center">My Journey</h2>
+          </div>
+          
           <div class="row mt-5 text-center g-4">
               <!-- Journey Step 1 -->
-              <div class="col-lg-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch staggered-item">
                   <div class="journey-card">
                       <span class="journey-icon">💂‍♂️</span>
                       <h3 class="journey-title">The Airforce Dream</h3>
                       <p>My first ambition was to serve the nation in the Indian Airforce, a goal that instilled in me a deep sense of discipline and determination.</p>
                   </div>
               </div>
+              
               <!-- Journey Step 2 -->
-              <div class="col-lg-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch staggered-item">
                   <div class="journey-card">
                       <span class="journey-icon">🎓</span>
                       <h3 class="journey-title">The Academic Plot Twist</h3>
                       <p>Life took a different turn, leading me to pursue a Bachelor of Computer Applications in Varanasi, where I discovered a new passion: technology.</p>
                   </div>
               </div>
+              
               <!-- Journey Step 3 -->
-              <div class="col-lg-4 d-flex align-items-stretch">
+              <div class="col-lg-4 d-flex align-items-stretch staggered-item">
                   <div class="journey-card">
                       <span class="journey-icon">💻</span>
                       <h3 class="journey-title">The Digital Warrior</h3>
@@ -239,8 +395,10 @@
   </section>
 
   <!-- Footer -->
-  <footer class="text-center py-4">
-    <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+  <footer>
+    <div class="container">
+      <p class="mb-0 text-muted">© 2025 Ishan Tripathi. Built with caffeine and code.</p>
+    </div>
   </footer>
 
   <!-- Bootstrap JS -->
@@ -250,28 +408,50 @@
   <script>
     console.log("Welcome to Ishan's About Page 😎");
 
-    // --- Scroll-triggered Fade-in Animation ---
-    const observer = new IntersectionObserver((entries) => {
+    // --- Standard Fade-in Animation ---
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1 // Trigger when 10% of the element is visible
-    });
+    }, observerOptions);
 
     const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
     sectionsToAnimate.forEach((section) => {
-      observer.observe(section);
+      sectionObserver.observe(section);
+    });
+
+    // --- Staggered Fade-in Animation for Grid Items ---
+    const staggeredItems = document.querySelectorAll('.staggered-item');
+    // Initially hide them by adding fade-in-section logic manually
+    staggeredItems.forEach(item => {
+        item.classList.add('fade-in-section');
+    });
+
+    const staggeredObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Stagger effect using index delay
+          setTimeout(() => {
+            entry.target.classList.add('is-visible');
+          }, index * 150);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    staggeredItems.forEach((item) => {
+      staggeredObserver.observe(item);
     });
   </script>
 
 </body>
-
 </html>
-
-
-
-
-
