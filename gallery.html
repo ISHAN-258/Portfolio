@@ -11,7 +11,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Internal CSS -->
   <style>
@@ -23,6 +23,7 @@
       --slate: #8892b0;
       --accent-color: #64ffda;
       --font-main: 'Poppins', sans-serif;
+      --font-mono: 'Fira Code', monospace;
     }
 
     body {
@@ -37,7 +38,7 @@
     .navbar {
       background-color: rgba(10, 25, 47, 0.85);
       backdrop-filter: blur(12px);
-      box-shadow: 0 4px 30px rgba(2, 12, 27, 0.7);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding: 15px 0;
     }
@@ -61,7 +62,6 @@
       color: var(--accent-color);
     }
 
-    /* Animated Underline for Nav Links */
     .navbar .nav-link::after {
       content: '';
       position: absolute;
@@ -79,195 +79,201 @@
       left: 0;
     }
 
-    /* --- General Section Styling --- */
-    .section {
-      padding: 90px 20px;
-    }
-    
+    /* --- Header Styling --- */
     .page-header {
       padding-top: 140px;
-      padding-bottom: 20px;
+      padding-bottom: 30px;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      color: var(--accent-color);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: block;
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 700;
       margin-bottom: 20px;
       color: var(--lightest-slate);
-      position: relative;
-      display: inline-block;
-      letter-spacing: -0.5px;
+      line-height: 1.1;
     }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      width: 60%;
-      height: 3px;
-      background: var(--accent-color);
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 2px;
+    .header-desc {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--slate);
     }
 
-    .text-gradient {
-      background: linear-gradient(90deg, var(--lightest-slate), var(--slate));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* --- Bento Box Gallery Grid --- */
+    .gallery-container {
+      padding: 40px 20px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    /* --- Gallery Grid --- */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 25px;
-      padding-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-auto-rows: 320px;
+      grid-auto-flow: dense;
+      gap: 24px;
+    }
+
+    /* Asymmetric sizing for larger screens */
+    @media (min-width: 768px) {
+      .item-wide { grid-column: span 2; }
+      .item-tall { grid-row: span 2; }
     }
 
     .gallery-item {
-        border-radius: 12px;
-        overflow: hidden;
-        position: relative;
-        cursor: pointer;
-        aspect-ratio: 4 / 3;
-        background-color: var(--light-blue);
-        box-shadow: 0 4px 20px rgba(2, 12, 27, 0.5);
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                    transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-                    box-shadow 0.3s ease;
-        will-change: opacity, transform;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: var(--light-blue);
+      cursor: zoom-in;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .gallery-grid.is-visible .gallery-item {
-        opacity: 1;
-        transform: translateY(0);
+    .gallery-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .gallery-item:hover {
-        box-shadow: 0 15px 30px rgba(2, 12, 27, 0.8), 0 0 15px rgba(100, 255, 218, 0.1);
-        z-index: 2;
-    }
-    
     .gallery-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .gallery-item:hover .gallery-image {
-        transform: scale(1.08);
+      transform: scale(1.05);
     }
 
-    /* Overlay on Hover */
+    /* Cinematic Gradient Overlay */
     .gallery-overlay {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(10, 25, 47, 0.6);
-      backdrop-filter: blur(2px);
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.5) 50%, transparent 100%);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+      padding: 30px;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
 
     .gallery-item:hover .gallery-overlay {
       opacity: 1;
     }
 
-    .expand-icon {
+    .overlay-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-color);
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      transform: translateY(15px);
+      transition: transform 0.4s ease;
+    }
+
+    .overlay-title {
+      color: var(--lightest-slate);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0;
+      transform: translateY(15px);
+      transition: transform 0.4s ease 0.05s;
+    }
+
+    .gallery-item:hover .overlay-tag,
+    .gallery-item:hover .overlay-title {
+      transform: translateY(0);
+    }
+
+    /* --- Immersive Lightbox Modal --- */
+    .modal-backdrop.show {
+      opacity: 0.95;
+      background-color: var(--dark-blue);
+      backdrop-filter: blur(10px);
+    }
+    
+    .modal-content {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    .modal-body {
+      padding: 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modalImage {
+      max-height: 85vh;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      object-fit: contain;
+    }
+
+    .custom-close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: rgba(100, 255, 218, 0.1);
+      border: 1px solid var(--accent-color);
       color: var(--accent-color);
       width: 40px;
       height: 40px;
-      margin-bottom: 10px;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1060;
     }
 
-    .gallery-item:hover .expand-icon {
-      transform: translateY(0);
-    }
-
-    .overlay-text {
-      color: var(--lightest-slate);
-      font-weight: 500;
-      letter-spacing: 1px;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover .overlay-text {
-      transform: translateY(0);
-    }
-    
-    /* --- Lightbox Modal --- */
-    .modal-backdrop.show {
-        opacity: 0.9;
-        background-color: var(--dark-blue);
-    }
-    .modal-content {
-        background-color: transparent;
-        border: none;
-        position: relative;
-    }
-    .modal-body {
-        padding: 0;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    }
-    .modal-img-wrapper {
-        position: relative;
-        background: var(--light-blue); /* placeholder while loading */
-        min-height: 300px; 
-    }
-    #modalImage {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-    .custom-close-btn {
-        position: absolute;
-        top: -40px;
-        right: 0;
-        background: none;
-        border: none;
-        color: var(--accent-color);
-        font-size: 2rem;
-        cursor: pointer;
-        transition: color 0.3s;
-        z-index: 1060;
-    }
     .custom-close-btn:hover {
-        color: var(--lightest-slate);
+      background: var(--accent-color);
+      color: var(--dark-blue);
+      transform: rotate(90deg);
     }
 
     /* --- Footer --- */
     footer {
       background-color: #050d1a;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 25px 0;
+      padding: 30px 0;
+      text-align: center;
     }
 
     footer p {
       font-size: 0.9rem;
-      letter-spacing: 0.5px;
+      font-family: var(--font-mono);
     }
 
-    /* Mobile Responsive adjustments */
+    /* Mobile Tweaks */
     @media (max-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      }
-      .custom-close-btn {
-        top: -35px;
-        right: 10px;
-      }
+      .gallery-grid { grid-auto-rows: 250px; }
+      .custom-close-btn { top: -50px; right: 10px; }
+      .gallery-overlay { opacity: 1; background: linear-gradient(to top, rgba(10, 25, 47, 0.9) 0%, transparent 100%); }
+      .overlay-tag, .overlay-title { transform: translateY(0); }
     }
   </style>
 </head>
@@ -279,7 +285,7 @@
     <div class="container">
       <a class="navbar-brand" href="index.html">Ishan <span style="font-size: 1.2rem;">🚀</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--accent-color)" class="bi bi-list" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--accent-color)" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
       </button>
@@ -298,96 +304,91 @@
   </nav>
 
   <!-- Header Section -->
-  <section class="section page-header text-center pb-0">
+  <section class="page-header text-center">
     <div class="container">
-      <h1 class="section-title text-gradient">My Gallery</h1>
-      <p class="fs-5 mt-3" style="max-width: 650px; margin: auto; color: var(--slate);">
-        A glimpse into my world of tech, creativity, and everyday life.
+      <span class="eyebrow">// Lens & Life</span>
+      <h1 class="section-title">My Gallery</h1>
+      <p class="header-desc">
+        A curated visual journey through my workspace, creative process, and everyday life.
       </p>
     </div>
   </section>
 
   <!-- Gallery Section -->
-  <section class="section pt-4">
-    <div class="container">
-      <!-- Added an ID to the grid to trigger animation on the whole group -->
-      <div class="gallery-grid" id="galleryGrid">
+  <div class="gallery-container">
+    <div class="gallery-grid">
 
-        <!-- Image 1: Workspace -->
-        <div class="gallery-item" style="transition-delay: 0.1s;" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1555949963-ff98c872d82b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
-          <!-- low res for grid, high res for modal -->
-          <img src="https://images.unsplash.com/photo-1555949963-ff98c872d82b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="My Workspace" class="gallery-image" loading="lazy">
-          <div class="gallery-overlay">
-            <svg class="expand-icon" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-            <span class="overlay-text">Workspace</span>
-          </div>
+      <!-- Image 1: Workspace (Wide) -->
+      <div class="gallery-item item-wide" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1555949963-ff98c872d82b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1555949963-ff98c872d82b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70" alt="My Workspace" class="gallery-image" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="overlay-tag">WORKSPACE</span>
+          <h3 class="overlay-title">The Battlestation</h3>
         </div>
-
-        <!-- Image 2: Code -->
-        <div class="gallery-item" style="transition-delay: 0.2s;" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
-          <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Code on Screen" class="gallery-image" loading="lazy">
-          <div class="gallery-overlay">
-            <svg class="expand-icon" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-            <span class="overlay-text">Code</span>
-          </div>
-        </div>
-
-        <!-- Image 3: Creative / Editing -->
-        <div class="gallery-item" style="transition-delay: 0.3s;" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
-          <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Creative Setup" class="gallery-image" loading="lazy">
-          <div class="gallery-overlay">
-            <svg class="expand-icon" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-            <span class="overlay-text">Editing Setup</span>
-          </div>
-        </div>
-
-        <!-- Image 4: Varanasi / Travel -->
-        <div class="gallery-item" style="transition-delay: 0.4s;" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1561361522-589571981d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
-          <img src="https://images.unsplash.com/photo-1561361522-589571981d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Varanasi Ghat" class="gallery-image" loading="lazy">
-          <div class="gallery-overlay">
-            <svg class="expand-icon" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-            <span class="overlay-text">Varanasi Ghats</span>
-          </div>
-        </div>
-
-        <!-- Image 5: Tech / Hardware -->
-        <div class="gallery-item" style="transition-delay: 0.5s;" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
-          <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Computer Hardware" class="gallery-image" loading="lazy">
-          <div class="gallery-overlay">
-            <svg class="expand-icon" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-            <span class="overlay-text">My Machine</span>
-          </div>
-        </div>
-        
-        <!-- Image 6: Learning -->
-        <div class="gallery-item" style="transition-delay: 0.6s;" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
-          <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Books and Learning" class="gallery-image" loading="lazy">
-          <div class="gallery-overlay">
-            <svg class="expand-icon" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-            <span class="overlay-text">Learning</span>
-          </div>
-        </div>
-        
       </div>
+
+      <!-- Image 2: Code (Standard) -->
+      <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
+        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Code on Screen" class="gallery-image" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="overlay-tag">DEVELOPMENT</span>
+          <h3 class="overlay-title">Late Night Code</h3>
+        </div>
+      </div>
+
+      <!-- Image 3: Varanasi (Tall) -->
+      <div class="gallery-item item-tall" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1561361522-589571981d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
+        <img src="https://images.unsplash.com/photo-1561361522-589571981d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Varanasi Ghat" class="gallery-image" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="overlay-tag">TRAVEL / LIFE</span>
+          <h3 class="overlay-title">Varanasi Ghats</h3>
+        </div>
+      </div>
+
+      <!-- Image 4: Creative / Editing (Standard) -->
+      <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Creative Setup" class="gallery-image" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="overlay-tag">CREATIVE</span>
+          <h3 class="overlay-title">Video Editing</h3>
+        </div>
+      </div>
+
+      <!-- Image 5: Tech / Hardware (Wide) -->
+      <div class="gallery-item item-wide" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=85">
+        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70" alt="Computer Hardware" class="gallery-image" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="overlay-tag">HARDWARE</span>
+          <h3 class="overlay-title">Under the Hood</h3>
+        </div>
+      </div>
+      
+      <!-- Image 6: Learning (Standard) -->
+      <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85">
+        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=70" alt="Books and Learning" class="gallery-image" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="overlay-tag">KNOWLEDGE</span>
+          <h3 class="overlay-title">Always Learning</h3>
+        </div>
+      </div>
+      
     </div>
-  </section>
+  </div>
 
   <!-- Footer -->
-  <footer class="text-center">
+  <footer>
     <div class="container">
-      <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+      <p class="mb-0 text-muted">© 2025 Ishan Tripathi. Built with caffeine and code.</p>
     </div>
   </footer>
 
-  <!-- Gallery Lightbox Modal -->
+  <!-- Immersive Lightbox Modal -->
   <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
-        <button type="button" class="custom-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
         <div class="modal-body">
-          <div class="modal-img-wrapper">
-            <img src="" id="modalImage" alt="Expanded Gallery View">
-          </div>
+          <button type="button" class="custom-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          <img src="" id="modalImage" alt="Expanded Gallery View">
         </div>
       </div>
     </div>
@@ -396,48 +397,46 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Internal JS -->
+  <!-- Internal JS for Animations & Lightbox -->
   <script>
     // --- Lightbox Functionality ---
     const galleryModal = document.getElementById('galleryModal');
     const modalImage = document.getElementById('modalImage');
 
     galleryModal.addEventListener('show.bs.modal', function (event) {
-      // Button that triggered the modal
       const triggerElement = event.relatedTarget;
-      // Get the high-res image source
       const imageSrc = triggerElement.getAttribute('data-img-src');
-      // Set image source
       modalImage.src = imageSrc;
     });
 
-    // Clear image src when modal closes to prevent layout jumps on next open
+    // Clear image src when closed
     galleryModal.addEventListener('hidden.bs.modal', function () {
       modalImage.src = "";
     });
 
-    // --- Scroll-triggered Fade-in Animation ---
+    // --- Staggered Scroll Animation ---
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.1
+      threshold: 0.15
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // Stop observing once visible
+          // Add a slight delay based on the DOM index for a staggered "waterfall" effect
+          setTimeout(() => {
+            entry.target.classList.add('is-visible');
+          }, index * 100); 
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Target the grid container instead of individual items 
-    // to trigger the staggered CSS delay perfectly
-    const gridContainer = document.getElementById('galleryGrid');
-    if (gridContainer) {
-      observer.observe(gridContainer);
-    }
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item) => {
+      observer.observe(item);
+    });
   </script>
 
 </body>
