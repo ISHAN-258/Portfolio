@@ -11,8 +11,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Devicon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
   <!-- Internal CSS -->
@@ -20,6 +21,7 @@
     :root {
       --dark-blue: #0a192f;
       --light-blue: #112240;
+      --lightest-blue: #233554;
       --lightest-slate: #ccd6f6;
       --slate: #8892b0;
       --accent-color: #64ffda;
@@ -30,136 +32,263 @@
       font-family: var(--font-main);
       background-color: var(--dark-blue);
       color: var(--slate);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* --- Navbar --- */
     .navbar {
       background-color: rgba(10, 25, 47, 0.85);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(2, 12, 27, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 15px 0;
     }
 
     .navbar-brand {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--lightest-slate) !important;
+      letter-spacing: 0.5px;
     }
     
     .navbar .nav-link {
       color: var(--lightest-slate);
-      transition: color 0.3s;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin: 0 10px;
+      position: relative;
+      transition: color 0.3s ease;
     }
     
     .navbar .nav-link:hover, .navbar .nav-link.active {
       color: var(--accent-color);
     }
 
+    /* Animated Underline for Nav Links */
+    .navbar .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      display: block;
+      margin-top: 4px;
+      right: 0;
+      background: var(--accent-color);
+      transition: width 0.3s ease, right 0.3s ease;
+    }
+
+    .navbar .nav-link:hover::after, .navbar .nav-link.active::after {
+      width: 100%;
+      left: 0;
+    }
+
     /* --- General Section Styling --- */
     .section {
-      padding: 100px 20px;
+      padding: 90px 20px;
     }
     
     .page-header {
-      padding-top: 120px;
-      padding-bottom: 60px;
+      padding-top: 140px;
+      padding-bottom: 40px;
     }
 
     .section-title {
       font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
       color: var(--lightest-slate);
       position: relative;
       display: inline-block;
+      letter-spacing: -0.5px;
     }
 
     .section-title::after {
       content: '';
-      display: block;
-      width: 50px;
-      height: 4px;
+      position: absolute;
+      width: 60%;
+      height: 3px;
       background: var(--accent-color);
-      margin-top: 10px;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* Header Text Gradient */
+    .text-gradient {
+      background: linear-gradient(90deg, var(--lightest-slate), var(--slate));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
-    /* --- Skill Cards --- */
+    /* --- Technical Skill Cards --- */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
     .skill-card {
       background-color: var(--light-blue);
-      border: 1px solid #1d2d4f;
-      padding: 30px 20px;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      height: 100%;
+      border: 1px solid rgba(100, 255, 218, 0.05);
+      padding: 35px 20px;
+      border-radius: 12px;
+      width: 160px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(2, 12, 27, 0.5);
     }
 
     .skill-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+      transform: translateY(-10px);
+      border-color: rgba(100, 255, 218, 0.4);
+      box-shadow: 0 15px 30px rgba(2, 12, 27, 0.8), 0 0 15px rgba(100, 255, 218, 0.1);
+      background-color: var(--lightest-blue);
     }
     
     .skill-icon {
-      font-size: 3.5rem;
+      font-size: 4rem;
       margin-bottom: 15px;
-      color: var(--accent-color);
+      color: var(--lightest-slate);
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover .skill-icon {
+      transform: scale(1.1);
     }
 
     .skill-name {
       color: var(--lightest-slate);
-      font-weight: 600;
+      font-weight: 500;
+      font-size: 1.05rem;
+      margin: 0;
+      letter-spacing: 0.5px;
     }
 
-    /* --- Info Cards for Other Skills --- */
-    .info-section {
-        background-color: var(--light-blue);
+    /* --- Certifications Card --- */
+    .cert-card {
+      background: linear-gradient(145deg, var(--light-blue) 0%, rgba(10, 25, 47, 1) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-left: 5px solid var(--accent-color);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(2, 12, 27, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .cert-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(2, 12, 27, 0.8);
+    }
+
+    .cert-icon {
+      font-size: 3rem;
+      background: rgba(100, 255, 218, 0.1);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* --- Info Cards (Other Skills) --- */
     .info-card {
-      background-color: var(--dark-blue);
-      border: 1px solid #1d2d4f;
-      padding: 30px;
-      border-radius: 8px;
+      background-color: var(--light-blue);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 12px;
       height: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(2, 12, 27, 0.5);
+    }
+
+    .info-card:hover {
+      border-color: rgba(100, 255, 218, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(2, 12, 27, 0.7);
     }
 
     .info-card-title {
       color: var(--lightest-slate);
       font-weight: 600;
-      margin-bottom: 20px;
-      font-size: 1.5rem;
+      margin-bottom: 25px;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .info-card ul {
       list-style-type: none;
       padding-left: 0;
+      margin: 0;
     }
+
     .info-card ul li {
       position: relative;
-      padding-left: 25px;
-      margin-bottom: 10px;
+      padding-left: 30px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      color: var(--slate);
+      transition: color 0.2s ease;
     }
+
+    .info-card ul li:hover {
+      color: var(--lightest-slate);
+    }
+
     .info-card ul li::before {
       content: '▹';
       position: absolute;
       left: 0;
+      top: 0;
       color: var(--accent-color);
+      font-size: 1.2rem;
+      line-height: 1.4;
     }
 
     /* --- Footer --- */
     footer {
-      background-color: #081428;
-      color: var(--slate);
+      background-color: #050d1a;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 25px 0;
+    }
+    
+    footer p {
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
     }
 
     /* --- Animations --- */
     .fade-in-section {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      will-change: opacity, visibility;
     }
     
     .fade-in-section.is-visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .section { padding: 60px 20px; }
+      .cert-card { flex-direction: column; text-align: center; padding: 30px 20px; }
+      .cert-icon { margin: 0 auto 20px auto !important; }
+      .skill-card { width: calc(50% - 15px); padding: 25px 10px; }
+      .skill-icon { font-size: 3rem; }
+    }
+    @media (max-width: 480px) {
+      .skill-card { width: 100%; }
     }
   </style>
 </head>
@@ -169,13 +298,15 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan 🚀</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" href="index.html">Ishan <span style="font-size: 1.2rem;">🚀</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--accent-color)" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link active" href="skills.html">Skills</a></li>
@@ -190,107 +321,89 @@
   <!-- Header Section -->
   <section class="section page-header text-center">
       <div class="container fade-in-section">
-          <h1 class="section-title">My Skills & Toolkit</h1>
-          <p class="fs-5 lead" style="max-width: 700px; margin: auto;">The technologies and tools I use to build things and be creative.</p>
+          <h1 class="section-title text-gradient">My Skills & Toolkit</h1>
+          <p class="fs-5 mt-3" style="max-width: 650px; margin: auto; color: var(--slate);">
+            The technologies and tools I use to build things and be creative.
+          </p>
       </div>
   </section>
 
   <!-- Technical Skills Section -->
-<!-- Technical Skills Section -->
-<section class="section pt-0">
-  <div class="container fade-in-section">
-    <h2 class="text-center mb-5" style="color: var(--lightest-slate);">Technical Skills</h2>
+  <section class="section pt-0">
+    <div class="container fade-in-section">
+      <div class="skills-container">
 
-    <div class="row g-4 justify-content-center">
-
-      <!-- HTML -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- HTML -->
+        <div class="skill-card">
           <i class="devicon-html5-plain colored skill-icon"></i>
           <h5 class="skill-name">HTML</h5>
         </div>
-      </div>
 
-      <!-- CSS -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- CSS -->
+        <div class="skill-card">
           <i class="devicon-css3-plain colored skill-icon"></i>
           <h5 class="skill-name">CSS</h5>
         </div>
-      </div>
 
-      <!-- JavaScript -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- JavaScript -->
+        <div class="skill-card">
           <i class="devicon-javascript-plain colored skill-icon"></i>
           <h5 class="skill-name">JavaScript</h5>
         </div>
-      </div>
 
-      <!-- Bootstrap -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- Bootstrap -->
+        <div class="skill-card">
           <i class="devicon-bootstrap-plain colored skill-icon"></i>
           <h5 class="skill-name">Bootstrap</h5>
         </div>
-      </div>
 
-      <!-- Python -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- Python -->
+        <div class="skill-card">
           <i class="devicon-python-plain colored skill-icon"></i>
           <h5 class="skill-name">Python</h5>
         </div>
-      </div>
 
-      <!-- C -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- C -->
+        <div class="skill-card">
           <i class="devicon-c-plain colored skill-icon"></i>
           <h5 class="skill-name">C</h5>
         </div>
-      </div>
 
-      <!-- C++ -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- C++ -->
+        <div class="skill-card">
           <i class="devicon-cplusplus-plain colored skill-icon"></i>
           <h5 class="skill-name">C++</h5>
         </div>
-      </div>
 
-      <!-- Java -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- Java -->
+        <div class="skill-card">
           <i class="devicon-java-plain colored skill-icon"></i>
           <h5 class="skill-name">Java</h5>
         </div>
-      </div>
 
-      <!-- C# -->
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="skill-card text-center">
+        <!-- C# -->
+        <div class="skill-card">
           <i class="devicon-csharp-plain colored skill-icon"></i>
           <h5 class="skill-name">C#</h5>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Learning & Certifications Section -->
-  <section class="section info-section">
+  <section class="section pt-0">
     <div class="container fade-in-section">
-        <h2 class="text-center mb-5" style="color: var(--lightest-slate);">Learning & Certifications</h2>
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="info-card d-flex align-items-center">
-                    <div class="skill-icon me-4">🛡️</div>
+            <div class="col-lg-10">
+                <div class="cert-card d-flex align-items-center">
+                    <div class="cert-icon me-lg-4">🛡️</div>
                     <div>
-                        <h4 class="info-card-title mb-1">Cybersecurity Analyst Course</h4>
-                        <p class="mb-0">Currently enrolled in the Complete Cybersecurity Analyst Course on Udemy to build foundational skills in threat detection, network security, and risk management.</p>
-                        <small class="text-muted">Source: Udemy</small>
+                        <h3 class="mb-2" style="color: var(--lightest-slate); font-weight: 600;">Cybersecurity Analyst Course</h3>
+                        <p class="mb-2" style="font-size: 1.05rem;">
+                          Currently enrolled in the Complete Cybersecurity Analyst Course on Udemy to build foundational skills in threat detection, network security, and risk management.
+                        </p>
+                        <span style="color: var(--accent-color); font-size: 0.9rem; font-family: monospace;">// Source: Udemy</span>
                     </div>
                 </div>
             </div>
@@ -299,11 +412,12 @@
   </section>
 
   <!-- Other Skills Section -->
-  <section class="section">
+  <section class="section pt-0">
     <div class="container fade-in-section">
-      <div class="row g-4">
+      <div class="row justify-content-center g-4">
+        
         <!-- Editing & Creativity -->
-        <div class="col-lg-6 d-flex align-items-stretch">
+        <div class="col-lg-5 d-flex align-items-stretch">
           <div class="info-card w-100">
             <h3 class="info-card-title">🎬 Editing & Creativity</h3>
             <ul>
@@ -313,8 +427,9 @@
             </ul>
           </div>
         </div>
+        
         <!-- My Machine -->
-        <div class="col-lg-6 d-flex align-items-stretch">
+        <div class="col-lg-5 d-flex align-items-stretch">
           <div class="info-card w-100">
             <h3 class="info-card-title">🖥️ My Machine</h3>
             <ul>
@@ -326,30 +441,37 @@
             </ul>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="text-center py-4">
-    <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+    </div>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Internal JS -->
+  <!-- Scroll Animation Script -->
   <script>
-    // --- Scroll-triggered Fade-in Animation ---
-    const observer = new IntersectionObserver((entries) => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target); // Stop observing once it's visible
         }
       });
-    }, {
-      threshold: 0.1
-    });
+    }, observerOptions);
 
     const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
     sectionsToAnimate.forEach((section) => {
@@ -358,5 +480,4 @@
   </script>
 
 </body>
-
 </html>
