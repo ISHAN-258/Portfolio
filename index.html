@@ -4,20 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="google-site-verification" content="wPQZhu7k6DwPCK5tGIqYJccnIFLaVW7Riz1NYdS8yic" />
-  <meta name="description" content="Ishan Tripathi - Web Developer Portfolio showcasing projects, skills and practical web solutions.">
+
+  <!-- SEO -->
+  <meta name="description" content="Ishan Tripathi — MCA student, web developer & cybersecurity enthusiast from Jaunpur, UP. Building clean web experiences and breaking things ethically.">
   <meta name="author" content="Ishan Tripathi">
   <meta name="robots" content="index, follow">
+  <meta name="keywords" content="Ishan Tripathi, web developer, portfolio, MCA, Jaunpur, HTML CSS JavaScript, cybersecurity">
+
+  <!-- Open Graph (WhatsApp / LinkedIn / Facebook preview) -->
+  <meta property="og:title" content="Ishan Tripathi | Web Developer Portfolio">
+  <meta property="og:description" content="MCA student & web developer from Jaunpur, UP. Building clean web experiences and breaking things ethically.">
+  <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
+  <meta property="og:url" content="https://ishantripathi.in">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ishan Tripathi | Web Developer Portfolio">
+  <meta name="twitter:description" content="MCA student & web developer from Jaunpur, UP.">
+  <meta name="twitter:image" content="https://ishantripathi.in/profile.jpeg">
+
   <title>Ishan Tripathi | Home</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.png">
 
   <!-- Bootstrap CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Internal CSS -->
   <style>
     :root {
       --dark-blue: #0a192f;
@@ -30,6 +53,8 @@
       --font-mono: 'Fira Code', monospace;
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: var(--font-main);
       background-color: var(--dark-blue);
@@ -40,11 +65,11 @@
 
     /* --- Navbar --- */
     .navbar {
-      background-color: rgba(10, 25, 47, 0.85);
+      background-color: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 14px 0;
       transition: all 0.3s ease;
     }
 
@@ -52,26 +77,26 @@
       font-weight: 700;
       color: var(--lightest-slate) !important;
       letter-spacing: 0.5px;
+      font-size: 1.1rem;
     }
-    
+
     .navbar .nav-link {
-      color: var(--lightest-slate);
+      color: var(--slate);
       font-weight: 500;
-      font-size: 0.95rem;
-      margin: 0 10px;
+      font-size: 0.88rem;
+      margin: 0 6px;
       position: relative;
       transition: color 0.3s ease;
+      font-family: var(--font-mono);
     }
-    
-    .navbar .nav-link:hover, .navbar .nav-link.active {
-      color: var(--accent-color);
-    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--accent-color); }
 
     .navbar .nav-link::after {
       content: '';
       position: absolute;
-      width: 0;
-      height: 2px;
+      width: 0; height: 2px;
       display: block;
       margin-top: 4px;
       right: 0;
@@ -79,18 +104,66 @@
       transition: width 0.3s ease, right 0.3s ease;
     }
 
-    .navbar .nav-link:hover::after, .navbar .nav-link.active::after {
-      width: 100%;
-      left: 0;
+    .navbar .nav-link:hover::after,
+    .navbar .nav-link.active::after { width: 100%; left: 0; }
+
+    .nav-icon-link {
+      color: var(--slate);
+      font-size: 1.05rem;
+      margin-left: 14px;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-flex;
+      align-items: center;
     }
 
-    /* --- General Section Styling --- */
-    .section {
-      padding: 100px 20px;
+    .nav-icon-link:hover { color: var(--accent-color); transform: translateY(-2px); }
+
+    /* --- Buttons --- */
+    .btn-custom {
+      background-color: transparent;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 13px 28px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
     }
+
+    .btn-custom:hover {
+      background-color: rgba(100,255,218,0.1);
+      color: var(--accent-color);
+      box-shadow: 0 4px 15px rgba(100,255,218,0.2);
+      transform: translateY(-3px);
+    }
+
+    .btn-custom-solid {
+      background-color: rgba(100,255,218,0.1);
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 13px 28px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-custom-solid:hover {
+      background-color: rgba(100,255,218,0.2);
+      color: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(100,255,218,0.2);
+    }
+
+    /* --- Sections --- */
+    .section { padding: 100px 20px; }
 
     .section-title {
-      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       font-weight: 700;
       margin-bottom: 40px;
       color: var(--lightest-slate);
@@ -102,62 +175,35 @@
     .section-title::after {
       content: '';
       position: absolute;
-      width: 60%;
-      height: 3px;
+      width: 60%; height: 3px;
       background: var(--accent-color);
-      bottom: -10px;
-      left: 0;
+      bottom: -10px; left: 0;
       border-radius: 2px;
     }
 
-    .section-title.center::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    .section-title.center::after { left: 50%; transform: translateX(-50%); }
 
     .text-gradient {
-      background: linear-gradient(90deg, var(--lightest-slate), var(--slate));
+      background: linear-gradient(90deg, #ccd6f6, #a8b2d8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .eyebrow {
       font-family: var(--font-mono);
       color: var(--accent-color);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 15px;
       display: block;
     }
 
-    /* --- Buttons --- */
-    .btn-custom {
-      background-color: transparent;
-      border: 1px solid var(--accent-color);
-      color: var(--accent-color);
-      padding: 14px 30px;
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      border-radius: 6px;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-    .btn-custom:hover {
-      background-color: rgba(100, 255, 218, 0.1);
-      color: var(--accent-color);
-      box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
-      transform: translateY(-3px);
-    }
-
-    /* --- Hero Section --- */
+    /* --- Hero --- */
     .hero {
       position: relative;
-      min-height: 90vh;
+      min-height: 92vh;
       display: flex;
       align-items: center;
       background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
@@ -170,25 +216,60 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(to bottom, rgba(10, 25, 47, 0.85) 0%, rgba(10, 25, 47, 0.98) 100%);
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,25,47,0.88) 0%, rgba(10,25,47,0.98) 100%);
       z-index: -1;
     }
-    
-    .hero-content h1, .hero-content p, .hero-content .btn {
-      opacity: 0;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    
-    .hero-content h1 { animation-delay: 0.2s; color: var(--lightest-slate); font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -1px; }
-    .hero-content p { animation-delay: 0.4s; color: var(--slate); max-width: 600px; margin: 0 auto; }
-    .hero-content .btn { animation-delay: 0.6s; }
 
-    /* --- Introduction Section --- */
+    .hero-content h1,
+    .hero-content .hero-sub,
+    .hero-content .hero-btns,
+    .hero-content .hero-socials,
+    .hero-content .eyebrow {
+      opacity: 0;
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    .hero-content .eyebrow  { animation-delay: 0.05s; }
+    .hero-content h1        { animation-delay: 0.18s; color: var(--lightest-slate); font-size: clamp(2.4rem, 6vw, 4.4rem); letter-spacing: -1px; }
+    .hero-content .hero-sub { animation-delay: 0.32s; }
+    .hero-content .hero-btns { animation-delay: 0.46s; }
+    .hero-content .hero-socials { animation-delay: 0.60s; }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--slate);
+      max-width: 620px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 22px;
+      justify-content: center;
+    }
+
+    .hero-socials a {
+      color: var(--slate);
+      font-size: 1.3rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
+
+    /* --- Profile --- */
     .profile-wrapper {
       position: relative;
-      width: 280px;
-      height: 280px;
+      width: 270px; height: 270px;
       margin: 0 auto;
       z-index: 1;
       transition: all 0.3s ease;
@@ -197,305 +278,602 @@
     .profile-wrapper::after {
       content: '';
       position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 100%;
-      height: 100%;
+      top: 18px; left: 18px;
+      width: 100%; height: 100%;
       border: 2px solid var(--accent-color);
       border-radius: 12px;
       z-index: -1;
       transition: all 0.3s ease;
     }
 
-    .profile-wrapper:hover {
-      transform: translate(-5px, -5px);
-    }
-
-    .profile-wrapper:hover::after {
-      transform: translate(10px, 10px);
-    }
+    .profile-wrapper:hover { transform: translate(-5px, -5px); }
+    .profile-wrapper:hover::after { transform: translate(10px, 10px); }
 
     .profile-img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       border-radius: 12px;
       filter: grayscale(20%) contrast(1.1);
       transition: all 0.3s ease;
     }
 
-    .profile-wrapper:hover .profile-img {
-      filter: none;
+    .profile-wrapper:hover .profile-img { filter: none; }
+
+    /* Status pills */
+    .status-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
     }
 
-    /* --- Facts Section --- */
+    .status-pill {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--accent-color);
+      background: rgba(100,255,218,0.07);
+      border: 1px solid rgba(100,255,218,0.18);
+      padding: 6px 14px;
+      border-radius: 6px;
+    }
+
+    /* --- Facts (icon-based) --- */
     .facts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
+      margin-top: 44px;
     }
 
     .fact-card {
       background-color: var(--light-blue);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 34px 28px;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
       display: flex;
       flex-direction: column;
-      height: 100%;
+      gap: 14px;
     }
-    
+
     .fact-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(100, 255, 218, 0.3);
-      box-shadow: 0 20px 40px -15px rgba(2, 12, 27, 0.9);
+      transform: translateY(-8px);
+      border-color: rgba(100,255,218,0.25);
+      box-shadow: 0 20px 40px -15px rgba(2,12,27,0.9);
     }
 
-    .fact-img-wrapper {
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-    }
-
-    .fact-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .fact-card:hover .fact-img-wrapper img {
-      transform: scale(1.1);
-    }
-    
-    .fact-card-body {
-      padding: 30px 25px;
-      flex-grow: 1;
+    .fact-icon {
+      width: 52px; height: 52px;
+      background: rgba(100,255,218,0.07);
+      border: 1px solid rgba(100,255,218,0.18);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
     }
 
     .fact-title {
       color: var(--lightest-slate);
       font-weight: 600;
-      font-size: 1.25rem;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-size: 1.05rem;
+      margin: 0;
     }
 
     .fact-desc {
       color: var(--slate);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
+      margin: 0;
+      line-height: 1.75;
+    }
+
+    /* --- Projects Preview --- */
+    .projects-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .proj-card {
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(100,255,218,0.25);
+      box-shadow: 0 20px 40px -15px rgba(2,12,27,0.9);
+    }
+
+    .proj-img-wrap { overflow: hidden; }
+
+    .proj-img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .proj-card:hover .proj-img { transform: scale(1.06); }
+
+    .proj-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .proj-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent-color);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .proj-title {
+      color: var(--lightest-slate);
+      font-size: 1.05rem;
+      font-weight: 600;
       margin: 0;
     }
 
-    /* --- CTA Section --- */
+    .proj-desc {
+      color: var(--slate);
+      font-size: 0.85rem;
+      line-height: 1.72;
+      flex: 1;
+      margin: 0;
+    }
+
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .stack-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(100,255,218,0.07);
+      border: 1px solid rgba(100,255,218,0.16);
+      color: var(--accent-color);
+    }
+
+    .proj-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .proj-link {
+      color: var(--slate);
+      font-size: 0.85rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .proj-link:hover { color: var(--accent-color); transform: translateY(-2px); }
+
+    /* --- CTA --- */
     .cta-container {
-      background: linear-gradient(145deg, var(--light-blue) 0%, rgba(10, 25, 47, 1) 100%);
-      border: 1px solid rgba(100, 255, 218, 0.1);
-      padding: 60px 20px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(2, 12, 27, 0.5);
+      background: linear-gradient(145deg, var(--light-blue) 0%, rgba(10,25,47,1) 100%);
+      border: 1px solid rgba(100,255,218,0.1);
+      padding: 70px 30px;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(2,12,27,0.5);
     }
 
     /* --- Footer --- */
     footer {
       background-color: #050d1a;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 36px 0;
       text-align: center;
     }
 
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: 16px;
+    }
+
+    .footer-socials a {
+      color: var(--slate);
+      font-size: 1.15rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .footer-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
+
     footer p {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       font-family: var(--font-mono);
+      color: var(--slate);
       margin: 0;
     }
 
     /* --- Animations --- */
     @keyframes fadeInUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    
-    .fade-in-section {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-      will-change: opacity, transform;
-    }
-    
-    .fade-in-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+      from { transform: translateY(28px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
     }
 
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+
+    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* --- Responsive --- */
     @media (max-width: 768px) {
-      .section { padding: 70px 20px; }
-      .profile-wrapper { width: 220px; height: 220px; margin-bottom: 40px; }
+      .section { padding: 70px 16px; }
+      .profile-wrapper { width: 210px; height: 210px; margin-bottom: 40px; }
       .section-title::after { left: 50%; transform: translateX(-50%); }
       .text-start.section-title { text-align: center !important; }
-      .text-start p { text-align: center; }
+      .hero { background-attachment: scroll; }
+      .status-pills { justify-content: center; }
+      .col-lg-7 p, .col-lg-7 div { text-align: center; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Navbar -->
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════ -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Ishan <span style="font-size: 1.2rem;">🚀</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--accent-color)" viewBox="0 0 16 16">
+      <a class="navbar-brand" href="index.html">Ishan <span style="font-size:1.1rem">🚀</span></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        style="border:none;outline:none;box-shadow:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--accent-color)" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
           <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item d-none d-lg-flex align-items-center ms-2">
+            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"
+               class="nav-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ishan-tripathi-/" target="_blank" rel="noopener"
+               class="nav-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <section class="hero" id="home">
     <div class="container text-center hero-content">
-    
+      <span class="eyebrow">Hello, world! 👋</span>
       <h1 class="fw-bold text-gradient">Hi, I'm Ishan Tripathi</h1>
-      <p class="fs-4 mb-5">BCA Graduate | Aspiring Web Developer | Editor | Techie in Training 🧠</p>
-      <a href="projects.html" class="btn-custom">Explore My Projects</a>
+      <p class="hero-sub">
+        I build clean web experiences and break things ethically.<br>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-color)">
+          MCA Student &nbsp;·&nbsp; Web Developer &nbsp;·&nbsp; Cybersecurity Enthusiast &nbsp;·&nbsp; Jaunpur, UP
+        </span>
+      </p>
+      <div class="hero-btns">
+        <a href="projects.html" class="btn-custom">Explore Projects</a>
+        <a href="Ishan_Tripathi_CV.pdf" class="btn-custom-solid" target="_blank" rel="noopener">
+          <i class="fas fa-download" style="margin-right:8px;font-size:0.78rem"></i>Download CV
+        </a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ishan-tripathi-/" target="_blank" rel="noopener" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="contact.html" title="Contact Me">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Introduction Section -->
+  <!-- ═══════════════════════════════════════════
+       INTRODUCTION
+  ════════════════════════════════════════════ -->
   <section class="section">
     <div class="container fade-in-section">
       <div class="row align-items-center">
-        <!-- Profile Image -->
+
+        <!-- Profile Photo -->
         <div class="col-lg-5 text-center mb-5 mb-lg-0">
           <div class="profile-wrapper">
-            <img src="https://media.licdn.com/dms/image/v2/D5603AQHk-BqCS_F8tw/profile-displayphoto-scale_200_200/B56ZiIQUvUHUAY-/0/1754632640134?e=2147483647&v=beta&t=7rjfl4sZWxLyBtVUdvTwdXyEPKfJ6o0UJ1y_RdVIyK8" alt="Ishan Tripathi" class="profile-img">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D5603AQHk-BqCS_F8tw/profile-displayphoto-scale_200_200/B56ZiIQUvUHUAY-/0/1754632640134?e=2147483647&v=beta&t=7rjfl4sZWxLyBtVUdvTwdXyEPKfJ6o0UJ1y_RdVIyK8"
+              alt="Ishan Tripathi — Web Developer & MCA Student"
+              class="profile-img"
+              onerror="this.src='https://ui-avatars.com/api/?name=Ishan+Tripathi&background=112240&color=64ffda&size=270&bold=true'"
+            >
           </div>
         </div>
-        
-        <!-- Bio Text -->
+
+        <!-- Bio -->
         <div class="col-lg-7">
           <h2 class="section-title text-start">Who am I?</h2>
-          <p class="fs-5 mt-4" style="color: var(--slate); line-height: 1.8;">
-           I am a technology enthusiast from Jaunpur, Uttar Pradesh, currently pursuing a Master of Computer Applications (MCA). I have a strong interest in web and application development and enjoy building practical digital solutions. I continuously work on improving my programming and problem-solving skills while exploring modern technologies in software development.
+          <p class="fs-5 mt-4" style="color:var(--slate);line-height:1.85">
+            I'm a technology enthusiast from <strong style="color:var(--lightest-slate)">Jaunpur, Uttar Pradesh</strong>,
+            currently pursuing a <strong style="color:var(--lightest-slate)">Master of Computer Applications (MCA)</strong>.
+            I enjoy building practical digital solutions that solve real problems — from travel booking systems to campus utilities.
           </p>
+          <p class="mt-3" style="color:var(--slate);line-height:1.85">
+            I'm especially drawn to <strong style="color:var(--lightest-slate)">web development</strong> and
+            <strong style="color:var(--lightest-slate)">cybersecurity</strong>. I believe knowing how to build things
+            and knowing how to break them ethically go hand in hand.
+          </p>
+
+          <!-- Status pills -->
+          <div class="status-pills">
+            <span class="status-pill">🎓 Pursuing MCA</span>
+            <span class="status-pill">📍 Jaunpur, UP</span>
+            <span class="status-pill">🔍 Open to Internships</span>
+          </div>
+
+          <div style="margin-top:30px">
+            <a href="about.html" class="btn-custom" style="font-size:0.82rem;padding:10px 22px">
+              More About Me &nbsp;→
+            </a>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Facts Section -->
+  <!-- ═══════════════════════════════════════════
+       QUICK FACTS  (icon-based — no external image deps)
+  ════════════════════════════════════════════ -->
   <section class="section pt-0">
     <div class="container fade-in-section">
       <div class="text-center">
-        <h2 class="section-title center">Quick Facts 🧠</h2>
+        <h2 class="section-title center">Quick Facts</h2>
       </div>
-      
+
       <div class="facts-grid">
-        <!-- Fact 1 -->
+
         <div class="fact-card">
-          <div class="fact-img-wrapper">
-            <img src="https://www.rrc.ca/well-being/wp-content/uploads/sites/96/2025/01/sport-fitness-box1.jpg" alt="Fitness">
-          </div>
-          <div class="fact-card-body">
-            <h4 class="fact-title">💪 Fitness & Well-being</h4>
-            <p class="fact-desc">Committed to improving stamina and maintaining a healthy and balanced lifestyle.</p>
-          </div>
+          <div class="fact-icon">💪</div>
+          <h4 class="fact-title">Fitness & Well-being</h4>
+          <p class="fact-desc">Committed to improving stamina and maintaining a healthy, balanced lifestyle. Discipline in fitness carries over into discipline in code.</p>
         </div>
 
-        <!-- Fact 2 -->
         <div class="fact-card">
-          <div class="fact-img-wrapper">
-            <img src="https://nandbox.com/wp-content/uploads/2024/06/Tools-for-Coding-Efficiently.webp" alt="Coding Tools">
-          </div>
-          <div class="fact-card-body">
-            <h4 class="fact-title">💻 Coding Tools</h4>
-            <p class="fact-desc">VS Code, Python, HTML, CSS, JS, Bootstrap. Building the web one line at a time.</p>
-          </div>
+          <div class="fact-icon">💻</div>
+          <h4 class="fact-title">Coding & Tools</h4>
+          <p class="fact-desc">VS Code, Python, HTML, CSS, JavaScript, Bootstrap, Git — building the web one careful line at a time. Always learning, always shipping.</p>
         </div>
 
-        <!-- Fact 3 -->
         <div class="fact-card">
-          <div class="fact-img-wrapper">
-            <img src="https://www.banuba.com/hubfs/img-Blog-Hero-CapCut@2x.jpg" alt="Video Editing">
-          </div>
-          <div class="fact-card-body">
-            <h4 class="fact-title">🎬 Editor on CapCut</h4>
-            <p class="fact-desc">I love creating reels, editing for fun, and adding creative flair to everyday videos.</p>
-          </div>
+          <div class="fact-icon">🎬</div>
+          <h4 class="fact-title">Video Editing</h4>
+          <p class="fact-desc">CapCut Pro editor for reels and short-form content. I love combining technical thinking with creative storytelling.</p>
         </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🛡️</div>
+          <h4 class="fact-title">Cybersecurity</h4>
+          <p class="fact-desc">Currently completing a Cybersecurity Analyst course on Udemy — covering ethical hacking, network security, and threat detection.</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">📚</div>
+          <h4 class="fact-title">Always Learning</h4>
+          <p class="fact-desc">Whether it's a new framework, a CTF challenge, or a deep-dive video essay — I'm constantly consuming knowledge and experimenting.</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🌏</div>
+          <h4 class="fact-title">Local Roots, Global Goals</h4>
+          <p class="fact-desc">Proud to be from Jaunpur, UP. Building skills locally to compete and contribute meaningfully in the global tech industry.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Call to Action Section -->
+  <!-- ═══════════════════════════════════════════
+       FEATURED PROJECTS PREVIEW
+  ════════════════════════════════════════════ -->
+  <section class="section pt-0">
+    <div class="container fade-in-section">
+      <div class="text-center">
+        <h2 class="section-title center">Featured Projects</h2>
+      </div>
+      <p class="text-center mt-4" style="color:var(--slate);max-width:500px;margin:16px auto 0;font-size:0.92rem;line-height:1.8">
+        A few things I've built. Each one taught me something new.
+      </p>
+
+      <div class="projects-preview">
+
+        <!-- Tripathi Travels -->
+        <div class="proj-card">
+          <div class="proj-img-wrap">
+            <img class="proj-img"
+              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=75"
+              alt="Tripathi Travels — booking landing page"
+              loading="lazy">
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Travel & Logistics</span>
+            <h3 class="proj-title">Tripathi Travels</h3>
+            <p class="proj-desc">A high-conversion booking landing page with parallax hero, fleet cards, and interactive route discovery for a family travel business.</p>
+            <div class="proj-stack">
+              <span class="stack-pill">HTML</span>
+              <span class="stack-pill">CSS</span>
+              <span class="stack-pill">JavaScript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://ishan-258.github.io/Travel-site-/" target="_blank" rel="noopener" class="proj-link">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/ISHAN-258/Travel-site-" target="_blank" rel="noopener" class="proj-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lost & Found -->
+        <div class="proj-card">
+          <div class="proj-img-wrap">
+            <img class="proj-img"
+              src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=600&q=75"
+              alt="Lost and Found campus portal"
+              loading="lazy">
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Campus Utility</span>
+            <h3 class="proj-title">Lost & Found Portal</h3>
+            <p class="proj-desc">A centralized campus platform for reporting and recovering lost items, with status tracking and admin oversight built in.</p>
+            <div class="proj-stack">
+              <span class="stack-pill">HTML</span>
+              <span class="stack-pill">CSS</span>
+              <span class="stack-pill">JavaScript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://ishan-258.github.io/Lost-found-/" target="_blank" rel="noopener" class="proj-link">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/ISHAN-258/Lost-and-found-site" target="_blank" rel="noopener" class="proj-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milano Mode -->
+        <div class="proj-card">
+          <div class="proj-img-wrap">
+            <img class="proj-img"
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75"
+              alt="Milano Mode fashion landing page"
+              loading="lazy">
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Fashion & E-commerce</span>
+            <h3 class="proj-title">Milano Mode</h3>
+            <p class="proj-desc">A premium fashion landing page with elegant typography, product showcase sections, and smooth UI interactions throughout.</p>
+            <div class="proj-stack">
+              <span class="stack-pill">HTML</span>
+              <span class="stack-pill">CSS</span>
+              <span class="stack-pill">Bootstrap</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://ishan-258.github.io/MILANO-MODE/" target="_blank" rel="noopener" class="proj-link">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/ISHAN-258/MILANO-MODE" target="_blank" rel="noopener" class="proj-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="projects.html" class="btn-custom">View All Projects &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CTA
+  ════════════════════════════════════════════ -->
   <section class="section pt-0">
     <div class="container fade-in-section">
       <div class="cta-container text-center">
-        <h2 class="section-title center" style="margin-bottom: 20px;">Let's Work Together</h2>
-        <p class="fs-5 mb-5 mt-3" style="color: var(--slate); max-width: 600px; margin: 0 auto;">
-          Wanna collaborate on something awesome? Check out my skills, projects, or just say hello. 😄
+        <span class="eyebrow">What's next?</span>
+        <h2 class="section-title center" style="margin-bottom:20px">Let's Work Together</h2>
+        <p class="mt-4" style="color:var(--slate);max-width:540px;margin:18px auto 40px;font-size:0.95rem;line-height:1.8">
+          Whether it's a collaboration, an internship opportunity, or just a friendly hello — my inbox is always open.
         </p>
-        <a href="contact.html" class="btn-custom">Say Hello</a>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="contact.html" class="btn-custom">Say Hello 👋</a>
+          <a href="Ishan_Tripathi_CV.pdf" class="btn-custom-solid" target="_blank" rel="noopener">
+            <i class="fas fa-download" style="margin-right:8px;font-size:0.78rem"></i>Download CV
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
   <footer>
     <div class="container">
-      <p class="mb-0 text-muted">© 2025 Ishan Tripathi. Built with caffeine and code.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/ishan-tripathi-/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="contact.html" title="Contact"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; Built with caffeine and code.</p>
     </div>
   </footer>
 
-  <!-- Bootstrap JS CDN -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Internal JS -->
   <script>
-    // --- Smooth scroll to top on load (Optional, uncomment if desired) ---
-    // window.onload = () => {
-    //   window.scrollTo({ top: 0, behavior: 'smooth' });
-    // };
-
-    // --- Scroll-triggered Fade-in Animation ---
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
+    // Scroll-triggered fade-in
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // Stop observing once visible
+          obs.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
 
-    const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
-    sectionsToAnimate.forEach((section) => {
-      observer.observe(section);
+    // Navbar compact on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.navbar');
+      if (window.scrollY > 60) {
+        nav.style.padding = '8px 0';
+        nav.style.boxShadow = '0 4px 20px rgba(2,12,27,0.55)';
+      } else {
+        nav.style.padding = '14px 0';
+        nav.style.boxShadow = 'none';
+      }
     });
   </script>
 
 </body>
 </html>
-
