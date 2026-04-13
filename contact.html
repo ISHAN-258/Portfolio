@@ -3,269 +3,577 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO -->
+  <meta name="description" content="Contact Ishan Tripathi — web developer & MCA student from Jaunpur, UP. Open for collaborations, internships, and friendly hellos.">
+  <meta name="author" content="Ishan Tripathi">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact | Ishan Tripathi">
+  <meta property="og:description" content="Get in touch with Ishan Tripathi — open for collaborations, internships, and projects.">
+  <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
+  <meta property="og:url" content="https://ishantripathi.in/contact.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact | Ishan Tripathi">
+  <meta name="twitter:image" content="https://ishantripathi.in/profile.jpeg">
+
   <title>Contact | Ishan Tripathi</title>
 
-  <!-- Bootstrap CDN -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome for Social Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Internal CSS -->
   <style>
     :root {
       --dark-blue: #0a192f;
       --light-blue: #112240;
+      --lightest-blue: #233554;
       --lightest-slate: #ccd6f6;
       --slate: #8892b0;
       --accent-color: #64ffda;
       --font-main: 'Poppins', sans-serif;
+      --font-mono: 'Fira Code', monospace;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: var(--font-main);
       background-color: var(--dark-blue);
       color: var(--slate);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* --- Navbar --- */
+    /* ── NAVBAR ── */
     .navbar {
-      background-color: rgba(10, 25, 47, 0.85);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+      background-color: rgba(10, 25, 47, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 14px 0;
+      transition: all 0.3s ease;
     }
-
     .navbar-brand {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--lightest-slate) !important;
+      letter-spacing: 0.5px;
+      font-size: 1.1rem;
     }
-    
     .navbar .nav-link {
-      color: var(--lightest-slate);
-      transition: color 0.3s;
+      color: var(--slate);
+      font-weight: 500;
+      font-size: 0.88rem;
+      margin: 0 6px;
+      position: relative;
+      transition: color 0.3s ease;
+      font-family: var(--font-mono);
     }
-    
-    .navbar .nav-link:hover, .navbar .nav-link.active {
-      color: var(--accent-color);
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--accent-color); }
+    .navbar .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0; height: 2px;
+      display: block;
+      margin-top: 4px; right: 0;
+      background: var(--accent-color);
+      transition: width 0.3s ease, right 0.3s ease;
     }
-
-    /* --- General Section Styling --- */
-    .section {
-      padding: 100px 20px;
-      min-height: 80vh;
-      display: flex;
+    .navbar .nav-link:hover::after,
+    .navbar .nav-link.active::after { width: 100%; left: 0; }
+    .nav-icon-link {
+      color: var(--slate);
+      font-size: 1.05rem;
+      margin-left: 14px;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-flex;
       align-items: center;
     }
-    
-    .section-title {
-      font-size: 2.5rem;
+    .nav-icon-link:hover { color: var(--accent-color); transform: translateY(-2px); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 120px 20px 0;
+      text-align: center;
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      color: var(--accent-color);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 700;
-      margin-bottom: 40px;
       color: var(--lightest-slate);
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
       position: relative;
       display: inline-block;
     }
-
-    .section-title::after {
+    .page-title::after {
       content: '';
-      display: block;
-      width: 50px;
-      height: 4px;
+      position: absolute;
+      width: 50%; height: 3px;
       background: var(--accent-color);
-      margin-top: 10px;
+      bottom: -10px;
+      left: 25%;
+      border-radius: 2px;
     }
-
-    /* --- Contact Form --- */
-    .contact-box {
-      background-color: var(--light-blue);
-      border-radius: 8px;
-      padding: 40px;
-      border: 1px solid #1d2d4f;
-    }
-
-    .form-label {
-        color: var(--lightest-slate);
-        font-weight: 600;
-    }
-
-    .form-control {
-        background-color: var(--dark-blue);
-        border: 1px solid #1d2d4f;
-        color: var(--lightest-slate);
-        padding: 12px;
-    }
-
-    .form-control::placeholder {
-        color: var(--slate);
-    }
-
-    .form-control:focus {
-        background-color: var(--dark-blue);
-        color: var(--lightest-slate);
-        border-color: var(--accent-color);
-        box-shadow: 0 0 0 0.25rem rgba(100, 255, 218, 0.15);
-    }
-
-    .btn-custom {
-      background-color: transparent;
-      border: 1px solid var(--accent-color);
-      color: var(--accent-color);
-      padding: 12px 24px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-    
-    .btn-custom:hover {
-      background-color: rgba(100, 255, 218, 0.1);
-      color: var(--accent-color);
-    }
-
-    /* --- Social Icons --- */
-    .social-icons a {
-        color: var(--slate);
-        font-size: 1.5rem;
-        margin: 0 15px;
-        transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .social-icons a:hover {
-        color: var(--accent-color);
-        transform: translateY(-3px);
-    }
-
-    /* --- Footer --- */
-    footer {
-      background-color: #081428;
+    .page-sub {
       color: var(--slate);
+      font-size: 0.97rem;
+      max-width: 520px;
+      margin: 28px auto 60px;
+      line-height: 1.8;
     }
 
-    /* --- Animations --- */
+    /* ── MAIN LAYOUT ── */
+    .contact-section { padding: 0 20px 100px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 36px;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* ── LEFT PANEL — contact info ── */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-heading {
+      color: var(--lightest-slate);
+      font-weight: 600;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+    .info-sub {
+      color: var(--slate);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .info-card {
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .info-card:hover {
+      border-color: rgba(100,255,218,0.25);
+      transform: translateX(6px);
+    }
+    .info-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(100,255,218,0.08);
+      border: 1px solid rgba(100,255,218,0.16);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent-color);
+      font-size: 1rem;
+    }
+    .info-label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 3px;
+    }
+    .info-value {
+      font-size: 0.88rem;
+      color: var(--lightest-slate);
+      font-weight: 500;
+    }
+
+    /* Social row */
+    .social-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--light-blue);
+      color: var(--slate);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    /* ── RIGHT PANEL — form ── */
+    .contact-form-wrap {
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 40px 36px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .form-control {
+      width: 100%;
+      background: rgba(10,25,47,0.8);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--lightest-slate);
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      resize: none;
+    }
+    .form-control::placeholder { color: var(--slate); opacity: 0.7; }
+    .form-control:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(100,255,218,0.1);
+      background: rgba(10,25,47,0.95);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent-color);
+      color: var(--dark-blue);
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .btn-submit:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(100,255,218,0.25);
+    }
+
+    /* Success message */
+    .success-banner {
+      display: none;
+      background: rgba(100,255,218,0.08);
+      border: 1px solid rgba(100,255,218,0.25);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: var(--accent-color);
+      font-size: 0.88rem;
+      text-align: center;
+      margin-top: 16px;
+    }
+    .success-banner i { margin-right: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: #050d1a;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 36px 0;
+      text-align: center;
+    }
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: 16px;
+    }
+    .footer-socials a {
+      color: var(--slate);
+      font-size: 1.15rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .footer-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
+    footer p {
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      color: var(--slate);
+      margin: 0;
+    }
+
+    /* ── ANIMATIONS ── */
     .fade-in-section {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
     }
-    
-    .fade-in-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .page-header { padding: 100px 16px 0; }
+      .contact-section { padding: 0 14px 80px; }
+      .contact-form-wrap { padding: 28px 22px; }
+      .nav-icon-link { display: none; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Navbar -->
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan 🚀</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" href="index.html">Ishan <span style="font-size:1.1rem">🚀</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        style="border:none;outline:none;box-shadow:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--accent-color)" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <li class="nav-item d-none d-lg-flex align-items-center ms-2">
+            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"
+               class="nav-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"
+               class="nav-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Contact Section -->
-  <section class="section">
-    <div class="container fade-in-section">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="text-center">
-            <h1 class="section-title">Let's Connect!</h1>
-            <p class="fs-5 lead mb-5">Have a question or a project in mind? Feel free to reach out. I'd love to hear from you.</p>
+  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+  <div class="page-header fade-in-section">
+    <span class="eyebrow">Get in Touch</span>
+    <h1 class="page-title">Let's Connect</h1>
+    <p class="page-sub">Have a project in mind, want to collaborate, or just want to say hello? My inbox is always open — I'll get back to you as soon as possible.</p>
+  </div>
+
+  <!-- ═══════════════════ CONTACT SECTION ═══════════════════ -->
+  <section class="contact-section">
+    <div class="contact-grid fade-in-section">
+
+      <!-- LEFT — contact info -->
+      <div class="contact-info">
+        <div>
+          <h2 class="info-heading">Talk to me</h2>
+          <p class="info-sub">Whether it's an internship opportunity, a freelance project, or a tech conversation — I'm always happy to connect.</p>
+        </div>
+
+        <a href="mailto:ishan258tripathi@gmail.com" class="info-card">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-value">ishan258tripathi@gmail.com</div>
           </div>
-          <div class="contact-box">
-            <form name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact">
+        </a>
 
-  <div class="mb-3">
-    <label for="name" class="form-label">Your Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="What should I call you?" required>
-  </div>
+        <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="info-card">
+          <div class="info-icon"><i class="fab fa-linkedin-in"></i></div>
+          <div>
+            <div class="info-label">LinkedIn</div>
+            <div class="info-value">ishan-tripathi-762ba925a</div>
+          </div>
+        </a>
 
-  <div class="mb-3">
-    <label for="email" class="form-label">Your Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Where can I reply?" required>
-  </div>
+        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="info-card">
+          <div class="info-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="info-label">GitHub</div>
+            <div class="info-value">github.com/ISHAN-258</div>
+          </div>
+        </a>
 
-  <div class="mb-3">
-    <label for="message" class="form-label">Your Message</label>
-    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Say hi, let's build something awesome!" required></textarea>
-  </div>
+        <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" class="info-card">
+          <div class="info-icon"><i class="fab fa-instagram"></i></div>
+          <div>
+            <div class="info-label">Instagram</div>
+            <div class="info-value">@ishan_258</div>
+          </div>
+        </a>
 
-  <button type="submit" class="btn btn-custom mt-3">Send Message</button>
-</form>
-            
-
-            <div class="text-center mt-5">
-              <h5 style="color: var(--lightest-slate);">Or catch me on:</h5>
-              <div class="social-icons my-3">
-                <!-- Replace # with your actual profile links -->
-                <a href="https://www.instagram.com/ishan_258/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/YOUR_NUMBER" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:your_email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-              </div>
-              <p class="mt-3 text-muted">I'll try to reply faster than your last crush 😎</p>
-            </div>
+        <div style="margin-top:4px">
+          <div class="info-label" style="margin-bottom:12px">Also find me on</div>
+          <div class="social-row">
+            <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" class="social-btn">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://wa.me/917007115728" target="_blank" rel="noopener" class="social-btn">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
           </div>
         </div>
       </div>
+
+      <!-- RIGHT — Netlify form -->
+      <div class="contact-form-wrap">
+        <h2 style="color:var(--lightest-slate);font-size:1.2rem;font-weight:600;margin-bottom:6px">Send a Message</h2>
+        <p style="color:var(--slate);font-size:0.85rem;margin-bottom:28px">I'll reply within 24 hours.</p>
+
+        <form name="contact" method="POST" data-netlify="true" id="contactForm">
+          <input type="hidden" name="form-name" value="contact">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Your Name</label>
+              <input type="text" class="form-control" id="name" name="name"
+                placeholder="What should I call you?" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Your Email</label>
+              <input type="email" class="form-control" id="email" name="email"
+                placeholder="Where can I reply?" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject"
+              placeholder="Internship / Collaboration / Just saying hi">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5"
+              placeholder="Tell me what you have in mind..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+
+        <div class="success-banner" id="successBanner">
+          <i class="fas fa-check-circle"></i>
+          Message sent! I'll get back to you within 24 hours.
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center py-4">
-    <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:ishan258tripathi@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; Built with caffeine and code.</p>
+    </div>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Internal JS -->
   <script>
-    // --- Scroll-triggered Fade-in Animation ---
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+
+    // Navbar compact on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.navbar');
+      if (window.scrollY > 60) {
+        nav.style.padding = '8px 0';
+        nav.style.boxShadow = '0 4px 20px rgba(2,12,27,0.55)';
+      } else {
+        nav.style.padding = '14px 0';
+        nav.style.boxShadow = 'none';
+      }
     });
 
-    const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
-    sectionsToAnimate.forEach((section) => {
-      observer.observe(section);
-    });
+    // Form submit — show success banner, keep Netlify working
+    const form = document.getElementById('contactForm');
+    const banner = document.getElementById('successBanner');
 
-    // --- Form Submission Alert ---
-    document.querySelector("form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      // You can connect this to a service like Formspree or Netlify Forms
-      alert("Thanks for reaching out! Your message has been received 📩");
-      this.reset(); // Clears the form after submission
+    form.addEventListener('submit', function(e) {
+      // Let Netlify handle the actual POST — only intercept for UI feedback
+      // If you want pure JS feedback without page reload, uncomment below:
+      // e.preventDefault();
+      // fetch('/', { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(new FormData(form)).toString() })
+      //   .then(() => { banner.style.display = 'block'; form.reset(); })
+      //   .catch(() => alert('Something went wrong. Please email me directly.'));
     });
   </script>
 
 </body>
-
 </html>
