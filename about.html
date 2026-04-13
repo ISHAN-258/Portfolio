@@ -3,707 +3,721 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- SEO -->
-  <meta name="description" content="About Ishan Tripathi — MCA student, web developer & cybersecurity enthusiast from Jaunpur, UP. My journey, skills, and story.">
+  <meta name="description" content="About Ishan Tripathi — MCA student, web developer & cybersecurity enthusiast from Jaunpur, UP.">
   <meta name="author" content="Ishan Tripathi">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
   <meta property="og:title" content="About | Ishan Tripathi">
-  <meta property="og:description" content="MCA student & web developer from Jaunpur, UP. Learn about my journey from the Airforce dream to becoming a digital warrior.">
   <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
   <meta property="og:url" content="https://ishantripathi.in/about.html">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About | Ishan Tripathi">
-  <meta name="twitter:image" content="https://ishantripathi.in/profile.jpeg">
-
   <title>About | Ishan Tripathi</title>
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --dark-blue: #0a192f;
-      --light-blue: #112240;
-      --lightest-blue: #233554;
-      --lightest-slate: #ccd6f6;
-      --slate: #8892b0;
-      --accent-color: #64ffda;
-      --font-main: 'Poppins', sans-serif;
-      --font-mono: 'Fira Code', monospace;
+      --bg:     #060b14;
+      --bg2:    #0d1528;
+      --cyan:   #00f5ff;
+      --purple: #b400ff;
+      --glass:  rgba(13,21,40,0.6);
+      --gb:     rgba(0,245,255,0.12);
+      --text:   #c8d6f0;
+      --bright: #eef2ff;
+      --mono:   'Fira Code', monospace;
+      --main:   'Poppins', sans-serif;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      font-family: var(--font-main);
-      background-color: var(--dark-blue);
-      color: var(--slate);
-      line-height: 1.6;
-      overflow-x: hidden;
+      font-family:var(--main);
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+      cursor:none;
     }
 
-    /* ── NAVBAR ── */
+    /* grain */
+    body::before {
+      content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size:200px 200px;opacity:0.5;
+    }
+
+    /* cursor */
+    #cursor-dot {
+      position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;
+      pointer-events:none;z-index:99999;transform:translate(-50%,-50%);
+      box-shadow:0 0 10px var(--cyan),0 0 20px var(--cyan);
+      transition:width .15s,height .15s,background .15s;
+    }
+    #cursor-ring {
+      position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,245,255,.4);
+      border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);
+      transition:width .2s,height .2s,border-color .2s;
+    }
+
+    /* page transition */
+    #page-trans {
+      position:fixed;inset:0;
+      background:linear-gradient(135deg,var(--bg) 0%,#0d0520 100%);
+      z-index:99990;transform:translateY(-100%);
+      transition:transform .45s cubic-bezier(.77,0,.175,1);
+    }
+    #page-trans.active { transform:translateY(0); }
+
+    /* navbar */
     .navbar {
-      background-color: rgba(10, 25, 47, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 14px 0;
-      transition: all 0.3s ease;
+      background:rgba(6,11,20,.88);backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(0,245,255,.07);
+      padding:14px 0;transition:all .3s;z-index:1000;
     }
-    .navbar-brand {
-      font-weight: 700;
-      color: var(--lightest-slate) !important;
-      letter-spacing: 0.5px;
-      font-size: 1.1rem;
-    }
+    .navbar-brand { font-weight:700;color:var(--bright)!important;font-family:var(--mono);font-size:1.05rem; }
     .navbar .nav-link {
-      color: var(--slate);
-      font-weight: 500;
-      font-size: 0.88rem;
-      margin: 0 6px;
-      position: relative;
-      transition: color 0.3s ease;
-      font-family: var(--font-mono);
+      color:var(--text);font-family:var(--mono);font-size:.82rem;margin:0 4px;
+      position:relative;transition:color .3s;
     }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--accent-color); }
     .navbar .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0; height: 2px;
-      display: block;
-      margin-top: 4px; right: 0;
-      background: var(--accent-color);
-      transition: width 0.3s ease, right 0.3s ease;
+      content:'';position:absolute;width:0;height:1px;bottom:-2px;left:0;
+      background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .3s;
     }
-    .navbar .nav-link:hover::after,
-    .navbar .nav-link.active::after { width: 100%; left: 0; }
-    .nav-icon-link {
-      color: var(--slate);
-      font-size: 1.05rem;
-      margin-left: 14px;
-      transition: color 0.3s ease, transform 0.3s ease;
-      display: inline-flex;
-      align-items: center;
+    .navbar .nav-link:hover,.navbar .nav-link.active { color:var(--cyan); }
+    .navbar .nav-link:hover::after,.navbar .nav-link.active::after { width:100%; }
+    .nav-icon-link { color:var(--text);font-size:1rem;margin-left:14px;transition:color .3s,transform .3s; }
+    .nav-icon-link:hover { color:var(--cyan);transform:translateY(-2px); }
+
+    /* hero / page header */
+    .page-hero {
+      position:relative;min-height:52vh;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;padding:120px 20px 60px;
     }
-    .nav-icon-link:hover { color: var(--accent-color); transform: translateY(-2px); }
-
-    /* ── SECTIONS ── */
-    .section { padding: 100px 20px; }
-    .page-header { padding-top: 130px; padding-bottom: 60px; }
-
+    #about-canvas { position:absolute;inset:0;z-index:0; }
+    .page-hero-content { position:relative;z-index:1;text-align:center; }
     .eyebrow {
-      font-family: var(--font-mono);
-      color: var(--accent-color);
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 16px;
+      font-family:var(--mono);font-size:.78rem;letter-spacing:3px;
+      text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:16px;
+      opacity:0;animation:fadeUp .7s .1s forwards;
     }
+    .hero-title {
+      font-size:clamp(2.6rem,7vw,5.5rem);font-weight:700;letter-spacing:-2px;
+      background:linear-gradient(135deg,#eef2ff 0%,var(--cyan) 50%,var(--purple) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      opacity:0;animation:fadeUp .7s .2s forwards;line-height:1.1;margin-bottom:16px;
+    }
+    .hero-sub {
+      font-family:var(--mono);font-size:.88rem;color:var(--text);
+      opacity:0;animation:fadeUp .7s .35s forwards;
+    }
+    .hero-sub span { color:var(--cyan); }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)} }
 
-    .section-title {
-      font-size: clamp(1.9rem, 4vw, 2.6rem);
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: var(--lightest-slate);
-      position: relative;
-      display: inline-block;
-      letter-spacing: -0.5px;
-    }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      width: 60%; height: 3px;
-      background: var(--accent-color);
-      bottom: -10px; left: 0;
-      border-radius: 2px;
-    }
-    .section-title.center::after { left: 50%; transform: translateX(-50%); }
+    /* section */
+    .section { padding:90px 20px; }
 
-    .text-gradient {
-      background: linear-gradient(90deg, var(--lightest-slate), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .glitch {
+      position:relative;display:inline-block;
+      font-size:clamp(1.7rem,3.5vw,2.3rem);
+      font-weight:700;color:var(--bright);letter-spacing:-.5px;
     }
+    .glitch::before,.glitch::after {
+      content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;
+    }
+    .glitch:hover::before {
+      opacity:.6;color:var(--cyan);
+      clip:rect(0,900px,10px,0);animation:g1 .3s steps(2,end);
+    }
+    .glitch:hover::after {
+      opacity:.4;color:var(--purple);
+      clip:rect(20px,900px,40px,0);animation:g2 .3s steps(2,end);
+    }
+    @keyframes g1 {
+      0%{clip:rect(0,900px,10px,0);transform:translate(-2px,0)}
+      50%{clip:rect(30px,900px,50px,0);transform:translate(2px,0)}
+      100%{clip:rect(60px,900px,80px,0);transform:translate(-1px,0)}
+    }
+    @keyframes g2 {
+      0%{clip:rect(40px,900px,60px,0);transform:translate(2px,0)}
+      50%{clip:rect(10px,900px,20px,0);transform:translate(-2px,0)}
+      100%{clip:rect(70px,900px,90px,0);transform:translate(1px,0)}
+    }
+    .title-line { display:flex;align-items:center;gap:16px;margin-bottom:50px; }
+    .title-line .ln { flex:1;height:1px;background:linear-gradient(90deg,rgba(0,245,255,.3),transparent);max-width:280px; }
+    .title-num { font-family:var(--mono);font-size:.82rem;color:var(--cyan);margin-right:10px; }
 
-    /* ── PROFILE IMAGE ── */
-    .profile-wrapper {
-      position: relative;
-      max-width: 340px;
-      margin: 0 auto;
-      z-index: 1;
-      transition: all 0.3s ease;
+    /* profile tilt */
+    .profile-tilt-wrap { perspective:800px;width:280px;height:310px;margin:0 auto; }
+    .profile-tilt {
+      width:100%;height:100%;transform-style:preserve-3d;
+      transition:transform .1s;position:relative;
     }
-    .profile-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 18px; left: 18px;
-      width: 100%; height: 100%;
-      border: 2px solid var(--accent-color);
-      border-radius: 12px;
-      z-index: -1;
-      transition: all 0.3s ease;
+    .profile-tilt::after {
+      content:'';position:absolute;top:16px;left:16px;
+      width:100%;height:100%;border:2px solid var(--cyan);border-radius:14px;
+      z-index:-1;transition:all .3s;box-shadow:0 0 20px rgba(0,245,255,.2);
     }
-    .profile-wrapper:hover { transform: translate(-5px, -5px); }
-    .profile-wrapper:hover::after { transform: translate(10px, 10px); }
-    .about-img {
-      width: 100%; height: auto;
-      border-radius: 12px;
-      filter: grayscale(10%) contrast(1.05);
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
-      display: block;
+    .profile-tilt:hover::after { transform:translate(6px,6px);box-shadow:0 0 40px rgba(0,245,255,.4); }
+    .profile-img {
+      width:100%;height:100%;object-fit:cover;border-radius:14px;
+      filter:grayscale(15%) contrast(1.1) brightness(.95);transition:filter .3s;display:block;
     }
-    .profile-wrapper:hover .about-img { filter: none; }
+    .profile-tilt:hover .profile-img { filter:none; }
 
-    /* ── ABOUT TEXT ── */
-    .about-text p {
-      line-height: 1.85;
-      color: var(--slate);
-      margin-bottom: 1.1rem;
-      font-size: 0.97rem;
-    }
-    .about-text strong {
-      color: var(--lightest-slate);
-      font-weight: 600;
-    }
-    .about-text .mono-highlight {
-      color: var(--accent-color);
-      font-family: var(--font-mono);
-      font-size: 0.92em;
-    }
+    /* scramble text */
+    .scramble { color:var(--bright);font-weight:600; }
 
-    /* Status pills */
-    .status-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 24px 0 30px;
-    }
+    /* about text */
+    .about-text p { line-height:1.9;color:var(--text);margin-bottom:1.1rem;font-size:.96rem; }
+    .about-text strong { color:var(--bright); }
+    .mono-hl { color:var(--cyan);font-family:var(--mono);font-size:.9em; }
+
+    /* pills */
     .status-pill {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--accent-color);
-      background: rgba(100,255,218,0.07);
-      border: 1px solid rgba(100,255,218,0.18);
-      padding: 6px 14px;
-      border-radius: 6px;
+      font-family:var(--mono);font-size:.72rem;color:var(--cyan);
+      background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.15);
+      padding:5px 14px;border-radius:20px;display:inline-block;margin:4px 4px 0 0;
+      transition:all .3s;
     }
+    .status-pill:hover { background:rgba(0,245,255,.12);box-shadow:0 0 12px rgba(0,245,255,.2); }
 
-    /* Action buttons */
-    .about-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 8px;
+    /* buttons */
+    .btn-glow {
+      background:transparent;border:1px solid var(--cyan);color:var(--cyan);
+      padding:11px 26px;font-family:var(--mono);font-size:.8rem;border-radius:6px;
+      text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+      transition:all .3s;position:relative;overflow:hidden;
     }
-    .btn-custom {
-      background-color: transparent;
-      border: 1px solid var(--accent-color);
-      color: var(--accent-color);
-      padding: 11px 26px;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .btn-glow:hover { color:var(--cyan);box-shadow:0 0 20px rgba(0,245,255,.3);transform:translateY(-2px); }
+    .btn-solid {
+      background:linear-gradient(135deg,rgba(0,245,255,.12),rgba(180,0,255,.12));
+      border:1px solid rgba(0,245,255,.3);color:var(--cyan);
+      padding:11px 26px;font-family:var(--mono);font-size:.8rem;border-radius:6px;
+      text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s;
     }
-    .btn-custom:hover {
-      background-color: rgba(100,255,218,0.1);
-      color: var(--accent-color);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(100,255,218,0.15);
-    }
-    .btn-custom-solid {
-      background-color: rgba(100,255,218,0.1);
-      border: 1px solid var(--accent-color);
-      color: var(--accent-color);
-      padding: 11px 26px;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-custom-solid:hover {
-      background-color: rgba(100,255,218,0.2);
-      color: var(--accent-color);
-      transform: translateY(-2px);
-    }
+    .btn-solid:hover { color:var(--cyan);box-shadow:0 0 20px rgba(180,0,255,.3);transform:translateY(-2px); }
 
-    /* ── TIMELINE ── */
-    .timeline-wrap {
-      position: relative;
-      padding-left: 36px;
-      margin-top: 20px;
+    /* glass card */
+    .glass-card {
+      background:var(--glass);border:1px solid var(--gb);border-radius:18px;
+      padding:32px 26px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      transition:all .4s;position:relative;overflow:hidden;height:100%;
     }
-    /* vertical line */
-    .timeline-wrap::before {
-      content: '';
-      position: absolute;
-      left: 10px; top: 6px;
-      width: 2px;
-      height: calc(100% - 12px);
-      background: linear-gradient(to bottom, var(--accent-color), rgba(100,255,218,0.1));
-      border-radius: 2px;
+    .glass-card::before {
+      content:'';position:absolute;top:0;left:0;width:100%;height:3px;
+      background:linear-gradient(90deg,var(--cyan),var(--purple));
+      transform:scaleX(0);transform-origin:left;transition:transform .4s;
     }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 48px;
-    }
-    .timeline-item:last-child { margin-bottom: 0; }
-    /* dot */
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -30px; top: 6px;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--dark-blue);
-      border: 2px solid var(--accent-color);
-      transition: background 0.3s ease;
-    }
-    .timeline-item:hover::before { background: var(--accent-color); }
-    .timeline-year {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--accent-color);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .timeline-heading {
-      color: var(--lightest-slate);
-      font-weight: 600;
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-    }
-    .timeline-body {
-      color: var(--slate);
-      font-size: 0.88rem;
-      line-height: 1.75;
-    }
+    .glass-card:hover { transform:translateY(-8px);border-color:rgba(0,245,255,.25);box-shadow:0 20px 40px rgba(0,0,0,.4); }
+    .glass-card:hover::before { transform:scaleX(1); }
+    .card-icon { font-size:2rem;margin-bottom:16px; }
+    .card-title { color:var(--bright);font-weight:600;font-size:1.05rem;margin-bottom:10px; }
+    .card-desc { color:var(--text);font-size:.85rem;line-height:1.75; }
 
-    /* ── JOURNEY CARDS (3 story cards) ── */
-    .journey-card {
-      background-color: var(--light-blue);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 36px 28px;
-      border-radius: 14px;
-      transition: all 0.4s ease;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+    /* ── HORIZONTAL TIMELINE ── */
+    .h-timeline-outer {
+      overflow-x:auto;padding-bottom:20px;
+      scrollbar-width:thin;scrollbar-color:rgba(0,245,255,.2) transparent;
     }
-    .journey-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: var(--accent-color);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+    .h-timeline-outer::-webkit-scrollbar { height:4px; }
+    .h-timeline-outer::-webkit-scrollbar-track { background:transparent; }
+    .h-timeline-outer::-webkit-scrollbar-thumb { background:rgba(0,245,255,.2);border-radius:4px; }
+    .h-timeline {
+      display:flex;align-items:flex-start;gap:0;
+      min-width:max-content;padding:20px 10px 10px;
+      position:relative;
     }
-    .journey-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px -15px rgba(2,12,27,0.9);
-      border-color: rgba(100,255,218,0.15);
+    /* connecting line */
+    .h-timeline::before {
+      content:'';position:absolute;
+      top:42px;left:60px;right:60px;height:2px;
+      background:linear-gradient(90deg,var(--cyan),rgba(180,0,255,.4),rgba(0,245,255,.1));
+      z-index:0;
     }
-    .journey-card:hover::before { transform: scaleX(1); }
-    .journey-icon {
-      font-size: 2.2rem;
-      margin-bottom: 18px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px; height: 56px;
-      background: rgba(100,255,218,0.07);
-      border: 1px solid rgba(100,255,218,0.15);
-      border-radius: 14px;
+    .ht-item {
+      display:flex;flex-direction:column;align-items:center;
+      width:200px;flex-shrink:0;position:relative;z-index:1;
+      cursor:default;
     }
-    .journey-title {
-      color: var(--lightest-slate);
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 12px;
+    .ht-dot {
+      width:20px;height:20px;border-radius:50%;
+      background:var(--bg);border:2px solid var(--cyan);
+      margin-bottom:16px;transition:all .3s;flex-shrink:0;
+      box-shadow:0 0 10px rgba(0,245,255,.2);
     }
-    .journey-card p {
-      color: var(--slate);
-      font-size: 0.88rem;
-      margin: 0;
-      line-height: 1.75;
+    .ht-item:hover .ht-dot {
+      background:var(--cyan);box-shadow:0 0 20px rgba(0,245,255,.6);transform:scale(1.3);
     }
+    .ht-card {
+      background:var(--glass);border:1px solid rgba(0,245,255,.1);
+      border-radius:14px;padding:18px 16px;backdrop-filter:blur(12px);
+      width:180px;transition:all .4s;text-align:center;
+    }
+    .ht-item:hover .ht-card {
+      border-color:rgba(0,245,255,.3);
+      box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 20px rgba(0,245,255,.05);
+      transform:translateY(-6px);
+    }
+    .ht-era {
+      font-family:var(--mono);font-size:.65rem;color:var(--cyan);
+      letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;
+    }
+    .ht-emoji { font-size:1.5rem;margin-bottom:8px;display:block; }
+    .ht-title { color:var(--bright);font-weight:600;font-size:.88rem;margin-bottom:8px; }
+    .ht-desc { color:var(--text);font-size:.75rem;line-height:1.65; }
 
-    /* ── INTERESTS ROW ── */
+    /* interests grid */
     .interests-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-top: 40px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+      gap:16px;margin-top:40px;
     }
     .interest-item {
-      background: var(--light-blue);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 22px 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: all 0.3s ease;
+      background:var(--glass);border:1px solid var(--gb);border-radius:14px;
+      padding:22px 18px;display:flex;align-items:center;gap:14px;
+      backdrop-filter:blur(12px);transition:all .35s;
     }
-    .interest-item:hover {
-      border-color: rgba(100,255,218,0.2);
-      transform: translateY(-4px);
+    .interest-item:hover { border-color:rgba(0,245,255,.25);transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,.4); }
+    .int-icon {
+      font-size:1.4rem;width:44px;height:44px;background:rgba(0,245,255,.07);
+      border:1px solid rgba(0,245,255,.14);border-radius:12px;
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
     }
-    .interest-icon {
-      font-size: 1.4rem;
-      width: 42px; height: 42px;
-      background: rgba(100,255,218,0.07);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .interest-label {
-      color: var(--lightest-slate);
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
+    .int-label { color:var(--bright);font-size:.86rem;font-weight:600; }
 
-    /* ── FOOTER ── */
-    footer {
-      background-color: #050d1a;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 36px 0;
-      text-align: center;
+    /* terminal block */
+    .terminal {
+      background:#030810;border:1px solid rgba(0,245,255,.15);
+      border-radius:14px;overflow:hidden;margin-top:50px;
+      box-shadow:0 20px 40px rgba(0,0,0,.5);
     }
-    .footer-socials {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-      margin-bottom: 16px;
+    .term-bar {
+      background:#0d1528;padding:10px 16px;display:flex;align-items:center;gap:8px;
+      border-bottom:1px solid rgba(0,245,255,.08);
     }
-    .footer-socials a {
-      color: var(--slate);
-      font-size: 1.15rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .footer-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
-    footer p {
-      font-size: 0.82rem;
-      font-family: var(--font-mono);
-      color: var(--slate);
-      margin: 0;
-    }
+    .term-dot { width:11px;height:11px;border-radius:50%; }
+    .term-dot.r { background:#ff5f57; }
+    .term-dot.y { background:#febc2e; }
+    .term-dot.g { background:#28c840; }
+    .term-title { font-family:var(--mono);font-size:.72rem;color:rgba(200,214,240,.4);margin-left:8px; }
+    .term-body { padding:24px 28px;font-family:var(--mono);font-size:.82rem;line-height:2; }
+    .term-line { display:flex;gap:8px; }
+    .term-prompt { color:var(--cyan);flex-shrink:0; }
+    .term-cmd { color:var(--bright); }
+    .term-out { color:var(--text);padding-left:20px; }
+    .term-acc { color:var(--cyan); }
+    .term-pur { color:#d08fff; }
+    .term-cursor { display:inline-block;width:8px;height:1.1em;background:var(--cyan);vertical-align:middle;animation:blink .7s infinite; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
 
-    /* ── ANIMATIONS ── */
-    .fade-in-section {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+    /* fade */
+    .fade-s { opacity:0;transform:translateY(36px);transition:opacity .8s,transform .8s; }
+    .fade-s.visible { opacity:1;transform:translateY(0); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 991px) {
-      .profile-wrapper { margin-bottom: 50px; }
-      .section-title::after { left: 50%; transform: translateX(-50%); }
-      .text-start.section-title { text-align: center !important; }
-      .about-text { text-align: center; }
-      .status-pills { justify-content: center; }
-      .about-actions { justify-content: center; }
-      .timeline-wrap { text-align: left; }
-      .nav-icon-link { display: none; }
-    }
-    @media (max-width: 768px) {
-      .section { padding: 70px 16px; }
-      .page-header { padding-top: 100px; }
-    }
+    /* footer */
+    footer { background:#030609;border-top:1px solid rgba(0,245,255,.07);padding:36px 0;text-align:center; }
+    .footer-socials { display:flex;justify-content:center;gap:24px;margin-bottom:16px; }
+    .footer-socials a { color:var(--text);font-size:1.1rem;transition:color .3s,transform .3s; }
+    .footer-socials a:hover { color:var(--cyan);transform:translateY(-3px); }
+    footer p { font-family:var(--mono);font-size:.75rem;color:rgba(200,214,240,.35); }
+
+    @media(max-width:991px) { .profile-tilt-wrap{margin-bottom:44px;} }
+    @media(max-width:768px) { .section{padding:65px 16px;} }
   </style>
 </head>
 <body>
 
-  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan <span style="font-size:1.1rem">🚀</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        style="border:none;outline:none;box-shadow:none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--accent-color)" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item d-none d-lg-flex align-items-center ms-2">
-            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"
-               class="nav-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"
-               class="nav-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          </li>
-        </ul>
-      </div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="page-trans"></div>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">ishan.dev<span style="color:var(--cyan)">_</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      style="border:none;outline:none;box-shadow:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="var(--cyan)" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item d-none d-lg-flex align-items-center ms-2">
+          <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="nav-icon-link"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="nav-icon-link"><i class="fab fa-linkedin-in"></i></a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- ═══════════════════ ABOUT ME ═══════════════════ -->
-  <section class="section page-header pb-0">
-    <div class="container fade-in-section">
-      <div class="row align-items-center">
+<!-- ══════════ PAGE HERO ══════════ -->
+<section class="page-hero">
+  <canvas id="about-canvas"></canvas>
+  <div class="page-hero-content">
+    <span class="eyebrow">⚡ Get to know me</span>
+    <h1 class="hero-title" id="scramble-title">About Me</h1>
+    <p class="hero-sub">
+      <span>&gt; </span>MCA Student &nbsp;·&nbsp; Web Developer &nbsp;·&nbsp; Cybersecurity Enthusiast
+    </p>
+  </div>
+</section>
 
-        <!-- Profile Photo -->
-        <div class="col-lg-5 text-center mb-5 mb-lg-0">
-          <div class="profile-wrapper">
+<!-- ══════════ BIO ══════════ -->
+<section class="section fade-s">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- Photo -->
+      <div class="col-lg-5 text-center mb-5 mb-lg-0">
+        <div class="profile-tilt-wrap">
+          <div class="profile-tilt" id="tilt-card">
             <img
               src="profile.jpeg"
-              alt="Ishan Tripathi — Web Developer & MCA Student"
-              class="about-img"
-              loading="lazy"
-              onerror="this.src='https://ui-avatars.com/api/?name=Ishan+Tripathi&background=112240&color=64ffda&size=400&bold=true'"
+              alt="Ishan Tripathi"
+              class="profile-img"
+              onerror="this.src='https://ui-avatars.com/api/?name=Ishan+Tripathi&background=0d1528&color=00f5ff&size=280&bold=true'"
             >
           </div>
         </div>
+      </div>
 
-        <!-- Bio -->
-        <div class="col-lg-7 about-text ps-lg-5">
-          <span class="eyebrow">Get to know me</span>
-          <h1 class="section-title text-start text-gradient">About Me</h1>
-
-          <p class="mt-4">
-            Hello! I'm <strong>Ishan Tripathi</strong>, a technology enthusiast from
+      <!-- Bio text -->
+      <div class="col-lg-7 ps-lg-5">
+        <div class="title-line">
+          <h2 class="glitch" data-text="Who am I?"><span class="title-num">01.</span>Who am I?</h2>
+          <div class="ln"></div>
+        </div>
+        <div class="about-text">
+          <p>
+            Hello! I'm <strong class="scramble" data-words="Ishan Tripathi,a Developer,a Hacker">Ishan Tripathi</strong> — a technology enthusiast from
             <strong>Jaunpur, Uttar Pradesh</strong>, currently pursuing a
-            <strong>Master of Computer Applications (MCA)</strong>. I have a strong
-            interest in web development and enjoy building practical digital solutions
-            that solve real problems.
+            <strong>Master of Computer Applications (MCA)</strong>.
           </p>
-
           <p>
-            My journey into technology is driven by curiosity, discipline, and a constant
-            desire to learn. I focus on improving my programming and problem-solving skills
-            while working with modern web technologies — from crafting clean front-end
-            interfaces to exploring backend concepts and security fundamentals.
+            My journey into technology is driven by curiosity, discipline, and a constant desire to learn.
+            I focus on improving my programming and problem-solving skills while working with
+            modern web technologies — from crafting clean front-end interfaces to exploring
+            backend concepts and security fundamentals.
           </p>
-
           <p>
-            I'm particularly drawn to <span class="mono-highlight">Web Development</span> and
-            <span class="mono-highlight">Cybersecurity</span> — I believe knowing how to build
-            things and knowing how to break them ethically go hand in hand. Beyond coding,
-            I enjoy digital editing and content creation, combining technical thinking with creativity.
+            I'm particularly drawn to <span class="mono-hl">Web Development</span> and
+            <span class="mono-hl">Cybersecurity</span> — I believe knowing how to build things
+            and knowing how to break them ethically go hand in hand.
+            Beyond code, I enjoy video editing and content creation, blending technical thinking with creativity.
           </p>
+        </div>
 
-          <!-- Status pills -->
-          <div class="status-pills">
-            <span class="status-pill">🎓 Pursuing MCA</span>
-            <span class="status-pill">📍 Jaunpur, UP</span>
-            <span class="status-pill">🔍 Open to Internships</span>
-            <span class="status-pill">🛡️ Learning Cybersecurity</span>
+        <div style="margin-top:22px">
+          <span class="status-pill">🎓 Pursuing MCA</span>
+          <span class="status-pill">📍 Jaunpur, UP</span>
+          <span class="status-pill">🔍 Open to Internships</span>
+          <span class="status-pill">🛡️ Cybersecurity Learner</span>
+        </div>
+
+        <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;">
+          <a href="Ishan_Tripathi_CV.pdf" class="btn-solid" target="_blank" rel="noopener">
+            <i class="fas fa-download"></i> Download CV
+          </a>
+          <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="btn-glow">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="btn-glow">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HORIZONTAL TIMELINE ══════════ -->
+<section class="section pt-0 fade-s">
+  <div class="container">
+    <div class="title-line" style="justify-content:center">
+      <div class="ln" style="background:linear-gradient(90deg,transparent,rgba(0,245,255,.3))"></div>
+      <h2 class="glitch" data-text="My Journey"><span class="title-num">02.</span>My Journey</h2>
+      <div class="ln"></div>
+    </div>
+    <p style="text-align:center;color:var(--text);font-family:var(--mono);font-size:.78rem;margin-bottom:40px;opacity:.6">
+      ← scroll to explore →
+    </p>
+
+    <div class="h-timeline-outer">
+      <div class="h-timeline">
+
+        <div class="ht-item">
+          <div class="ht-dot"></div>
+          <div class="ht-card">
+            <div class="ht-era">Early Years</div>
+            <span class="ht-emoji">✈️</span>
+            <div class="ht-title">The Airforce Dream</div>
+            <p class="ht-desc">First ambition was to serve the nation in the Indian Airforce — instilling discipline and a never-quit attitude.</p>
           </div>
+        </div>
 
-          <!-- Action buttons -->
-          <div class="about-actions">
-            <a href="Ishan_Tripathi_CV.pdf" class="btn-custom-solid" target="_blank" rel="noopener">
-              <i class="fas fa-download"></i> Download CV
-            </a>
-            <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="btn-custom">
-              <i class="fab fa-linkedin-in"></i> LinkedIn
-            </a>
-            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="btn-custom">
-              <i class="fab fa-github"></i> GitHub
-            </a>
+        <div class="ht-item">
+          <div class="ht-dot"></div>
+          <div class="ht-card">
+            <div class="ht-era">Graduation</div>
+            <span class="ht-emoji">🎓</span>
+            <div class="ht-title">BCA — Varanasi</div>
+            <p class="ht-desc">Pivoted to a Bachelor of Computer Applications and fell in love with programming and the web.</p>
+          </div>
+        </div>
+
+        <div class="ht-item">
+          <div class="ht-dot"></div>
+          <div class="ht-card">
+            <div class="ht-era">First Projects</div>
+            <span class="ht-emoji">🚀</span>
+            <div class="ht-title">Building Things</div>
+            <p class="ht-desc">Launched Tripathi Travels, Lost & Found Portal, and Milano Mode — each one a new lesson.</p>
+          </div>
+        </div>
+
+        <div class="ht-item">
+          <div class="ht-dot"></div>
+          <div class="ht-card">
+            <div class="ht-era">Post-Grad</div>
+            <span class="ht-emoji">🖥️</span>
+            <div class="ht-title">MCA — Ongoing</div>
+            <p class="ht-desc">Pursuing MCA to deepen knowledge in algorithms, software engineering, and modern web tech.</p>
+          </div>
+        </div>
+
+        <div class="ht-item">
+          <div class="ht-dot"></div>
+          <div class="ht-card">
+            <div class="ht-era">Now</div>
+            <span class="ht-emoji">🛡️</span>
+            <div class="ht-title">The Digital Warrior</div>
+            <p class="ht-desc">Studying cybersecurity on Udemy and building towards becoming a white-hat hacker and full-stack dev.</p>
+          </div>
+        </div>
+
+        <div class="ht-item">
+          <div class="ht-dot" style="border-color:var(--purple);box-shadow:0 0 10px rgba(180,0,255,.3)"></div>
+          <div class="ht-card" style="border-color:rgba(180,0,255,.2)">
+            <div class="ht-era" style="color:var(--purple)">Future</div>
+            <span class="ht-emoji">🌐</span>
+            <div class="ht-title">Global Impact</div>
+            <p class="ht-desc">Aiming to work on real-world security challenges and contribute to open-source from Jaunpur to the world.</p>
           </div>
         </div>
 
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════ INTERESTS ═══════════════════ -->
-  <section class="section pt-5">
-    <div class="container fade-in-section">
-      <span class="eyebrow">What I'm Into</span>
-      <h2 class="section-title">Interests & Hobbies</h2>
-      <div class="interests-grid">
-        <div class="interest-item">
-          <div class="interest-icon">💻</div>
-          <span class="interest-label">Web Development</span>
+<!-- ══════════ JOURNEY CARDS ══════════ -->
+<section class="section pt-0 fade-s">
+  <div class="container">
+    <div class="title-line">
+      <h2 class="glitch" data-text="The Story"><span class="title-num">03.</span>The Story</h2>
+      <div class="ln"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="glass-card">
+          <div class="card-icon">💂</div>
+          <h3 class="card-title">The Airforce Dream</h3>
+          <p class="card-desc">My first ambition was to serve in the Indian Airforce. That dream gave me discipline, structure, and a never-quit mindset — qualities I carry into every project I build.</p>
         </div>
-        <div class="interest-item">
-          <div class="interest-icon">🛡️</div>
-          <span class="interest-label">Cybersecurity</span>
+      </div>
+      <div class="col-md-4">
+        <div class="glass-card">
+          <div class="card-icon">🎓</div>
+          <h3 class="card-title">The Academic Plot Twist</h3>
+          <p class="card-desc">Life redirected me to a BCA in Varanasi, where I discovered technology and fell in love with the idea of building things that live on the internet and solve real problems.</p>
         </div>
-        <div class="interest-item">
-          <div class="interest-icon">🎬</div>
-          <span class="interest-label">Video Editing</span>
-        </div>
-        <div class="interest-item">
-          <div class="interest-icon">💪</div>
-          <span class="interest-label">Fitness</span>
-        </div>
-        <div class="interest-item">
-          <div class="interest-icon">📚</div>
-          <span class="interest-label">Continuous Learning</span>
-        </div>
-        <div class="interest-item">
-          <div class="interest-icon">🎮</div>
-          <span class="interest-label">CTF Challenges</span>
+      </div>
+      <div class="col-md-4">
+        <div class="glass-card">
+          <div class="card-icon">💻</div>
+          <h3 class="card-title">The Digital Warrior</h3>
+          <p class="card-desc">Today I channel that original ambition into web development and ethical hacking — building clean, secure digital experiences and understanding how to defend them.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════ TIMELINE ═══════════════════ -->
-  <section class="section pt-0">
-    <div class="container fade-in-section">
-      <span class="eyebrow">// Timeline</span>
-      <h2 class="section-title">My Journey</h2>
+<!-- ══════════ INTERESTS ══════════ -->
+<section class="section pt-0 fade-s">
+  <div class="container">
+    <div class="title-line">
+      <h2 class="glitch" data-text="Interests"><span class="title-num">04.</span>Interests &amp; Hobbies</h2>
+      <div class="ln"></div>
+    </div>
+    <div class="interests-grid">
+      <div class="interest-item"><div class="int-icon">💻</div><span class="int-label">Web Development</span></div>
+      <div class="interest-item"><div class="int-icon">🛡️</div><span class="int-label">Cybersecurity</span></div>
+      <div class="interest-item"><div class="int-icon">🎬</div><span class="int-label">Video Editing</span></div>
+      <div class="interest-item"><div class="int-icon">💪</div><span class="int-label">Fitness</span></div>
+      <div class="interest-item"><div class="int-icon">📚</div><span class="int-label">Continuous Learning</span></div>
+      <div class="interest-item"><div class="int-icon">🎮</div><span class="int-label">CTF Challenges</span></div>
+    </div>
+  </div>
+</section>
 
-      <div class="row mt-5">
-        <div class="col-lg-6">
-          <div class="timeline-wrap">
-
-            <div class="timeline-item">
-              <div class="timeline-year">Early Years</div>
-              <div class="timeline-heading">✈️ The Airforce Dream</div>
-              <p class="timeline-body">My first ambition was to serve the nation in the Indian Airforce. This goal instilled in me a deep sense of discipline, focus, and determination that still guides me today.</p>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-year">Graduation</div>
-              <div class="timeline-heading">🎓 BCA — Varanasi</div>
-              <p class="timeline-body">Life took a different turn, leading me to pursue a Bachelor of Computer Applications in Varanasi, where I discovered a new passion: technology and programming.</p>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-year">Post-Graduation</div>
-              <div class="timeline-heading">🖥️ MCA — Ongoing</div>
-              <p class="timeline-body">Currently pursuing my Master of Computer Applications, deepening my knowledge in software development, algorithms, and modern web technologies.</p>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-year">Now</div>
-              <div class="timeline-heading">🛡️ The Digital Warrior</div>
-              <p class="timeline-body">Building projects, studying cybersecurity, and working towards becoming a skilled full-stack developer and white-hat hacker — ready for the future.</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Journey story cards -->
-        <div class="col-lg-6 mt-5 mt-lg-0">
-          <div class="d-flex flex-column gap-4">
-
-            <div class="journey-card staggered-item">
-              <div class="journey-icon">💂</div>
-              <h3 class="journey-title">The Airforce Dream</h3>
-              <p>My first ambition was to serve the nation in the Indian Airforce — a goal that gave me discipline and a never-quit attitude that I carry into everything I do.</p>
-            </div>
-
-            <div class="journey-card staggered-item">
-              <div class="journey-icon">🎓</div>
-              <h3 class="journey-title">The Academic Plot Twist</h3>
-              <p>Life redirected me to a BCA in Varanasi, where I discovered technology and fell in love with the idea of building things that live on the internet.</p>
-            </div>
-
-            <div class="journey-card staggered-item">
-              <div class="journey-icon">💻</div>
-              <h3 class="journey-title">The Digital Warrior</h3>
-              <p>Today I channel that original ambition into web development and ethical hacking — building clean experiences and understanding how to defend them.</p>
-            </div>
-
-          </div>
-        </div>
+<!-- ══════════ TERMINAL ══════════ -->
+<section class="section pt-0 fade-s">
+  <div class="container" style="max-width:720px">
+    <div class="title-line" style="justify-content:center">
+      <div class="ln" style="background:linear-gradient(90deg,transparent,rgba(0,245,255,.3))"></div>
+      <h2 class="glitch" data-text="Quick Stats"><span class="title-num">05.</span>Quick Stats</h2>
+      <div class="ln"></div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dot r"></div>
+        <div class="term-dot y"></div>
+        <div class="term-dot g"></div>
+        <span class="term-title">ishan@portfolio ~ about.sh</span>
+      </div>
+      <div class="term-body">
+        <div class="term-line"><span class="term-prompt">$</span><span class="term-cmd">cat ishan_stats.json</span></div>
+        <div class="term-out">{</div>
+        <div class="term-out">&nbsp;&nbsp;"name": <span class="term-acc">"Ishan Tripathi"</span>,</div>
+        <div class="term-out">&nbsp;&nbsp;"role": <span class="term-acc">"Web Developer & MCA Student"</span>,</div>
+        <div class="term-out">&nbsp;&nbsp;"location": <span class="term-acc">"Jaunpur, Uttar Pradesh, India"</span>,</div>
+        <div class="term-out">&nbsp;&nbsp;"languages": <span class="term-pur">["HTML","CSS","JS","Python","C","C++","Java","C#"]</span>,</div>
+        <div class="term-out">&nbsp;&nbsp;"projects_built": <span class="term-acc">3</span>,</div>
+        <div class="term-out">&nbsp;&nbsp;"current_focus": <span class="term-acc">"Cybersecurity + Full-Stack"</span>,</div>
+        <div class="term-out">&nbsp;&nbsp;"open_to_work": <span class="term-acc">true</span>,</div>
+        <div class="term-out">&nbsp;&nbsp;"coffee_dependency": <span class="term-acc">"critical"</span></div>
+        <div class="term-out">}</div>
+        <div class="term-line" style="margin-top:8px"><span class="term-prompt">$</span><span class="term-cursor"></span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════ FOOTER ═══════════════════ -->
-  <footer>
-    <div class="container">
-      <div class="footer-socials">
-        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="contact.html" title="Contact"><i class="fas fa-envelope"></i></a>
-      </div>
-      <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; Built with caffeine and code.</p>
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-socials">
+      <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="contact.html"><i class="fas fa-envelope"></i></a>
     </div>
-  </footer>
+    <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; designed with caffeine &amp; cyan.</p>
+  </div>
+</footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ── CURSOR ── */
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let rx=0,ry=0,mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
 
-  <script>
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+/* ── PARTICLES (low density for about page) ── */
+const canvas=document.getElementById('about-canvas'),ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=canvas.parentElement.offsetHeight;}
+resize();window.addEventListener('resize',()=>{resize();init();});
+class Pt{constructor(){this.reset();}reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.4;this.a=Math.random()*.6;}}
+function init(){pts=[];for(let i=0;i<55;i++)pts.push(new Pt());}
+init();
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,245,255,${p.a})`;ctx.fill();
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W||p.y<0||p.y>H)p.reset();
+  });
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+    const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+    if(d<100){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,245,255,${(1-d/100)*.1})`;ctx.lineWidth=.6;ctx.stroke();}
+  }
+  requestAnimationFrame(draw);
+}
+draw();
 
-    // Staggered journey cards
-    const staggerObs = new IntersectionObserver((entries, obs) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('is-visible'), i * 150);
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.staggered-item').forEach(el => {
-      el.classList.add('fade-in-section');
-      staggerObs.observe(el);
-    });
+/* ── SCRAMBLE TEXT on hero title ── */
+const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%';
+function scramble(el, finalText, duration=800){
+  let start=null;
+  const len=finalText.length;
+  function step(ts){
+    if(!start)start=ts;
+    const prog=Math.min((ts-start)/duration,1);
+    const revealedCount=Math.floor(prog*len);
+    let out='';
+    for(let i=0;i<len;i++){
+      if(i<revealedCount) out+=finalText[i];
+      else out+=chars[Math.floor(Math.random()*chars.length)];
+    }
+    el.textContent=out;
+    if(prog<1) requestAnimationFrame(step);
+    else el.textContent=finalText;
+  }
+  requestAnimationFrame(step);
+}
+const titleEl=document.getElementById('scramble-title');
+// Trigger scramble when hero is in view
+const heroObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){ scramble(titleEl,'About Me',900); heroObs.disconnect(); }
+},{threshold:.3});
+heroObs.observe(titleEl);
 
-    // Navbar compact on scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 60) {
-        nav.style.padding = '8px 0';
-        nav.style.boxShadow = '0 4px 20px rgba(2,12,27,0.55)';
-      } else {
-        nav.style.padding = '14px 0';
-        nav.style.boxShadow = 'none';
-      }
-    });
-  </script>
+/* ── SCRAMBLE on .scramble spans when scrolled to ── */
+document.querySelectorAll('.scramble[data-words]').forEach(el=>{
+  const words=el.dataset.words.split(',');
+  let wi=0;
+  const obs=new IntersectionObserver(entries=>{
+    if(!entries[0].isIntersecting)return;
+    scramble(el,words[0],600);
+    setInterval(()=>{wi=(wi+1)%words.length;scramble(el,words[wi],500);},3000);
+    obs.disconnect();
+  },{threshold:.5});
+  obs.observe(el);
+});
 
+/* ── PAGE TRANSITIONS ── */
+const trans=document.getElementById('page-trans');
+document.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto'))return;
+  a.addEventListener('click',e=>{
+    e.preventDefault();trans.classList.add('active');
+    setTimeout(()=>window.location.href=h,420);
+  });
+});
+window.addEventListener('pageshow',()=>trans.classList.remove('active'));
+
+/* ── FADE SECTIONS ── */
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade-s').forEach(el=>io.observe(el));
+
+/* ── PROFILE 3D TILT ── */
+const tilt=document.getElementById('tilt-card');
+const tw=tilt?.parentElement;
+tw?.addEventListener('mousemove',e=>{
+  const r=tw.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  tilt.style.transform=`rotateY(${x*20}deg) rotateX(${-y*20}deg)`;
+});
+tw?.addEventListener('mouseleave',()=>tilt.style.transform='rotateY(0) rotateX(0)');
+
+/* ── NAVBAR COMPACT ── */
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('.navbar');
+  nav.style.padding=window.scrollY>60?'8px 0':'14px 0';
+  nav.style.boxShadow=window.scrollY>60?'0 4px 24px rgba(0,0,0,.6)':'none';
+});
+</script>
 </body>
 </html>
