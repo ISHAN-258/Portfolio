@@ -3,20 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO -->
+  <meta name="description" content="Skills & toolkit of Ishan Tripathi — web developer & MCA student. HTML, CSS, JS, Python, Cybersecurity and more.">
+  <meta name="author" content="Ishan Tripathi">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Skills | Ishan Tripathi">
+  <meta property="og:description" content="Technical skills, tools, and certifications of Ishan Tripathi — web developer from Jaunpur, UP.">
+  <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
+  <meta property="og:url" content="https://ishantripathi.in/skills.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Skills | Ishan Tripathi">
+  <meta name="twitter:image" content="https://ishantripathi.in/profile.jpeg">
+
   <title>Skills | Ishan Tripathi</title>
 
-  <!-- Bootstrap CDN -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <!-- Devicon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-  <!-- Internal CSS -->
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --dark-blue: #0a192f;
@@ -26,7 +50,10 @@
       --slate: #8892b0;
       --accent-color: #64ffda;
       --font-main: 'Poppins', sans-serif;
+      --font-mono: 'Fira Code', monospace;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: var(--font-main);
@@ -36,409 +63,671 @@
       overflow-x: hidden;
     }
 
-    /* --- Navbar --- */
+    /* ── NAVBAR ── */
     .navbar {
-      background-color: rgba(10, 25, 47, 0.85);
+      background-color: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(12px);
-      box-shadow: 0 4px 30px rgba(2, 12, 27, 0.7);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 15px 0;
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 14px 0;
+      transition: all 0.3s ease;
     }
-
     .navbar-brand {
       font-weight: 700;
       color: var(--lightest-slate) !important;
       letter-spacing: 0.5px;
+      font-size: 1.1rem;
     }
-    
     .navbar .nav-link {
-      color: var(--lightest-slate);
+      color: var(--slate);
       font-weight: 500;
-      font-size: 0.95rem;
-      margin: 0 10px;
+      font-size: 0.88rem;
+      margin: 0 6px;
       position: relative;
       transition: color 0.3s ease;
+      font-family: var(--font-mono);
     }
-    
-    .navbar .nav-link:hover, .navbar .nav-link.active {
-      color: var(--accent-color);
-    }
-
-    /* Animated Underline for Nav Links */
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--accent-color); }
     .navbar .nav-link::after {
       content: '';
       position: absolute;
-      width: 0;
-      height: 2px;
+      width: 0; height: 2px;
       display: block;
-      margin-top: 4px;
-      right: 0;
+      margin-top: 4px; right: 0;
       background: var(--accent-color);
       transition: width 0.3s ease, right 0.3s ease;
     }
-
-    .navbar .nav-link:hover::after, .navbar .nav-link.active::after {
-      width: 100%;
-      left: 0;
+    .navbar .nav-link:hover::after,
+    .navbar .nav-link.active::after { width: 100%; left: 0; }
+    .nav-icon-link {
+      color: var(--slate);
+      font-size: 1.05rem;
+      margin-left: 14px;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-flex;
+      align-items: center;
     }
+    .nav-icon-link:hover { color: var(--accent-color); transform: translateY(-2px); }
 
-    /* --- General Section Styling --- */
-    .section {
-      padding: 90px 20px;
-    }
-    
+    /* ── PAGE HEADER ── */
     .page-header {
-      padding-top: 140px;
-      padding-bottom: 40px;
+      padding: 130px 20px 70px;
+      text-align: center;
     }
-
-    .section-title {
-      font-size: 2.5rem;
+    .eyebrow {
+      font-family: var(--font-mono);
+      color: var(--accent-color);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 700;
-      margin-bottom: 50px;
       color: var(--lightest-slate);
+      letter-spacing: -0.5px;
       position: relative;
       display: inline-block;
-      letter-spacing: -0.5px;
+      margin-bottom: 20px;
     }
-
-    .section-title::after {
+    .page-title::after {
       content: '';
       position: absolute;
-      width: 60%;
-      height: 3px;
+      width: 50%; height: 3px;
       background: var(--accent-color);
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: -12px; left: 25%;
+      border-radius: 2px;
+    }
+    .page-sub {
+      color: var(--slate);
+      font-size: 0.97rem;
+      max-width: 540px;
+      margin: 28px auto 0;
+      line-height: 1.8;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding: 70px 20px; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .section-heading {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--lightest-slate);
+      margin-bottom: 44px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      width: 50%; height: 3px;
+      background: var(--accent-color);
+      bottom: -10px; left: 0;
       border-radius: 2px;
     }
 
-    /* Header Text Gradient */
-    .text-gradient {
-      background: linear-gradient(90deg, var(--lightest-slate), var(--slate));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    /* --- Technical Skill Cards --- */
-    .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
+    /* ── SKILL CARDS (languages) ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 18px;
       max-width: 1000px;
       margin: 0 auto;
     }
-
     .skill-card {
-      background-color: var(--light-blue);
-      border: 1px solid rgba(100, 255, 218, 0.05);
-      padding: 35px 20px;
-      border-radius: 12px;
-      width: 160px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 30px 16px 24px;
       text-align: center;
+      transition: all 0.35s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(2, 12, 27, 0.5);
+      cursor: default;
     }
-
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent-color);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
     .skill-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(100, 255, 218, 0.4);
-      box-shadow: 0 15px 30px rgba(2, 12, 27, 0.8), 0 0 15px rgba(100, 255, 218, 0.1);
-      background-color: var(--lightest-blue);
+      transform: translateY(-8px);
+      border-color: rgba(100,255,218,0.25);
+      box-shadow: 0 14px 30px -10px rgba(2,12,27,0.8);
+      background: var(--lightest-blue);
     }
-    
+    .skill-card:hover::before { transform: scaleX(1); }
     .skill-icon {
-      font-size: 4rem;
-      margin-bottom: 15px;
-      color: var(--lightest-slate);
+      font-size: 3.4rem;
+      margin-bottom: 14px;
       transition: transform 0.3s ease;
+      display: block;
     }
-
-    .skill-card:hover .skill-icon {
-      transform: scale(1.1);
-    }
-
+    .skill-card:hover .skill-icon { transform: scale(1.12); }
     .skill-name {
       color: var(--lightest-slate);
-      font-weight: 500;
-      font-size: 1.05rem;
-      margin: 0;
-      letter-spacing: 0.5px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin: 0 0 8px;
     }
 
-    /* --- Certifications Card --- */
-    .cert-card {
-      background: linear-gradient(145deg, var(--light-blue) 0%, rgba(10, 25, 47, 1) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-left: 5px solid var(--accent-color);
-      padding: 40px;
+    /* proficiency bar */
+    .skill-bar-wrap {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .skill-bar {
+      height: 100%;
+      background: var(--accent-color);
+      border-radius: 2px;
+      width: 0;
+      transition: width 1.2s ease;
+    }
+    .skill-level {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--slate);
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* ── TOOLS GRID ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .tool-item {
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(2, 12, 27, 0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+    .tool-item:hover {
+      border-color: rgba(100,255,218,0.2);
+      transform: translateX(5px);
+    }
+    .tool-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: center;
+    }
+    .tool-name {
+      color: var(--lightest-slate);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .tool-type {
+      color: var(--slate);
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      margin-top: 2px;
     }
 
+    /* ── PROFICIENCY LEGEND ── */
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--slate);
+    }
+    .legend-dot {
+      width: 28px; height: 3px;
+      border-radius: 2px;
+      background: var(--accent-color);
+    }
+
+    /* ── CERT CARD ── */
+    .cert-card {
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-left: 4px solid var(--accent-color);
+      border-radius: 14px;
+      padding: 32px 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+      max-width: 860px;
+      margin: 0 auto;
+    }
     .cert-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(2, 12, 27, 0.8);
+      box-shadow: 0 20px 40px -15px rgba(2,12,27,0.9);
+      border-left-color: var(--accent-color);
     }
-
-    .cert-icon {
-      font-size: 3rem;
-      background: rgba(100, 255, 218, 0.1);
-      width: 80px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
+    .cert-icon-wrap {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      background: rgba(100,255,218,0.08);
+      border: 1px solid rgba(100,255,218,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
       flex-shrink: 0;
     }
-
-    /* --- Info Cards (Other Skills) --- */
-    .info-card {
-      background-color: var(--light-blue);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 40px;
-      border-radius: 12px;
-      height: 100%;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(2, 12, 27, 0.5);
-    }
-
-    .info-card:hover {
-      border-color: rgba(100, 255, 218, 0.2);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(2, 12, 27, 0.7);
-    }
-
-    .info-card-title {
-      color: var(--lightest-slate);
-      font-weight: 600;
-      margin-bottom: 25px;
-      font-size: 1.4rem;
-      display: flex;
+    .cert-badge {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.3);
+      color: #fbbf24;
+      margin-top: 10px;
     }
-
-    .info-card ul {
-      list-style-type: none;
-      padding-left: 0;
+    .cert-title {
+      color: var(--lightest-slate);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .cert-desc {
+      color: var(--slate);
+      font-size: 0.88rem;
+      line-height: 1.75;
       margin: 0;
     }
 
-    .info-card ul li {
-      position: relative;
-      padding-left: 30px;
-      margin-bottom: 15px;
-      font-size: 1rem;
-      color: var(--slate);
-      transition: color 0.2s ease;
+    /* ── CREATIVE & EDITING ── */
+    .creative-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      max-width: 860px;
+      margin: 0 auto;
     }
-
-    .info-card ul li:hover {
+    .creative-item {
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 24px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.3s ease;
+    }
+    .creative-item:hover {
+      border-color: rgba(100,255,218,0.2);
+      transform: translateY(-4px);
+    }
+    .creative-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: rgba(100,255,218,0.07);
+      border: 1px solid rgba(100,255,218,0.14);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .creative-name {
       color: var(--lightest-slate);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .creative-desc {
+      color: var(--slate);
+      font-size: 0.8rem;
+      line-height: 1.65;
     }
 
-    .info-card ul li::before {
-      content: '▹';
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--accent-color);
-      font-size: 1.2rem;
-      line-height: 1.4;
-    }
-
-    /* --- Footer --- */
+    /* ── FOOTER ── */
     footer {
       background-color: #050d1a;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 25px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 36px 0;
+      text-align: center;
     }
-    
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: 16px;
+    }
+    .footer-socials a {
+      color: var(--slate);
+      font-size: 1.15rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .footer-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
     footer p {
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      color: var(--slate);
+      margin: 0;
     }
 
-    /* --- Animations --- */
+    /* ── ANIMATIONS ── */
     .fade-in-section {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-      will-change: opacity, visibility;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
     }
-    
-    .fade-in-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
 
-    /* Mobile Responsiveness */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .section { padding: 60px 20px; }
-      .cert-card { flex-direction: column; text-align: center; padding: 30px 20px; }
-      .cert-icon { margin: 0 auto 20px auto !important; }
-      .skill-card { width: calc(50% - 15px); padding: 25px 10px; }
-      .skill-icon { font-size: 3rem; }
+      .section { padding: 50px 16px; }
+      .page-header { padding: 100px 16px 50px; }
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .cert-card { flex-direction: column; gap: 16px; padding: 24px 20px; }
+      .nav-icon-link { display: none; }
     }
     @media (max-width: 480px) {
-      .skill-card { width: 100%; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Navbar -->
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan <span style="font-size: 1.2rem;">🚀</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--accent-color)" class="bi bi-list" viewBox="0 0 16 16">
+      <a class="navbar-brand" href="index.html">Ishan <span style="font-size:1.1rem">🚀</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        style="border:none;outline:none;box-shadow:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--accent-color)" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link active" href="skills.html">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item d-none d-lg-flex align-items-center ms-2">
+            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"
+               class="nav-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"
+               class="nav-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Header Section -->
-  <section class="section page-header text-center">
-      <div class="container fade-in-section">
-          <h1 class="section-title text-gradient">My Skills & Toolkit</h1>
-          <p class="fs-5 mt-3" style="max-width: 650px; margin: auto; color: var(--slate);">
-            The technologies and tools I use to build things and be creative.
-          </p>
-      </div>
-  </section>
+  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+  <div class="page-header fade-in-section">
+    <div class="container">
+      <span class="eyebrow">What I Work With</span>
+      <h1 class="page-title">Skills & Toolkit</h1>
+      <p class="page-sub">Languages I code in, tools I rely on, and things I'm actively learning — all in one place.</p>
+    </div>
+  </div>
 
-  <!-- Technical Skills Section -->
+  <!-- ═══════════════════ LANGUAGES ═══════════════════ -->
   <section class="section pt-0">
     <div class="container fade-in-section">
-      <div class="skills-container">
+      <span class="section-label">Languages</span>
+      <h2 class="section-heading">Programming Languages</h2>
 
-        <!-- HTML -->
-        <div class="skill-card">
+      <!-- proficiency legend -->
+      <div class="legend" style="margin-top:30px">
+        <div class="legend-item"><div class="legend-dot" style="opacity:1"></div> Advanced</div>
+        <div class="legend-item"><div class="legend-dot" style="opacity:0.65"></div> Intermediate</div>
+        <div class="legend-item"><div class="legend-dot" style="opacity:0.35"></div> Beginner</div>
+      </div>
+
+      <div class="skills-grid" id="skillsGrid">
+
+        <div class="skill-card" data-level="90">
           <i class="devicon-html5-plain colored skill-icon"></i>
-          <h5 class="skill-name">HTML</h5>
+          <h5 class="skill-name">HTML5</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Advanced</span>
         </div>
 
-        <!-- CSS -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="85">
           <i class="devicon-css3-plain colored skill-icon"></i>
-          <h5 class="skill-name">CSS</h5>
+          <h5 class="skill-name">CSS3</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Advanced</span>
         </div>
 
-        <!-- JavaScript -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="70">
           <i class="devicon-javascript-plain colored skill-icon"></i>
           <h5 class="skill-name">JavaScript</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Intermediate</span>
         </div>
 
-        <!-- Bootstrap -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="75">
           <i class="devicon-bootstrap-plain colored skill-icon"></i>
           <h5 class="skill-name">Bootstrap</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Intermediate</span>
         </div>
 
-        <!-- Python -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="65">
           <i class="devicon-python-plain colored skill-icon"></i>
           <h5 class="skill-name">Python</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Intermediate</span>
         </div>
 
-        <!-- C -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="60">
           <i class="devicon-c-plain colored skill-icon"></i>
           <h5 class="skill-name">C</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Intermediate</span>
         </div>
 
-        <!-- C++ -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="55">
           <i class="devicon-cplusplus-plain colored skill-icon"></i>
           <h5 class="skill-name">C++</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Beginner</span>
         </div>
 
-        <!-- Java -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="50">
           <i class="devicon-java-plain colored skill-icon"></i>
           <h5 class="skill-name">Java</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Beginner</span>
         </div>
 
-        <!-- C# -->
-        <div class="skill-card">
+        <div class="skill-card" data-level="45">
           <i class="devicon-csharp-plain colored skill-icon"></i>
           <h5 class="skill-name">C#</h5>
+          <div class="skill-bar-wrap"><div class="skill-bar"></div></div>
+          <span class="skill-level">Beginner</span>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Learning & Certifications Section -->
+  <!-- ═══════════════════ TOOLS ═══════════════════ -->
   <section class="section pt-0">
     <div class="container fade-in-section">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="cert-card d-flex align-items-center">
-                    <div class="cert-icon me-lg-4">🛡️</div>
-                    <div>
-                        <h3 class="mb-2" style="color: var(--lightest-slate); font-weight: 600;">Cybersecurity Analyst Course</h3>
-                        <p class="mb-2" style="font-size: 1.05rem;">
-                          Currently enrolled in the Complete Cybersecurity Analyst Course on Udemy to build foundational skills in threat detection, network security, and risk management.
-                        </p>
-                        <span style="color: var(--accent-color); font-size: 0.9rem; font-family: monospace;">// Source: Udemy</span>
-                    </div>
-                </div>
+      <span class="section-label">Tools & Platforms</span>
+      <h2 class="section-heading">What I Use Daily</h2>
+
+      <div class="tools-grid">
+
+        <div class="tool-item">
+          <i class="devicon-vscode-plain colored tool-icon"></i>
+          <div>
+            <div class="tool-name">VS Code</div>
+            <div class="tool-type">Code Editor</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <i class="devicon-git-plain colored tool-icon"></i>
+          <div>
+            <div class="tool-name">Git</div>
+            <div class="tool-type">Version Control</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <i class="devicon-github-original tool-icon" style="color:var(--lightest-slate)"></i>
+          <div>
+            <div class="tool-name">GitHub</div>
+            <div class="tool-type">Code Hosting</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <i class="devicon-netlify-plain colored tool-icon"></i>
+          <div>
+            <div class="tool-name">Netlify</div>
+            <div class="tool-type">Deployment</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <i class="devicon-chrome-plain colored tool-icon"></i>
+          <div>
+            <div class="tool-name">Chrome DevTools</div>
+            <div class="tool-type">Debugging</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-icon" style="font-size:1.4rem">🎬</span>
+          <div>
+            <div class="tool-name">CapCut Pro</div>
+            <div class="tool-type">Video Editing</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-icon" style="font-size:1.4rem">🛡️</span>
+          <div>
+            <div class="tool-name">Kali Linux</div>
+            <div class="tool-type">Security / Learning</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-icon" style="font-size:1.4rem">📱</span>
+          <div>
+            <div class="tool-name">Android Studio</div>
+            <div class="tool-type">Mobile Dev (Learning)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CERTIFICATION ═══════════════════ -->
+  <section class="section pt-0">
+    <div class="container fade-in-section">
+      <span class="section-label">Learning</span>
+      <h2 class="section-heading">Certifications & Courses</h2>
+
+      <div style="margin-top:36px">
+        <div class="cert-card">
+          <div class="cert-icon-wrap">🛡️</div>
+          <div>
+            <h3 class="cert-title">Complete Cybersecurity Analyst Course</h3>
+            <p class="cert-desc">Building foundational skills in threat detection, network security, ethical hacking, risk management, and penetration testing fundamentals.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:center">
+              <span class="cert-badge"><i class="fas fa-clock"></i> In Progress</span>
+              <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--slate)">Platform: Udemy</span>
             </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Learning next -->
+      <div style="margin-top:20px;max-width:860px;margin-left:auto;margin-right:auto">
+        <p style="font-family:var(--font-mono);font-size:0.78rem;color:var(--slate);margin-bottom:12px">// On my learning roadmap</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <span style="font-family:var(--font-mono);font-size:0.72rem;padding:5px 14px;border-radius:6px;background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.14);color:var(--accent-color)">React.js</span>
+          <span style="font-family:var(--font-mono);font-size:0.72rem;padding:5px 14px;border-radius:6px;background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.14);color:var(--accent-color)">Node.js</span>
+          <span style="font-family:var(--font-mono);font-size:0.72rem;padding:5px 14px;border-radius:6px;background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.14);color:var(--accent-color)">SQL / Databases</span>
+          <span style="font-family:var(--font-mono);font-size:0.72rem;padding:5px 14px;border-radius:6px;background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.14);color:var(--accent-color)">Network Security</span>
+          <span style="font-family:var(--font-mono);font-size:0.72rem;padding:5px 14px;border-radius:6px;background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.14);color:var(--accent-color)">CTF Challenges</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Other Skills Section -->
+  <!-- ═══════════════════ CREATIVE SKILLS ═══════════════════ -->
   <section class="section pt-0">
     <div class="container fade-in-section">
-      <div class="row justify-content-center g-4">
-        
-        <!-- Editing & Creativity -->
-        <div class="col-lg-5 d-flex align-items-stretch">
-          <div class="info-card w-100">
-            <h3 class="info-card-title">🎬 Editing & Creativity</h3>
-            <ul>
-              <li>CapCut Pro Editor (Short videos, Reels)</li>
-              <li>Thumbnails and Poster Designing</li>
-              <li>Creative scripting and meme-ifying boring stuff 😎</li>
-            </ul>
+      <span class="section-label">Beyond Code</span>
+      <h2 class="section-heading">Creative Skills</h2>
+
+      <div class="creative-grid" style="margin-top:36px">
+
+        <div class="creative-item">
+          <div class="creative-icon">🎬</div>
+          <div>
+            <div class="creative-name">CapCut Pro Editing</div>
+            <div class="creative-desc">Short-form video editing, reels, transitions, and effects for social media content.</div>
           </div>
         </div>
-        
-        <!-- My Machine -->
-        <div class="col-lg-5 d-flex align-items-stretch">
-          <div class="info-card w-100">
-            <h3 class="info-card-title">🖥️ My Machine</h3>
-            <ul>
-              <li>Processor: Intel i7 11th Gen</li>
-              <li>RAM: 16 GB</li>
-              <li>Storage: 512 GB internal</li>
-              <li>Phone: Moto G73 5G</li>
-              <li>OS: Android 14 with API Level 34</li>
-            </ul>
+
+        <div class="creative-item">
+          <div class="creative-icon">🖼️</div>
+          <div>
+            <div class="creative-name">Thumbnail Design</div>
+            <div class="creative-desc">Creating eye-catching thumbnails and poster designs for digital content and projects.</div>
+          </div>
+        </div>
+
+        <div class="creative-item">
+          <div class="creative-icon">✍️</div>
+          <div>
+            <div class="creative-name">Creative Scripting</div>
+            <div class="creative-desc">Writing scripts, captions, and content ideas that blend technical knowledge with storytelling.</div>
+          </div>
+        </div>
+
+        <div class="creative-item">
+          <div class="creative-icon">🎨</div>
+          <div>
+            <div class="creative-name">UI Design Sense</div>
+            <div class="creative-desc">Designing clean, visually consistent interfaces using colour theory and layout principles.</div>
           </div>
         </div>
 
@@ -446,36 +735,60 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center">
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
     <div class="container">
-      <p class="mb-0">© 2025 Ishan Tripathi. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="contact.html" title="Contact"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; Built with caffeine and code.</p>
     </div>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Scroll Animation Script -->
   <script>
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // Stop observing once it's visible
+          obs.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
 
-    const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
-    sectionsToAnimate.forEach((section) => {
-      observer.observe(section);
+    // Animate skill bars when section scrolls into view
+    const barObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-card').forEach((card, i) => {
+            const level = card.dataset.level || 50;
+            setTimeout(() => {
+              card.querySelector('.skill-bar').style.width = level + '%';
+            }, i * 80);
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    const skillsSection = document.getElementById('skillsGrid');
+    if (skillsSection) barObserver.observe(skillsSection.parentElement);
+
+    // Navbar compact on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.navbar');
+      if (window.scrollY > 60) {
+        nav.style.padding = '8px 0';
+        nav.style.boxShadow = '0 4px 20px rgba(2,12,27,0.55)';
+      } else {
+        nav.style.padding = '14px 0';
+        nav.style.boxShadow = 'none';
+      }
     });
   </script>
 
