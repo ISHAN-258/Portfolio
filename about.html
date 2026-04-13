@@ -3,17 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO -->
+  <meta name="description" content="About Ishan Tripathi — MCA student, web developer & cybersecurity enthusiast from Jaunpur, UP. My journey, skills, and story.">
+  <meta name="author" content="Ishan Tripathi">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About | Ishan Tripathi">
+  <meta property="og:description" content="MCA student & web developer from Jaunpur, UP. Learn about my journey from the Airforce dream to becoming a digital warrior.">
+  <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
+  <meta property="og:url" content="https://ishantripathi.in/about.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About | Ishan Tripathi">
+  <meta name="twitter:image" content="https://ishantripathi.in/profile.jpeg">
+
   <title>About | Ishan Tripathi</title>
 
-  <!-- Bootstrap CDN -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Internal CSS -->
   <style>
     :root {
       --dark-blue: #0a192f;
@@ -26,6 +50,8 @@
       --font-mono: 'Fira Code', monospace;
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: var(--font-main);
       background-color: var(--dark-blue);
@@ -34,64 +60,69 @@
       overflow-x: hidden;
     }
 
-    /* --- Navbar --- */
+    /* ── NAVBAR ── */
     .navbar {
-      background-color: rgba(10, 25, 47, 0.85);
+      background-color: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 14px 0;
+      transition: all 0.3s ease;
     }
-
     .navbar-brand {
       font-weight: 700;
       color: var(--lightest-slate) !important;
       letter-spacing: 0.5px;
+      font-size: 1.1rem;
     }
-    
     .navbar .nav-link {
-      color: var(--lightest-slate);
+      color: var(--slate);
       font-weight: 500;
-      font-size: 0.95rem;
-      margin: 0 10px;
+      font-size: 0.88rem;
+      margin: 0 6px;
       position: relative;
       transition: color 0.3s ease;
+      font-family: var(--font-mono);
     }
-    
-    .navbar .nav-link:hover, .navbar .nav-link.active {
-      color: var(--accent-color);
-    }
-
-    /* Animated Underline for Nav Links */
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active { color: var(--accent-color); }
     .navbar .nav-link::after {
       content: '';
       position: absolute;
-      width: 0;
-      height: 2px;
+      width: 0; height: 2px;
       display: block;
-      margin-top: 4px;
-      right: 0;
+      margin-top: 4px; right: 0;
       background: var(--accent-color);
       transition: width 0.3s ease, right 0.3s ease;
     }
-
-    .navbar .nav-link:hover::after, .navbar .nav-link.active::after {
-      width: 100%;
-      left: 0;
+    .navbar .nav-link:hover::after,
+    .navbar .nav-link.active::after { width: 100%; left: 0; }
+    .nav-icon-link {
+      color: var(--slate);
+      font-size: 1.05rem;
+      margin-left: 14px;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-flex;
+      align-items: center;
     }
+    .nav-icon-link:hover { color: var(--accent-color); transform: translateY(-2px); }
 
-    /* --- General Section Styling --- */
-    .section {
-      padding: 100px 20px;
-    }
-    
-    .page-header {
-      padding-top: 140px;
-      padding-bottom: 60px;
+    /* ── SECTIONS ── */
+    .section { padding: 100px 20px; }
+    .page-header { padding-top: 130px; padding-bottom: 60px; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      color: var(--accent-color);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
     }
 
     .section-title {
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
       font-weight: 700;
       margin-bottom: 30px;
       color: var(--lightest-slate);
@@ -99,357 +130,578 @@
       display: inline-block;
       letter-spacing: -0.5px;
     }
-
     .section-title::after {
       content: '';
       position: absolute;
-      width: 60%;
-      height: 3px;
+      width: 60%; height: 3px;
       background: var(--accent-color);
-      bottom: -10px;
-      left: 0;
+      bottom: -10px; left: 0;
       border-radius: 2px;
     }
-
-    .section-title.center::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    .section-title.center::after { left: 50%; transform: translateX(-50%); }
 
     .text-gradient {
-      background: linear-gradient(90deg, var(--lightest-slate), var(--slate));
+      background: linear-gradient(90deg, var(--lightest-slate), var(--accent-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .eyebrow {
-      font-family: var(--font-mono);
-      color: var(--accent-color);
-      font-size: 0.9rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-      display: block;
-    }
-    
-    /* --- About Text Styling --- */
-    .about-text p {
-        line-height: 1.8;
-        color: var(--slate);
-        margin-bottom: 1.2rem;
-    }
-
-    .about-text strong {
-        color: var(--accent-color);
-        font-weight: 500;
-        font-family: var(--font-mono);
-        font-size: 0.95em;
-    }
-
-    /* --- Profile Image Styling --- */
+    /* ── PROFILE IMAGE ── */
     .profile-wrapper {
       position: relative;
-      max-width: 350px;
+      max-width: 340px;
       margin: 0 auto;
       z-index: 1;
       transition: all 0.3s ease;
     }
-
     .profile-wrapper::after {
       content: '';
       position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 100%;
-      height: 100%;
+      top: 18px; left: 18px;
+      width: 100%; height: 100%;
       border: 2px solid var(--accent-color);
       border-radius: 12px;
       z-index: -1;
       transition: all 0.3s ease;
     }
-
-    .profile-wrapper:hover {
-      transform: translate(-5px, -5px);
-    }
-
-    .profile-wrapper:hover::after {
-      transform: translate(10px, 10px);
-    }
-
+    .profile-wrapper:hover { transform: translate(-5px, -5px); }
+    .profile-wrapper:hover::after { transform: translate(10px, 10px); }
     .about-img {
-      width: 100%;
-      height: auto;
+      width: 100%; height: auto;
       border-radius: 12px;
       filter: grayscale(10%) contrast(1.05);
       transition: all 0.3s ease;
-      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+      display: block;
+    }
+    .profile-wrapper:hover .about-img { filter: none; }
+
+    /* ── ABOUT TEXT ── */
+    .about-text p {
+      line-height: 1.85;
+      color: var(--slate);
+      margin-bottom: 1.1rem;
+      font-size: 0.97rem;
+    }
+    .about-text strong {
+      color: var(--lightest-slate);
+      font-weight: 600;
+    }
+    .about-text .mono-highlight {
+      color: var(--accent-color);
+      font-family: var(--font-mono);
+      font-size: 0.92em;
     }
 
-    .profile-wrapper:hover .about-img {
-      filter: none;
+    /* Status pills */
+    .status-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 30px;
+    }
+    .status-pill {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--accent-color);
+      background: rgba(100,255,218,0.07);
+      border: 1px solid rgba(100,255,218,0.18);
+      padding: 6px 14px;
+      border-radius: 6px;
     }
 
-    /* --- Journey / Timeline Section --- */
-    .journey-section {
-      background-color: var(--dark-blue);
-      padding-top: 40px;
+    /* Action buttons */
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
     }
-    
+    .btn-custom {
+      background-color: transparent;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 11px 26px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-custom:hover {
+      background-color: rgba(100,255,218,0.1);
+      color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(100,255,218,0.15);
+    }
+    .btn-custom-solid {
+      background-color: rgba(100,255,218,0.1);
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 11px 26px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-custom-solid:hover {
+      background-color: rgba(100,255,218,0.2);
+      color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    /* ── TIMELINE ── */
+    .timeline-wrap {
+      position: relative;
+      padding-left: 36px;
+      margin-top: 20px;
+    }
+    /* vertical line */
+    .timeline-wrap::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 6px;
+      width: 2px;
+      height: calc(100% - 12px);
+      background: linear-gradient(to bottom, var(--accent-color), rgba(100,255,218,0.1));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    /* dot */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px; top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--dark-blue);
+      border: 2px solid var(--accent-color);
+      transition: background 0.3s ease;
+    }
+    .timeline-item:hover::before { background: var(--accent-color); }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-color);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .timeline-heading {
+      color: var(--lightest-slate);
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    .timeline-body {
+      color: var(--slate);
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    /* ── JOURNEY CARDS (3 story cards) ── */
     .journey-card {
       background-color: var(--light-blue);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 40px 30px;
-      border-radius: 12px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 36px 28px;
+      border-radius: 14px;
+      transition: all 0.4s ease;
       height: 100%;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-      z-index: 1;
+      box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
     }
-
-    /* Animated Top Border on Hover */
     .journey-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0;
-      width: 100%;
-      height: 4px;
+      width: 100%; height: 3px;
       background: var(--accent-color);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.4s ease;
-      z-index: 2;
     }
-    
     .journey-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px -15px rgba(2, 12, 27, 0.9);
-      background-color: var(--lightest-blue);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -15px rgba(2,12,27,0.9);
+      border-color: rgba(100,255,218,0.15);
     }
-
-    .journey-card:hover::before {
-      transform: scaleX(1);
-    }
-    
+    .journey-card:hover::before { transform: scaleX(1); }
     .journey-icon {
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-        display: inline-block;
-        background: rgba(100, 255, 218, 0.05);
-        padding: 15px;
-        border-radius: 50%;
-        line-height: 1;
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px; height: 56px;
+      background: rgba(100,255,218,0.07);
+      border: 1px solid rgba(100,255,218,0.15);
+      border-radius: 14px;
     }
-
     .journey-title {
       color: var(--lightest-slate);
       font-weight: 600;
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      letter-spacing: 0.5px;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
     }
-
     .journey-card p {
       color: var(--slate);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       margin: 0;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
-    /* --- Footer --- */
+    /* ── INTERESTS ROW ── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .interest-item {
+      background: var(--light-blue);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s ease;
+    }
+    .interest-item:hover {
+      border-color: rgba(100,255,218,0.2);
+      transform: translateY(-4px);
+    }
+    .interest-icon {
+      font-size: 1.4rem;
+      width: 42px; height: 42px;
+      background: rgba(100,255,218,0.07);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .interest-label {
+      color: var(--lightest-slate);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* ── FOOTER ── */
     footer {
       background-color: #050d1a;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 36px 0;
       text-align: center;
     }
-
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: 16px;
+    }
+    .footer-socials a {
+      color: var(--slate);
+      font-size: 1.15rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .footer-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
     footer p {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       font-family: var(--font-mono);
+      color: var(--slate);
       margin: 0;
     }
 
-    /* --- Animations --- */
+    /* ── ANIMATIONS ── */
     .fade-in-section {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
       will-change: opacity, transform;
     }
-    
-    .fade-in-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
 
-    /* Responsive Tweaks */
+    /* ── RESPONSIVE ── */
     @media (max-width: 991px) {
       .profile-wrapper { margin-bottom: 50px; }
       .section-title::after { left: 50%; transform: translateX(-50%); }
       .text-start.section-title { text-align: center !important; }
       .about-text { text-align: center; }
+      .status-pills { justify-content: center; }
+      .about-actions { justify-content: center; }
+      .timeline-wrap { text-align: left; }
+      .nav-icon-link { display: none; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 70px 16px; }
+      .page-header { padding-top: 100px; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Navbar -->
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan <span style="font-size: 1.2rem;">🚀</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--accent-color)" viewBox="0 0 16 16">
+      <a class="navbar-brand" href="index.html">Ishan <span style="font-size:1.1rem">🚀</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        style="border:none;outline:none;box-shadow:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--accent-color)" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item d-none d-lg-flex align-items-center ms-2">
+            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"
+               class="nav-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"
+               class="nav-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- About Me Section -->
+  <!-- ═══════════════════ ABOUT ME ═══════════════════ -->
   <section class="section page-header pb-0">
     <div class="container fade-in-section">
       <div class="row align-items-center">
-        <!-- Image Column -->
+
+        <!-- Profile Photo -->
         <div class="col-lg-5 text-center mb-5 mb-lg-0">
           <div class="profile-wrapper">
-            <img src="profile.jpeg" alt="Ishan Tripathi" class="about-img" loading="lazy">
+            <img
+              src="profile.jpeg"
+              alt="Ishan Tripathi — Web Developer & MCA Student"
+              class="about-img"
+              loading="lazy"
+              onerror="this.src='https://ui-avatars.com/api/?name=Ishan+Tripathi&background=112240&color=64ffda&size=400&bold=true'"
+            >
           </div>
         </div>
 
-        <!-- Text Column -->
+        <!-- Bio -->
         <div class="col-lg-7 about-text ps-lg-5">
-         
+          <span class="eyebrow">Get to know me</span>
           <h1 class="section-title text-start text-gradient">About Me</h1>
-          
-          <p class="fs-5">
-            Hello! I’m <strong>Ishan Tripathi</strong>, a technology enthusiast from Jaunpur, Uttar Pradesh, currently pursuing a Master of Computer Applications (MCA). I have a strong interest in web development and enjoy building practical digital solutions.
+
+          <p class="mt-4">
+            Hello! I'm <strong>Ishan Tripathi</strong>, a technology enthusiast from
+            <strong>Jaunpur, Uttar Pradesh</strong>, currently pursuing a
+            <strong>Master of Computer Applications (MCA)</strong>. I have a strong
+            interest in web development and enjoy building practical digital solutions
+            that solve real problems.
           </p>
 
-          <p class="fs-5">
-            My journey into technology is driven by curiosity, discipline, and a constant desire to learn. I am focused on improving my programming and problem-solving skills while working with modern web technologies.
+          <p>
+            My journey into technology is driven by curiosity, discipline, and a constant
+            desire to learn. I focus on improving my programming and problem-solving skills
+            while working with modern web technologies — from crafting clean front-end
+            interfaces to exploring backend concepts and security fundamentals.
           </p>
 
-          <p class="fs-5">
-            I am particularly interested in areas such as <strong>Web Development</strong> and <strong>Cybersecurity</strong>, and I enjoy exploring new tools and technologies that help create efficient and user-friendly applications.
+          <p>
+            I'm particularly drawn to <span class="mono-highlight">Web Development</span> and
+            <span class="mono-highlight">Cybersecurity</span> — I believe knowing how to build
+            things and knowing how to break them ethically go hand in hand. Beyond coding,
+            I enjoy digital editing and content creation, combining technical thinking with creativity.
           </p>
 
-          <p class="fs-5">
-            Beyond coding, I also enjoy creative work such as digital editing and content creation, which allows me to combine technical skills with creativity.
-          </p>
+          <!-- Status pills -->
+          <div class="status-pills">
+            <span class="status-pill">🎓 Pursuing MCA</span>
+            <span class="status-pill">📍 Jaunpur, UP</span>
+            <span class="status-pill">🔍 Open to Internships</span>
+            <span class="status-pill">🛡️ Learning Cybersecurity</span>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="about-actions">
+            <a href="Ishan_Tripathi_CV.pdf" class="btn-custom-solid" target="_blank" rel="noopener">
+              <i class="fas fa-download"></i> Download CV
+            </a>
+            <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="btn-custom">
+              <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="btn-custom">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ INTERESTS ═══════════════════ -->
+  <section class="section pt-5">
+    <div class="container fade-in-section">
+      <span class="eyebrow">What I'm Into</span>
+      <h2 class="section-title">Interests & Hobbies</h2>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <div class="interest-icon">💻</div>
+          <span class="interest-label">Web Development</span>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">🛡️</div>
+          <span class="interest-label">Cybersecurity</span>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">🎬</div>
+          <span class="interest-label">Video Editing</span>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">💪</div>
+          <span class="interest-label">Fitness</span>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">📚</div>
+          <span class="interest-label">Continuous Learning</span>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">🎮</div>
+          <span class="interest-label">CTF Challenges</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- My Journey Section -->
-  <section class="section journey-section">
-      <div class="container">
-          <div class="text-center fade-in-section">
-            <span class="eyebrow">// Timeline</span>
-            <h2 class="section-title center">My Journey</h2>
+  <!-- ═══════════════════ TIMELINE ═══════════════════ -->
+  <section class="section pt-0">
+    <div class="container fade-in-section">
+      <span class="eyebrow">// Timeline</span>
+      <h2 class="section-title">My Journey</h2>
+
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <div class="timeline-wrap">
+
+            <div class="timeline-item">
+              <div class="timeline-year">Early Years</div>
+              <div class="timeline-heading">✈️ The Airforce Dream</div>
+              <p class="timeline-body">My first ambition was to serve the nation in the Indian Airforce. This goal instilled in me a deep sense of discipline, focus, and determination that still guides me today.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">Graduation</div>
+              <div class="timeline-heading">🎓 BCA — Varanasi</div>
+              <p class="timeline-body">Life took a different turn, leading me to pursue a Bachelor of Computer Applications in Varanasi, where I discovered a new passion: technology and programming.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">Post-Graduation</div>
+              <div class="timeline-heading">🖥️ MCA — Ongoing</div>
+              <p class="timeline-body">Currently pursuing my Master of Computer Applications, deepening my knowledge in software development, algorithms, and modern web technologies.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">Now</div>
+              <div class="timeline-heading">🛡️ The Digital Warrior</div>
+              <p class="timeline-body">Building projects, studying cybersecurity, and working towards becoming a skilled full-stack developer and white-hat hacker — ready for the future.</p>
+            </div>
+
           </div>
-          
-          <div class="row mt-5 text-center g-4">
-              <!-- Journey Step 1 -->
-              <div class="col-lg-4 d-flex align-items-stretch staggered-item">
-                  <div class="journey-card">
-                      <span class="journey-icon">💂‍♂️</span>
-                      <h3 class="journey-title">The Airforce Dream</h3>
-                      <p>My first ambition was to serve the nation in the Indian Airforce, a goal that instilled in me a deep sense of discipline and determination.</p>
-                  </div>
-              </div>
-              
-              <!-- Journey Step 2 -->
-              <div class="col-lg-4 d-flex align-items-stretch staggered-item">
-                  <div class="journey-card">
-                      <span class="journey-icon">🎓</span>
-                      <h3 class="journey-title">The Academic Plot Twist</h3>
-                      <p>Life took a different turn, leading me to pursue a Bachelor of Computer Applications in Varanasi, where I discovered a new passion: technology.</p>
-                  </div>
-              </div>
-              
-              <!-- Journey Step 3 -->
-              <div class="col-lg-4 d-flex align-items-stretch staggered-item">
-                  <div class="journey-card">
-                      <span class="journey-icon">💻</span>
-                      <h3 class="journey-title">The Digital Warrior</h3>
-                      <p>Today, I channel my ambition into becoming a digital warrior, aiming to be a white-hat hacker and skilled developer, ready for the future.</p>
-                  </div>
-              </div>
+        </div>
+
+        <!-- Journey story cards -->
+        <div class="col-lg-6 mt-5 mt-lg-0">
+          <div class="d-flex flex-column gap-4">
+
+            <div class="journey-card staggered-item">
+              <div class="journey-icon">💂</div>
+              <h3 class="journey-title">The Airforce Dream</h3>
+              <p>My first ambition was to serve the nation in the Indian Airforce — a goal that gave me discipline and a never-quit attitude that I carry into everything I do.</p>
+            </div>
+
+            <div class="journey-card staggered-item">
+              <div class="journey-icon">🎓</div>
+              <h3 class="journey-title">The Academic Plot Twist</h3>
+              <p>Life redirected me to a BCA in Varanasi, where I discovered technology and fell in love with the idea of building things that live on the internet.</p>
+            </div>
+
+            <div class="journey-card staggered-item">
+              <div class="journey-icon">💻</div>
+              <h3 class="journey-title">The Digital Warrior</h3>
+              <p>Today I channel that original ambition into web development and ethical hacking — building clean experiences and understanding how to defend them.</p>
+            </div>
+
           </div>
+        </div>
       </div>
+    </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
   <footer>
     <div class="container">
-      <p class="mb-0 text-muted">© 2025 Ishan Tripathi. Built with caffeine and code.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="contact.html" title="Contact"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; Built with caffeine and code.</p>
     </div>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Internal JS -->
   <script>
-    console.log("Welcome to Ishan's About Page 😎");
-
-    // --- Standard Fade-in Animation ---
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          obs.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
 
-    const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
-    sectionsToAnimate.forEach((section) => {
-      sectionObserver.observe(section);
-    });
-
-    // --- Staggered Fade-in Animation for Grid Items ---
-    const staggeredItems = document.querySelectorAll('.staggered-item');
-    // Initially hide them by adding fade-in-section logic manually
-    staggeredItems.forEach(item => {
-        item.classList.add('fade-in-section');
-    });
-
-    const staggeredObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry, index) => {
+    // Staggered journey cards
+    const staggerObs = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          // Stagger effect using index delay
-          setTimeout(() => {
-            entry.target.classList.add('is-visible');
-          }, index * 150);
-          observer.unobserve(entry.target);
+          setTimeout(() => entry.target.classList.add('is-visible'), i * 150);
+          obs.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.staggered-item').forEach(el => {
+      el.classList.add('fade-in-section');
+      staggerObs.observe(el);
+    });
 
-    staggeredItems.forEach((item) => {
-      staggeredObserver.observe(item);
+    // Navbar compact on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.navbar');
+      if (window.scrollY > 60) {
+        nav.style.padding = '8px 0';
+        nav.style.boxShadow = '0 4px 20px rgba(2,12,27,0.55)';
+      } else {
+        nav.style.padding = '14px 0';
+        nav.style.boxShadow = 'none';
+      }
     });
   </script>
 
