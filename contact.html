@@ -3,577 +3,534 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- SEO -->
-  <meta name="description" content="Contact Ishan Tripathi — web developer & MCA student from Jaunpur, UP. Open for collaborations, internships, and friendly hellos.">
+  <meta name="description" content="Contact Ishan Tripathi — web developer & MCA student from Jaunpur, UP.">
   <meta name="author" content="Ishan Tripathi">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Contact | Ishan Tripathi">
-  <meta property="og:description" content="Get in touch with Ishan Tripathi — open for collaborations, internships, and projects.">
   <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
   <meta property="og:url" content="https://ishantripathi.in/contact.html">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact | Ishan Tripathi">
-  <meta name="twitter:image" content="https://ishantripathi.in/profile.jpeg">
-
   <title>Contact | Ishan Tripathi</title>
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --dark-blue: #0a192f;
-      --light-blue: #112240;
-      --lightest-blue: #233554;
-      --lightest-slate: #ccd6f6;
-      --slate: #8892b0;
-      --accent-color: #64ffda;
-      --font-main: 'Poppins', sans-serif;
-      --font-mono: 'Fira Code', monospace;
+      --bg:     #060b14;
+      --bg2:    #0d1528;
+      --cyan:   #00f5ff;
+      --purple: #b400ff;
+      --green:  #00ff41;
+      --glass:  rgba(13,21,40,0.65);
+      --gb:     rgba(0,245,255,0.12);
+      --text:   #c8d6f0;
+      --bright: #eef2ff;
+      --mono:   'Fira Code', monospace;
+      --main:   'Poppins', sans-serif;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--main);background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;}
+
+    /* grain */
+    body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");background-size:200px 200px;opacity:.5;}
+
+    /* cursor */
+    #cursor-dot{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--cyan),0 0 20px var(--cyan);transition:width .15s,height .15s,background .15s;}
+    #cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,245,255,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
+
+    /* page transition */
+    #page-trans{position:fixed;inset:0;background:linear-gradient(135deg,var(--bg) 0%,#0d0520 100%);z-index:99990;transform:translateY(-100%);transition:transform .45s cubic-bezier(.77,0,.175,1);}
+    #page-trans.active{transform:translateY(0);}
+
+    /* navbar */
+    .navbar{background:rgba(6,11,20,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,245,255,.07);padding:14px 0;transition:all .3s;z-index:1000;}
+    .navbar-brand{font-weight:700;color:var(--bright)!important;font-family:var(--mono);font-size:1.05rem;}
+    .navbar .nav-link{color:var(--text);font-family:var(--mono);font-size:.82rem;margin:0 4px;position:relative;transition:color .3s;}
+    .navbar .nav-link::after{content:'';position:absolute;width:0;height:1px;bottom:-2px;left:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .3s;}
+    .navbar .nav-link:hover,.navbar .nav-link.active{color:var(--cyan);}
+    .navbar .nav-link:hover::after,.navbar .nav-link.active::after{width:100%;}
+    .nav-icon-link{color:var(--text);font-size:1rem;margin-left:14px;transition:color .3s,transform .3s;}
+    .nav-icon-link:hover{color:var(--cyan);transform:translateY(-2px);}
+
+    /* ── HERO with MATRIX RAIN ── */
+    .page-hero{
+      position:relative;min-height:46vh;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;padding:120px 20px 60px;
+    }
+    #matrix-canvas{position:absolute;inset:0;z-index:0;opacity:.18;}
+    .page-hero-content{position:relative;z-index:1;text-align:center;}
+    .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:16px;opacity:0;animation:fadeUp .7s .1s forwards;}
+    .hero-title{font-size:clamp(2.4rem,6vw,5rem);font-weight:700;letter-spacing:-2px;background:linear-gradient(135deg,#eef2ff 0%,var(--cyan) 50%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fadeUp .7s .2s forwards;line-height:1.1;margin-bottom:16px;}
+    .hero-sub{font-family:var(--mono);font-size:.86rem;color:var(--text);opacity:0;animation:fadeUp .7s .35s forwards;}
+    .hero-sub span{color:var(--cyan);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── CONTACT SECTION ── */
+    .contact-section{padding:0 20px 100px;}
+    .contact-grid{
+      display:grid;grid-template-columns:1fr 1.55fr;
+      gap:36px;max-width:1020px;margin:0 auto;align-items:start;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* glitch */
+    .glitch{position:relative;display:inline-block;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--bright);letter-spacing:-.5px;}
+    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;}
+    .glitch:hover::before{opacity:.6;color:var(--cyan);clip:rect(0,900px,10px,0);animation:g1 .3s steps(2,end);}
+    .glitch:hover::after{opacity:.4;color:var(--purple);clip:rect(20px,900px,40px,0);animation:g2 .3s steps(2,end);}
+    @keyframes g1{0%{clip:rect(0,900px,10px,0);transform:translate(-2px,0)}50%{clip:rect(30px,900px,50px,0);transform:translate(2px,0)}100%{clip:rect(60px,900px,80px,0);transform:translate(-1px,0)}}
+    @keyframes g2{0%{clip:rect(40px,900px,60px,0);transform:translate(2px,0)}50%{clip:rect(10px,900px,20px,0);transform:translate(-2px,0)}100%{clip:rect(70px,900px,90px,0);transform:translate(1px,0)}}
 
-    body {
-      font-family: var(--font-main);
-      background-color: var(--dark-blue);
-      color: var(--slate);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    /* ── LEFT PANEL ── */
+    .contact-info{display:flex;flex-direction:column;gap:18px;}
+    .info-sub{color:var(--text);font-size:.88rem;line-height:1.8;margin-bottom:6px;}
 
-    /* ── NAVBAR ── */
-    .navbar {
-      background-color: rgba(10, 25, 47, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 14px 0;
-      transition: all 0.3s ease;
+    .info-card{
+      background:var(--glass);border:1px solid var(--gb);border-radius:14px;
+      padding:18px 20px;display:flex;align-items:center;gap:16px;
+      backdrop-filter:blur(14px);transition:all .35s;text-decoration:none;
     }
-    .navbar-brand {
-      font-weight: 700;
-      color: var(--lightest-slate) !important;
-      letter-spacing: 0.5px;
-      font-size: 1.1rem;
-    }
-    .navbar .nav-link {
-      color: var(--slate);
-      font-weight: 500;
-      font-size: 0.88rem;
-      margin: 0 6px;
-      position: relative;
-      transition: color 0.3s ease;
-      font-family: var(--font-mono);
-    }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--accent-color); }
-    .navbar .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0; height: 2px;
-      display: block;
-      margin-top: 4px; right: 0;
-      background: var(--accent-color);
-      transition: width 0.3s ease, right 0.3s ease;
-    }
-    .navbar .nav-link:hover::after,
-    .navbar .nav-link.active::after { width: 100%; left: 0; }
-    .nav-icon-link {
-      color: var(--slate);
-      font-size: 1.05rem;
-      margin-left: 14px;
-      transition: color 0.3s ease, transform 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-    }
-    .nav-icon-link:hover { color: var(--accent-color); transform: translateY(-2px); }
+    .info-card:hover{border-color:rgba(0,245,255,.3);transform:translateX(8px);box-shadow:0 8px 24px rgba(0,0,0,.4),-4px 0 0 var(--cyan);}
+    .info-icon{width:44px;height:44px;border-radius:12px;background:rgba(0,245,255,.08);border:1px solid rgba(0,245,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--cyan);font-size:1rem;transition:all .3s;}
+    .info-card:hover .info-icon{background:rgba(0,245,255,.15);box-shadow:0 0 16px rgba(0,245,255,.3);}
+    .info-label{font-size:.68rem;font-family:var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:3px;}
+    .info-value{font-size:.86rem;color:var(--bright);font-weight:500;}
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      padding: 120px 20px 0;
-      text-align: center;
+    .social-row{display:flex;gap:10px;flex-wrap:wrap;}
+    .social-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      font-family:var(--mono);font-size:.7rem;font-weight:600;
+      padding:9px 16px;border-radius:8px;
+      border:1px solid rgba(0,245,255,.12);
+      background:var(--glass);backdrop-filter:blur(10px);
+      color:var(--text);text-decoration:none;transition:all .3s;
     }
-    .eyebrow {
-      font-family: var(--font-mono);
-      color: var(--accent-color);
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 16px;
+    .social-btn:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px);box-shadow:0 0 14px rgba(0,245,255,.2);}
+
+    /* availability badge */
+    .avail-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      font-family:var(--mono);font-size:.72rem;
+      padding:8px 16px;border-radius:20px;
+      background:rgba(0,255,65,.06);border:1px solid rgba(0,255,65,.2);color:#00ff41;
     }
-    .page-title {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      color: var(--lightest-slate);
-      margin-bottom: 18px;
-      letter-spacing: -0.5px;
-      position: relative;
-      display: inline-block;
+    .avail-dot{width:7px;height:7px;border-radius:50%;background:#00ff41;animation:pulse-dot 1.5s infinite;}
+    @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(0,255,65,.4)}50%{box-shadow:0 0 0 5px rgba(0,255,65,0)}}
+
+    /* ── FORM ── */
+    .contact-form-wrap{
+      background:var(--glass);border:1px solid var(--gb);
+      border-radius:20px;padding:40px 36px;backdrop-filter:blur(20px);
+      position:relative;overflow:hidden;
     }
-    .page-title::after {
-      content: '';
-      position: absolute;
-      width: 50%; height: 3px;
-      background: var(--accent-color);
-      bottom: -10px;
-      left: 25%;
-      border-radius: 2px;
-    }
-    .page-sub {
-      color: var(--slate);
-      font-size: 0.97rem;
-      max-width: 520px;
-      margin: 28px auto 60px;
-      line-height: 1.8;
+    .contact-form-wrap::before{
+      content:'';position:absolute;top:-100px;right:-100px;
+      width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle,rgba(180,0,255,.06) 0%,transparent 70%);
+      pointer-events:none;
     }
 
-    /* ── MAIN LAYOUT ── */
-    .contact-section { padding: 0 20px 100px; }
+    .form-group{margin-bottom:20px;position:relative;}
+    .form-label{
+      display:block;font-size:.68rem;font-family:var(--mono);
+      letter-spacing:1.5px;text-transform:uppercase;color:var(--text);
+      margin-bottom:8px;transition:color .3s;
+    }
+    .form-group:focus-within .form-label{color:var(--cyan);}
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 36px;
-      max-width: 1000px;
-      margin: 0 auto;
-      align-items: start;
+    .form-control{
+      width:100%;
+      background:rgba(6,11,20,.85);
+      border:1px solid rgba(0,245,255,.1);
+      border-radius:10px;padding:13px 16px;
+      color:var(--bright);font-family:var(--main);font-size:.9rem;
+      outline:none;transition:border-color .3s,box-shadow .3s,background .3s;
+      resize:none;
     }
+    .form-control::placeholder{color:rgba(200,214,240,.3);}
+    .form-control:focus{
+      border-color:var(--cyan);
+      box-shadow:0 0 0 3px rgba(0,245,255,.1),0 0 20px rgba(0,245,255,.08);
+      background:rgba(6,11,20,.95);
+    }
+    /* neon underline on focus */
+    .form-group::after{
+      content:'';position:absolute;bottom:0;left:10px;right:10px;height:1px;
+      background:linear-gradient(90deg,var(--cyan),var(--purple));
+      transform:scaleX(0);transition:transform .3s;border-radius:1px;
+    }
+    .form-group:focus-within::after{transform:scaleX(1);}
 
-    /* ── LEFT PANEL — contact info ── */
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 
-    .info-heading {
-      color: var(--lightest-slate);
-      font-weight: 600;
-      font-size: 1.15rem;
-      margin-bottom: 4px;
+    /* SEND BUTTON with rocket */
+    .btn-submit{
+      width:100%;background:transparent;
+      border:1px solid var(--cyan);
+      color:var(--cyan);padding:15px;border-radius:10px;
+      font-family:var(--mono);font-size:.85rem;font-weight:700;
+      letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;
+      transition:all .4s;display:flex;align-items:center;justify-content:center;
+      gap:10px;margin-top:6px;position:relative;overflow:hidden;
     }
-    .info-sub {
-      color: var(--slate);
-      font-size: 0.88rem;
-      line-height: 1.75;
-      margin-bottom: 24px;
+    .btn-submit::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(0,245,255,.1),rgba(180,0,255,.1));
+      opacity:0;transition:opacity .3s;
     }
-
-    .info-card {
-      background: var(--light-blue);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 20px 22px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      transition: all 0.3s ease;
-      text-decoration: none;
+    .btn-submit:hover{
+      box-shadow:0 0 24px rgba(0,245,255,.35),0 0 48px rgba(0,245,255,.1);
+      transform:translateY(-3px);
     }
-    .info-card:hover {
-      border-color: rgba(100,255,218,0.25);
-      transform: translateX(6px);
-    }
-    .info-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: rgba(100,255,218,0.08);
-      border: 1px solid rgba(100,255,218,0.16);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      color: var(--accent-color);
-      font-size: 1rem;
-    }
-    .info-label {
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--slate);
-      margin-bottom: 3px;
-    }
-    .info-value {
-      font-size: 0.88rem;
-      color: var(--lightest-slate);
-      font-weight: 500;
+    .btn-submit:hover::before{opacity:1;}
+    .btn-submit.launching .rocket-icon{animation:launch .6s ease-out forwards;}
+    @keyframes launch{
+      0%{transform:translateX(0) translateY(0) rotate(0);}
+      50%{transform:translateX(30px) translateY(-30px) rotate(45deg);opacity:.5;}
+      51%{transform:translateX(-30px) translateY(10px) rotate(0);opacity:0;}
+      100%{transform:translateX(0) translateY(0);opacity:1;}
     }
 
-    /* Social row */
-    .social-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 8px;
+    /* WA option button */
+    .btn-whatsapp{
+      width:100%;background:transparent;
+      border:1px solid rgba(37,211,102,.35);
+      color:#25d366;padding:13px;border-radius:10px;
+      font-family:var(--mono);font-size:.8rem;font-weight:600;
+      cursor:pointer;transition:all .3s;display:flex;align-items:center;
+      justify-content:center;gap:10px;margin-top:12px;text-decoration:none;
     }
-    .social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      padding: 9px 16px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: var(--light-blue);
-      color: var(--slate);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .social-btn:hover {
-      border-color: var(--accent-color);
-      color: var(--accent-color);
-      transform: translateY(-3px);
+    .btn-whatsapp:hover{
+      background:rgba(37,211,102,.08);color:#25d366;
+      box-shadow:0 0 20px rgba(37,211,102,.2);transform:translateY(-2px);
     }
 
-    /* ── RIGHT PANEL — form ── */
-    .contact-form-wrap {
-      background: var(--light-blue);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 40px 36px;
+    /* success */
+    .success-banner{
+      display:none;
+      background:rgba(0,245,255,.07);border:1px solid rgba(0,245,255,.2);
+      border-radius:10px;padding:16px 20px;color:var(--cyan);
+      font-family:var(--mono);font-size:.82rem;text-align:center;margin-top:16px;
+      animation:fadeUp .5s forwards;
     }
 
-    .form-group {
-      margin-bottom: 22px;
+    /* delivery note */
+    .delivery-note{
+      font-family:var(--mono);font-size:.68rem;color:rgba(200,214,240,.35);
+      text-align:center;margin-top:14px;line-height:1.7;
     }
-    .form-label {
-      display: block;
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--slate);
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-    .form-control {
-      width: 100%;
-      background: rgba(10,25,47,0.8);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 13px 16px;
-      color: var(--lightest-slate);
-      font-family: var(--font-main);
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      resize: none;
-    }
-    .form-control::placeholder { color: var(--slate); opacity: 0.7; }
-    .form-control:focus {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 3px rgba(100,255,218,0.1);
-      background: rgba(10,25,47,0.95);
-    }
+    .delivery-note span{color:var(--cyan);}
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
+    /* fade */
+    .fade-s{opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s;}
+    .fade-s.visible{opacity:1;transform:translateY(0);}
 
-    .btn-submit {
-      width: 100%;
-      background: var(--accent-color);
-      color: var(--dark-blue);
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 6px;
-    }
-    .btn-submit:hover {
-      background: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(100,255,218,0.25);
-    }
+    /* footer */
+    footer{background:#030609;border-top:1px solid rgba(0,245,255,.07);padding:36px 0;text-align:center;}
+    .footer-socials{display:flex;justify-content:center;gap:24px;margin-bottom:16px;}
+    .footer-socials a{color:var(--text);font-size:1.1rem;transition:color .3s,transform .3s;}
+    .footer-socials a:hover{color:var(--cyan);transform:translateY(-3px);}
+    footer p{font-family:var(--mono);font-size:.75rem;color:rgba(200,214,240,.35);}
 
-    /* Success message */
-    .success-banner {
-      display: none;
-      background: rgba(100,255,218,0.08);
-      border: 1px solid rgba(100,255,218,0.25);
-      border-radius: 10px;
-      padding: 14px 18px;
-      color: var(--accent-color);
-      font-size: 0.88rem;
-      text-align: center;
-      margin-top: 16px;
-    }
-    .success-banner i { margin-right: 8px; }
-
-    /* ── FOOTER ── */
-    footer {
-      background-color: #050d1a;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 36px 0;
-      text-align: center;
-    }
-    .footer-socials {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-      margin-bottom: 16px;
-    }
-    .footer-socials a {
-      color: var(--slate);
-      font-size: 1.15rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .footer-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
-    footer p {
-      font-size: 0.82rem;
-      font-family: var(--font-mono);
-      color: var(--slate);
-      margin: 0;
-    }
-
-    /* ── ANIMATIONS ── */
-    .fade-in-section {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .page-header { padding: 100px 16px 0; }
-      .contact-section { padding: 0 14px 80px; }
-      .contact-form-wrap { padding: 28px 22px; }
-      .nav-icon-link { display: none; }
+    @media(max-width:768px){
+      .contact-grid{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .contact-section{padding:0 14px 80px;}
+      .contact-form-wrap{padding:28px 22px;}
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan <span style="font-size:1.1rem">🚀</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        style="border:none;outline:none;box-shadow:none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--accent-color)" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
-          <li class="nav-item d-none d-lg-flex align-items-center ms-2">
-            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"
-               class="nav-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"
-               class="nav-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          </li>
-        </ul>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="page-trans"></div>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">ishan.dev<span style="color:var(--cyan)">_</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      style="border:none;outline:none;box-shadow:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="var(--cyan)" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        <li class="nav-item d-none d-lg-flex align-items-center ms-2">
+          <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="nav-icon-link"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="nav-icon-link"><i class="fab fa-linkedin-in"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ HERO (MATRIX RAIN BG) ══════════ -->
+<section class="page-hero">
+  <canvas id="matrix-canvas"></canvas>
+  <div class="page-hero-content">
+    <span class="eyebrow">⚡ Get in Touch</span>
+    <h1 class="hero-title">Let's Connect</h1>
+    <p class="hero-sub">
+      <span>&gt; </span>Open for internships · collaborations · just a hello
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="contact-section">
+  <div class="contact-grid fade-s">
+
+    <!-- LEFT -->
+    <div class="contact-info">
+      <div>
+        <h2 class="glitch" data-text="Talk to me" style="margin-bottom:12px">Talk to me</h2>
+        <p class="info-sub">Whether it's an internship opportunity, a freelance project, or just a tech conversation — I'm always happy to connect.</p>
+        <div class="avail-badge"><span class="avail-dot"></span>Available for opportunities</div>
+      </div>
+
+      <a href="mailto:ishan2004tripathi@gmail.com" class="info-card">
+        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value">ishan2004tripathi@gmail.com</div>
+        </div>
+      </a>
+
+      <a href="https://wa.me/916394375269" target="_blank" rel="noopener" class="info-card">
+        <div class="info-icon" style="color:#25d366;background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.2)"><i class="fab fa-whatsapp"></i></div>
+        <div>
+          <div class="info-label">WhatsApp</div>
+          <div class="info-value">+91 63943 75269</div>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="info-card">
+        <div class="info-icon"><i class="fab fa-linkedin-in"></i></div>
+        <div>
+          <div class="info-label">LinkedIn</div>
+          <div class="info-value">ishan-tripathi-762ba925a</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="info-card">
+        <div class="info-icon"><i class="fab fa-github"></i></div>
+        <div>
+          <div class="info-label">GitHub</div>
+          <div class="info-value">github.com/ISHAN-258</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" class="info-card">
+        <div class="info-icon" style="color:#e1306c;background:rgba(225,48,108,.08);border-color:rgba(225,48,108,.2)"><i class="fab fa-instagram"></i></div>
+        <div>
+          <div class="info-label">Instagram</div>
+          <div class="info-value">@ishan_258</div>
+        </div>
+      </a>
+
+      <div>
+        <div style="font-family:var(--mono);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:12px;">Also find me on</div>
+        <div class="social-row">
+          <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="https://wa.me/916394375269" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
-  <div class="page-header fade-in-section">
-    <span class="eyebrow">Get in Touch</span>
-    <h1 class="page-title">Let's Connect</h1>
-    <p class="page-sub">Have a project in mind, want to collaborate, or just want to say hello? My inbox is always open — I'll get back to you as soon as possible.</p>
-  </div>
+    <!-- RIGHT — FORM -->
+    <div class="contact-form-wrap">
+      <h2 style="color:var(--bright);font-size:1.2rem;font-weight:600;margin-bottom:6px">Send a Message</h2>
+      <p style="color:var(--text);font-size:.84rem;margin-bottom:28px;font-family:var(--mono);">
+        // fills your WhatsApp inbox directly 🚀
+      </p>
 
-  <!-- ═══════════════════ CONTACT SECTION ═══════════════════ -->
-  <section class="contact-section">
-    <div class="contact-grid fade-in-section">
-
-      <!-- LEFT — contact info -->
-      <div class="contact-info">
-        <div>
-          <h2 class="info-heading">Talk to me</h2>
-          <p class="info-sub">Whether it's an internship opportunity, a freelance project, or a tech conversation — I'm always happy to connect.</p>
+      <div id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">Your Name</label>
+            <input type="text" class="form-control" id="fname" placeholder="What should I call you?" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="femail">Your Email</label>
+            <input type="email" class="form-control" id="femail" placeholder="Where can I reply?">
+          </div>
         </div>
 
-        <a href="mailto:ishan258tripathi@gmail.com" class="info-card">
-          <div class="info-icon"><i class="fas fa-envelope"></i></div>
-          <div>
-            <div class="info-label">Email</div>
-            <div class="info-value">ishan258tripathi@gmail.com</div>
-          </div>
-        </a>
-
-        <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="info-card">
-          <div class="info-icon"><i class="fab fa-linkedin-in"></i></div>
-          <div>
-            <div class="info-label">LinkedIn</div>
-            <div class="info-value">ishan-tripathi-762ba925a</div>
-          </div>
-        </a>
-
-        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="info-card">
-          <div class="info-icon"><i class="fab fa-github"></i></div>
-          <div>
-            <div class="info-label">GitHub</div>
-            <div class="info-value">github.com/ISHAN-258</div>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" class="info-card">
-          <div class="info-icon"><i class="fab fa-instagram"></i></div>
-          <div>
-            <div class="info-label">Instagram</div>
-            <div class="info-value">@ishan_258</div>
-          </div>
-        </a>
-
-        <div style="margin-top:4px">
-          <div class="info-label" style="margin-bottom:12px">Also find me on</div>
-          <div class="social-row">
-            <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" class="social-btn">
-              <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a href="https://wa.me/917007115728" target="_blank" rel="noopener" class="social-btn">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-          </div>
+        <div class="form-group">
+          <label class="form-label" for="fsubject">Subject</label>
+          <input type="text" class="form-control" id="fsubject" placeholder="Internship / Collaboration / Just saying hi">
         </div>
-      </div>
 
-      <!-- RIGHT — Netlify form -->
-      <div class="contact-form-wrap">
-        <h2 style="color:var(--lightest-slate);font-size:1.2rem;font-weight:600;margin-bottom:6px">Send a Message</h2>
-        <p style="color:var(--slate);font-size:0.85rem;margin-bottom:28px">I'll reply within 24 hours.</p>
+        <div class="form-group">
+          <label class="form-label" for="fmessage">Message</label>
+          <textarea class="form-control" id="fmessage" rows="5" placeholder="Tell me what you have in mind..." required></textarea>
+        </div>
 
-        <form name="contact" method="POST" data-netlify="true" id="contactForm">
-          <input type="hidden" name="form-name" value="contact">
+        <!-- Primary: Send via WhatsApp -->
+        <button type="button" class="btn-submit" id="sendWaBtn" onclick="sendWhatsApp()">
+          <i class="fab fa-whatsapp rocket-icon"></i>
+          <span id="btnText">Send via WhatsApp</span>
+        </button>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="name">Your Name</label>
-              <input type="text" class="form-control" id="name" name="name"
-                placeholder="What should I call you?" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="email">Your Email</label>
-              <input type="email" class="form-control" id="email" name="email"
-                placeholder="Where can I reply?" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="subject">Subject</label>
-            <input type="text" class="form-control" id="subject" name="subject"
-              placeholder="Internship / Collaboration / Just saying hi">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="message">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="5"
-              placeholder="Tell me what you have in mind..." required></textarea>
-          </div>
-
-          <button type="submit" class="btn-submit">
-            <i class="fas fa-paper-plane"></i> Send Message
-          </button>
-        </form>
+        <!-- Secondary: Send via Email (mailto) -->
+        <a href="#" class="btn-whatsapp" id="sendMailBtn" onclick="sendEmail(); return false;">
+          <i class="fas fa-envelope"></i> Send via Email instead
+        </a>
 
         <div class="success-banner" id="successBanner">
-          <i class="fas fa-check-circle"></i>
-          Message sent! I'll get back to you within 24 hours.
+          <i class="fas fa-check-circle"></i>&nbsp; Opening WhatsApp with your message...
         </div>
+
+        <p class="delivery-note">
+          WhatsApp opens with your message pre-filled → just hit send.<br>
+          Email option uses your default mail app.<br>
+          <span>Response within 24 hours. Promise.</span>
+        </p>
       </div>
-
     </div>
-  </section>
 
-  <!-- ═══════════════════ FOOTER ═══════════════════ -->
-  <footer>
-    <div class="container">
-      <div class="footer-socials">
-        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:ishan258tripathi@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
-      </div>
-      <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; Built with caffeine and code.</p>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-socials">
+      <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:ishan2004tripathi@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.instagram.com/ishan_258/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/916394375269" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
     </div>
-  </footer>
+    <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; designed with caffeine &amp; cyan.</p>
+  </div>
+</footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ── CURSOR ── */
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let rx=0,ry=0,mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function ar(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
 
-  <script>
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+/* ── MATRIX RAIN ── */
+const mc=document.getElementById('matrix-canvas');
+const mctx=mc.getContext('2d');
+function resizeMatrix(){mc.width=window.innerWidth;mc.height=mc.parentElement.offsetHeight;}
+resizeMatrix();window.addEventListener('resize',resizeMatrix);
+const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()アイウエオカキクケコサシスセソ';
+const fontSize=13;
+let cols=Math.floor(mc.width/fontSize);
+let drops=Array(cols).fill(1);
+function drawMatrix(){
+  mctx.fillStyle='rgba(6,11,20,0.06)';
+  mctx.fillRect(0,0,mc.width,mc.height);
+  mctx.font=fontSize+'px '+"'Fira Code', monospace";
+  for(let i=0;i<drops.length;i++){
+    const char=chars[Math.floor(Math.random()*chars.length)];
+    // Gradient: first char cyan, rest green fading
+    const alpha=Math.random()*.8+.2;
+    mctx.fillStyle=drops[i]===1?`rgba(0,245,255,${alpha})`:`rgba(0,255,65,${alpha*.6})`;
+    mctx.fillText(char,i*fontSize,drops[i]*fontSize);
+    if(drops[i]*fontSize>mc.height&&Math.random()>.975) drops[i]=0;
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix,50);
 
-    // Navbar compact on scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 60) {
-        nav.style.padding = '8px 0';
-        nav.style.boxShadow = '0 4px 20px rgba(2,12,27,0.55)';
-      } else {
-        nav.style.padding = '14px 0';
-        nav.style.boxShadow = 'none';
-      }
-    });
+/* ── PAGE TRANSITIONS ── */
+const trans=document.getElementById('page-trans');
+document.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto')||h.startsWith('tel'))return;
+  a.addEventListener('click',e=>{
+    e.preventDefault();trans.classList.add('active');
+    setTimeout(()=>window.location.href=h,420);
+  });
+});
+window.addEventListener('pageshow',()=>trans.classList.remove('active'));
 
-    // Form submit — show success banner, keep Netlify working
-    const form = document.getElementById('contactForm');
-    const banner = document.getElementById('successBanner');
+/* ── FADE SECTIONS ── */
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade-s').forEach(el=>io.observe(el));
 
-    form.addEventListener('submit', function(e) {
-      // Let Netlify handle the actual POST — only intercept for UI feedback
-      // If you want pure JS feedback without page reload, uncomment below:
-      // e.preventDefault();
-      // fetch('/', { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(new FormData(form)).toString() })
-      //   .then(() => { banner.style.display = 'block'; form.reset(); })
-      //   .catch(() => alert('Something went wrong. Please email me directly.'));
-    });
-  </script>
+/* ── WHATSAPP SEND ── */
+function getFormData(){
+  const name=document.getElementById('fname').value.trim();
+  const email=document.getElementById('femail').value.trim();
+  const subject=document.getElementById('fsubject').value.trim();
+  const message=document.getElementById('fmessage').value.trim();
+  return{name,email,subject,message};
+}
 
+function validateForm(){
+  const{name,message}=getFormData();
+  if(!name){document.getElementById('fname').focus();return false;}
+  if(!message){document.getElementById('fmessage').focus();return false;}
+  return true;
+}
+
+function sendWhatsApp(){
+  if(!validateForm())return;
+  const{name,email,subject,message}=getFormData();
+
+  let text=`*New message from your portfolio website* 🌐\n\n`;
+  text+=`*Name:* ${name}\n`;
+  if(email) text+=`*Email:* ${email}\n`;
+  if(subject) text+=`*Subject:* ${subject}\n`;
+  text+=`\n*Message:*\n${message}`;
+  text+=`\n\n_Sent via ishantripathi.in/contact_`;
+
+  const encoded=encodeURIComponent(text);
+  const waURL=`https://wa.me/916394375269?text=${encoded}`;
+
+  // rocket launch animation
+  const btn=document.getElementById('sendWaBtn');
+  btn.classList.add('launching');
+  document.getElementById('btnText').textContent='Launching...';
+  btn.disabled=true;
+
+  setTimeout(()=>{
+    document.getElementById('successBanner').style.display='block';
+    window.open(waURL,'_blank');
+    btn.classList.remove('launching');
+    document.getElementById('btnText').textContent='Send via WhatsApp';
+    btn.disabled=false;
+  },700);
+}
+
+function sendEmail(){
+  if(!validateForm())return;
+  const{name,email,subject,message}=getFormData();
+  const sub=subject||`Portfolio Contact from ${name}`;
+  const body=`Name: ${name}\nEmail: ${email||'(not provided)'}\n\nMessage:\n${message}`;
+  window.location.href=`mailto:ishan2004tripathi@gmail.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+}
+
+/* ── NAVBAR COMPACT ── */
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('.navbar');
+  nav.style.padding=window.scrollY>60?'8px 0':'14px 0';
+  nav.style.boxShadow=window.scrollY>60?'0 4px 24px rgba(0,0,0,.6)':'none';
+});
+
+/* ── NEON INPUT GLOW on focus ── */
+document.querySelectorAll('.form-control').forEach(el=>{
+  el.addEventListener('focus',()=>el.style.caretColor='var(--cyan)');
+});
+</script>
 </body>
 </html>
