@@ -3,695 +3,532 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- SEO -->
-  <meta name="description" content="Projects by Ishan Tripathi — web developer & MCA student from Jaunpur, UP. Explore live demos and source code.">
+  <meta name="description" content="Projects by Ishan Tripathi — web developer & MCA student from Jaunpur, UP.">
   <meta name="author" content="Ishan Tripathi">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Projects | Ishan Tripathi">
-  <meta property="og:description" content="Web development projects by Ishan Tripathi — travel portals, campus utilities, fashion sites and more.">
   <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
   <meta property="og:url" content="https://ishantripathi.in/projects.html">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Projects | Ishan Tripathi">
-  <meta name="twitter:image" content="https://ishantripathi.in/profile.jpeg">
-
   <title>Projects | Ishan Tripathi</title>
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --dark-blue: #0a192f;
-      --light-blue: #112240;
-      --lightest-blue: #233554;
-      --lightest-slate: #ccd6f6;
-      --slate: #8892b0;
-      --accent-color: #64ffda;
-      --font-main: 'Poppins', sans-serif;
-      --font-mono: 'Fira Code', monospace;
-      --font-serif: 'Playfair Display', serif;
+      --bg:     #060b14;
+      --bg2:    #0d1528;
+      --cyan:   #00f5ff;
+      --purple: #b400ff;
+      --glass:  rgba(13,21,40,0.62);
+      --gb:     rgba(0,245,255,0.12);
+      --text:   #c8d6f0;
+      --bright: #eef2ff;
+      --mono:   'Fira Code', monospace;
+      --main:   'Poppins', sans-serif;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--main);background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;}
+
+    /* grain */
+    body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size:200px 200px;opacity:.5;}
+
+    /* cursor */
+    #cursor-dot{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--cyan),0 0 20px var(--cyan);transition:width .15s,height .15s;}
+    #cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,245,255,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
+
+    /* page transition */
+    #page-trans{position:fixed;inset:0;background:linear-gradient(135deg,var(--bg) 0%,#0d0520 100%);z-index:99990;transform:translateY(-100%);transition:transform .45s cubic-bezier(.77,0,.175,1);}
+    #page-trans.active{transform:translateY(0);}
+
+    /* navbar */
+    .navbar{background:rgba(6,11,20,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,245,255,.07);padding:14px 0;transition:all .3s;z-index:1000;}
+    .navbar-brand{font-weight:700;color:var(--bright)!important;font-family:var(--mono);font-size:1.05rem;}
+    .navbar .nav-link{color:var(--text);font-family:var(--mono);font-size:.82rem;margin:0 4px;position:relative;transition:color .3s;}
+    .navbar .nav-link::after{content:'';position:absolute;width:0;height:1px;bottom:-2px;left:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .3s;}
+    .navbar .nav-link:hover,.navbar .nav-link.active{color:var(--cyan);}
+    .navbar .nav-link:hover::after,.navbar .nav-link.active::after{width:100%;}
+    .nav-icon-link{color:var(--text);font-size:1rem;margin-left:14px;transition:color .3s,transform .3s;}
+    .nav-icon-link:hover{color:var(--cyan);transform:translateY(-2px);}
+
+    /* PAGE HERO */
+    .page-hero{position:relative;min-height:44vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:120px 20px 55px;}
+    #proj-canvas{position:absolute;inset:0;z-index:0;}
+    .page-hero-bg-text{position:absolute;font-size:clamp(5rem,16vw,15rem);font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(0,245,255,.04);letter-spacing:-6px;pointer-events:none;user-select:none;z-index:1;white-space:nowrap;}
+    .page-hero-content{position:relative;z-index:2;text-align:center;}
+    .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:16px;opacity:0;animation:fadeUp .7s .1s forwards;}
+    .hero-title{font-size:clamp(2.4rem,6vw,5rem);font-weight:700;letter-spacing:-2px;background:linear-gradient(135deg,#eef2ff 0%,var(--cyan) 50%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fadeUp .7s .2s forwards;line-height:1.1;margin-bottom:16px;}
+    .hero-sub{font-family:var(--mono);font-size:.86rem;color:var(--text);opacity:0;animation:fadeUp .7s .35s forwards;}
+    .hero-sub span{color:var(--cyan);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+    /* glitch */
+    .glitch{position:relative;display:inline-block;color:var(--bright);}
+    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;}
+    .glitch:hover::before{opacity:.6;color:var(--cyan);clip:rect(0,900px,10px,0);animation:g1 .3s steps(2,end);}
+    .glitch:hover::after{opacity:.4;color:var(--purple);clip:rect(20px,900px,40px,0);animation:g2 .3s steps(2,end);}
+    @keyframes g1{0%{clip:rect(0,900px,10px,0);transform:translate(-2px)}50%{clip:rect(30px,900px,50px,0);transform:translate(2px)}100%{clip:rect(60px,900px,80px,0);transform:translate(-1px)}}
+    @keyframes g2{0%{clip:rect(40px,900px,60px,0);transform:translate(2px)}50%{clip:rect(10px,900px,20px,0);transform:translate(-2px)}100%{clip:rect(70px,900px,90px,0);transform:translate(1px)}}
+
+    /* filter bar */
+    .filter-bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:34px 20px 0;}
+    .filter-btn{font-family:var(--mono);font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;padding:7px 18px;border-radius:20px;border:1px solid rgba(0,245,255,.15);background:transparent;color:var(--text);cursor:pointer;transition:all .3s;}
+    .filter-btn:hover,.filter-btn.active{background:rgba(0,245,255,.1);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(0,245,255,.15);}
+
+    /* project section */
+    .project-section{padding:36px 20px 100px;}
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;max-width:1200px;margin:0 auto;}
+
+    /* ── PROJECT CARD — 3D tilt + spotlight ── */
+    .project-card{
+      background:var(--glass);
+      border:1px solid var(--gb);
+      border-radius:20px;overflow:hidden;
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      display:flex;flex-direction:column;
+      position:relative;
+      transform-style:preserve-3d;
+      transition:transform .1s,border-color .3s,box-shadow .3s;
+      opacity:0;transform:translateY(32px);
+    }
+    .project-card.revealed{opacity:1;transform:translateY(0);transition:opacity .7s,transform .7s,border-color .3s,box-shadow .3s;}
+    .project-card.tilt-active{transition:transform .05s,border-color .3s,box-shadow .3s;}
+
+    /* spotlight */
+    .card-spotlight{
+      position:absolute;inset:0;
+      background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,245,255,.09) 0%,transparent 55%);
+      opacity:0;transition:opacity .3s;pointer-events:none;z-index:1;
+    }
+    .project-card:hover .card-spotlight{opacity:1;}
+
+    /* glitch scanlines */
+    .project-card::after{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,245,255,.012) 3px,rgba(0,245,255,.012) 4px);
+      opacity:0;transition:opacity .3s;pointer-events:none;z-index:2;
+    }
+    .project-card:hover::after{opacity:1;}
+
+    .project-card:hover{
+      border-color:rgba(0,245,255,.3);
+      box-shadow:0 24px 50px rgba(0,0,0,.6),0 0 60px rgba(0,245,255,.06);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* image */
+    .card-img-wrap{position:relative;height:210px;overflow:hidden;flex-shrink:0;z-index:0;}
+    .card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s;display:block;filter:brightness(.9);}
+    .project-card:hover .card-img-wrap img{transform:scale(1.07);filter:brightness(1);}
 
-    body {
-      font-family: var(--font-main);
-      background-color: var(--dark-blue);
-      color: var(--slate);
-      line-height: 1.6;
-      overflow-x: hidden;
+    /* glitch reveal on image hover */
+    .card-img-wrap::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(180,0,255,.04));
+      opacity:0;transition:opacity .4s;
     }
+    .project-card:hover .card-img-wrap::after{opacity:1;}
 
-    /* ── NAVBAR ── */
-    .navbar {
-      background-color: rgba(10, 25, 47, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 14px 0;
-      transition: all 0.3s ease;
-    }
-    .navbar-brand {
-      font-weight: 700;
-      color: var(--lightest-slate) !important;
-      letter-spacing: 0.5px;
-      font-size: 1.1rem;
-    }
-    .navbar .nav-link {
-      color: var(--slate);
-      font-weight: 500;
-      font-size: 0.88rem;
-      margin: 0 6px;
-      position: relative;
-      transition: color 0.3s ease;
-      font-family: var(--font-mono);
-    }
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active { color: var(--accent-color); }
-    .navbar .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0; height: 2px;
-      display: block;
-      margin-top: 4px; right: 0;
-      background: var(--accent-color);
-      transition: width 0.3s ease, right 0.3s ease;
-    }
-    .navbar .nav-link:hover::after,
-    .navbar .nav-link.active::after { width: 100%; left: 0; }
-    .nav-icon-link {
-      color: var(--slate);
-      font-size: 1.05rem;
-      margin-left: 14px;
-      transition: color 0.3s ease, transform 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-    }
-    .nav-icon-link:hover { color: var(--accent-color); transform: translateY(-2px); }
+    /* badge */
+    .card-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;z-index:3;}
+    .badge-live{background:rgba(0,245,255,.12);border:1px solid rgba(0,245,255,.35);color:var(--cyan);}
+    .badge-wip{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);color:#fbbf24;}
+    .badge-new{background:rgba(180,0,255,.12);border:1px solid rgba(180,0,255,.3);color:#d08fff;}
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      padding: 110px 20px 60px;
-      text-align: center;
+    /* card body */
+    .card-body{padding:24px 24px 22px;display:flex;flex-direction:column;flex:1;gap:10px;position:relative;z-index:3;}
+    .card-tag{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);}
+    .card-title{font-size:1.25rem;font-weight:700;color:var(--bright);margin:0;line-height:1.25;}
+    .card-desc{color:var(--text);font-size:.85rem;line-height:1.78;margin:0;flex:1;}
+
+    /* stack pills */
+    .stack-row{display:flex;flex-wrap:wrap;gap:6px;}
+    .stack-pill{font-family:var(--mono);font-size:.64rem;padding:3px 10px;border-radius:4px;background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.14);color:var(--cyan);}
+
+    /* card links */
+    .card-links{display:flex;align-items:center;gap:14px;margin-top:4px;padding-top:14px;border-top:1px solid rgba(0,245,255,.08);}
+    .btn-live{
+      background:transparent;border:1px solid var(--cyan);color:var(--cyan);
+      padding:9px 20px;border-radius:8px;font-family:var(--mono);font-size:.74rem;font-weight:700;
+      letter-spacing:.5px;text-decoration:none;transition:all .3s;
+      display:inline-flex;align-items:center;gap:7px;position:relative;overflow:hidden;
     }
-    .eyebrow {
-      font-family: var(--font-mono);
-      color: var(--accent-color);
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 18px;
-    }
-    .page-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.6rem, 7vw, 4.5rem);
-      font-weight: 900;
-      background: linear-gradient(90deg, var(--lightest-slate), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 20px;
-      line-height: 1.1;
-    }
-    .page-sub {
-      color: var(--slate);
-      font-size: 1rem;
-      max-width: 540px;
-      margin: 0 auto;
-      line-height: 1.8;
+    .btn-live::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,245,255,.1),rgba(180,0,255,.08));opacity:0;transition:opacity .3s;}
+    .btn-live:hover{color:var(--cyan);box-shadow:0 0 18px rgba(0,245,255,.3);transform:translateY(-2px);}
+    .btn-live:hover::before{opacity:1;}
+    .btn-code{color:var(--text);font-family:var(--mono);font-size:.74rem;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:color .3s,transform .3s;padding:9px 0;}
+    .btn-code:hover{color:var(--cyan);transform:translateX(3px);}
+    .btn-disabled{opacity:.35;pointer-events:none;cursor:not-allowed;background:rgba(0,245,255,.04);border:1px solid rgba(0,245,255,.1);color:var(--text);padding:9px 20px;border-radius:8px;font-family:var(--mono);font-size:.74rem;font-weight:700;display:inline-flex;align-items:center;gap:7px;}
+
+    /* project number watermark */
+    .card-num{
+      position:absolute;top:12px;left:18px;
+      font-family:var(--mono);font-size:.65rem;color:rgba(0,245,255,.25);
+      z-index:4;letter-spacing:1px;
     }
 
-    /* ── FILTER TABS ── */
-    .filter-bar {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 56px;
-      padding: 0 20px;
-    }
-    .filter-btn {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 8px 20px;
-      border-radius: 50px;
-      border: 1px solid rgba(100,255,218,0.2);
-      background: transparent;
-      color: var(--slate);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: rgba(100,255,218,0.1);
-      border-color: var(--accent-color);
-      color: var(--accent-color);
-    }
+    /* fade */
+    .fade-s{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
+    .fade-s.visible{opacity:1;transform:translateY(0);}
 
-    /* ── PROJECT GRID ── */
-    .project-section { padding: 0 20px 100px; }
+    /* CTA section */
+    .cta-wrap{background:var(--glass);border:1px solid rgba(0,245,255,.1);border-radius:22px;padding:60px 30px;text-align:center;backdrop-filter:blur(20px);position:relative;overflow:hidden;max-width:780px;margin:0 auto 100px;}
+    .cta-wrap::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(180,0,255,.07) 0%,transparent 70%);pointer-events:none;}
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .btn-glow{background:transparent;border:1px solid var(--cyan);color:var(--cyan);padding:13px 28px;font-family:var(--mono);font-size:.82rem;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s;}
+    .btn-glow:hover{color:var(--cyan);box-shadow:0 0 20px rgba(0,245,255,.3);transform:translateY(-2px);}
 
-    /* ── PROJECT CARD ── */
-    .project-card {
-      background: var(--light-blue);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-    .project-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(100,255,218,0.3);
-      box-shadow: 0 24px 50px -12px rgba(2,12,27,0.8), 0 0 0 1px rgba(100,255,218,0.1);
-    }
+    /* footer */
+    footer{background:#030609;border-top:1px solid rgba(0,245,255,.07);padding:36px 0;text-align:center;}
+    .footer-socials{display:flex;justify-content:center;gap:24px;margin-bottom:16px;}
+    .footer-socials a{color:var(--text);font-size:1.1rem;transition:color .3s,transform .3s;}
+    .footer-socials a:hover{color:var(--cyan);transform:translateY(-3px);}
+    footer p{font-family:var(--mono);font-size:.75rem;color:rgba(200,214,240,.35);}
 
-    /* Image */
-    .card-img-wrap {
-      position: relative;
-      height: 210px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .card-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-      display: block;
-    }
-    .project-card:hover .card-img-wrap img { transform: scale(1.08); }
-
-    /* Status badge */
-    .card-badge {
-      position: absolute;
-      top: 14px; right: 14px;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 50px;
-      z-index: 2;
-    }
-    .badge-live {
-      background: rgba(100,255,218,0.15);
-      border: 1px solid rgba(100,255,218,0.4);
-      color: var(--accent-color);
-    }
-    .badge-wip {
-      background: rgba(251,191,36,0.15);
-      border: 1px solid rgba(251,191,36,0.35);
-      color: #fbbf24;
-    }
-
-    /* Card body */
-    .card-body {
-      padding: 26px 26px 24px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      gap: 12px;
-    }
-    .card-tag {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent-color);
-    }
-    .card-title {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--lightest-slate);
-      margin: 0;
-      line-height: 1.3;
-    }
-    .card-desc {
-      color: var(--slate);
-      font-size: 0.88rem;
-      line-height: 1.75;
-      margin: 0;
-      flex: 1;
-    }
-
-    /* Stack pills */
-    .stack-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .stack-pill {
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
-      padding: 3px 10px;
-      border-radius: 4px;
-      background: rgba(100,255,218,0.07);
-      border: 1px solid rgba(100,255,218,0.16);
-      color: var(--accent-color);
-    }
-
-    /* Card links */
-    .card-links {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 4px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .btn-live {
-      background: var(--accent-color);
-      color: var(--dark-blue);
-      padding: 9px 22px;
-      border-radius: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .btn-live:hover {
-      background: #fff;
-      color: var(--dark-blue);
-      transform: translateX(3px);
-    }
-    .btn-code {
-      color: var(--slate);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: color 0.3s ease, transform 0.3s ease;
-      padding: 9px 0;
-    }
-    .btn-code:hover { color: var(--lightest-slate); transform: translateX(3px); }
-    .btn-disabled {
-      opacity: 0.4;
-      pointer-events: none;
-      cursor: not-allowed;
-      background: var(--lightest-blue);
-      color: var(--slate);
-      padding: 9px 22px;
-      border-radius: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background-color: #050d1a;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 36px 0;
-      text-align: center;
-    }
-    .footer-socials {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-      margin-bottom: 16px;
-    }
-    .footer-socials a {
-      color: var(--slate);
-      font-size: 1.15rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .footer-socials a:hover { color: var(--accent-color); transform: translateY(-3px); }
-    footer p {
-      font-size: 0.82rem;
-      font-family: var(--font-mono);
-      color: var(--slate);
-      margin: 0;
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .project-card:nth-child(2) { transition-delay: 0.08s; }
-    .project-card:nth-child(3) { transition-delay: 0.16s; }
-    .project-card:nth-child(4) { transition-delay: 0.24s; }
-    .project-card:nth-child(5) { transition-delay: 0.32s; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .page-header { padding: 90px 16px 50px; }
-      .project-section { padding: 0 14px 80px; }
-      .nav-icon-link { display: none; }
+    @media(max-width:768px){
+      .project-section{padding:28px 14px 80px;}
+      .project-grid{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Ishan <span style="font-size:1.1rem">🚀</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        style="border:none;outline:none;box-shadow:none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--accent-color)" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
-          <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item d-none d-lg-flex align-items-center ms-2">
-            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"
-               class="nav-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"
-               class="nav-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="page-trans"></div>
 
-  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
-    <header class="page-header">
-      <span class="eyebrow">My Work</span>
-      <h1 class="page-title">Projects</h1>
-      <p class="page-sub">Things I've designed, built, and shipped. Every project here taught me something worth keeping.</p>
-    </header>
-  </div>
-
-  <!-- ═══════════════════ FILTER TABS ═══════════════════ -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="live">Live</button>
-    <button class="filter-btn" data-filter="wip">In Progress</button>
-    <button class="filter-btn" data-filter="web">Web Dev</button>
-    <button class="filter-btn" data-filter="utility">Utility</button>
-  </div>
-
-  <!-- ═══════════════════ PROJECT GRID ═══════════════════ -->
-  <section class="project-section">
-    <div class="project-grid" id="projectGrid">
-
-      <!-- ── 1. Tripathi Travels ── -->
-      <!-- Image: Indian highway / bus travel — matches the travel booking theme -->
-      <div class="project-card reveal" data-tags="live web">
-        <div class="card-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=700&q=75"
-            alt="Tripathi Travels — road trip highway travel"
-            loading="lazy">
-          <span class="card-badge badge-live">● Live</span>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Travel & Logistics</span>
-          <h3 class="card-title">Tripathi Travels</h3>
-          <p class="card-desc">A high-conversion booking landing page for a family travel business — parallax hero, fleet showcase cards, interactive route chips, and a WhatsApp inquiry flow.</p>
-          <div class="stack-row">
-            <span class="stack-pill">HTML</span>
-            <span class="stack-pill">CSS</span>
-            <span class="stack-pill">JavaScript</span>
-          </div>
-          <div class="card-links">
-            <a href="https://ishan-258.github.io/Travel-site-/" target="_blank" rel="noopener" class="btn-live">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-            <a href="https://github.com/ISHAN-258/Travel-site-" target="_blank" rel="noopener" class="btn-code">
-              <i class="fab fa-github"></i> Source Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── 2. Lost & Found ── -->
-      <!-- Image: magnifying glass search / investigation — matches item recovery theme -->
-      <div class="project-card reveal" data-tags="live web utility">
-        <div class="card-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=700&q=75"
-            alt="Lost and Found portal — search and recover"
-            loading="lazy">
-          <span class="card-badge badge-live">● Live</span>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Campus Utility</span>
-          <h3 class="card-title">Lost & Found Portal</h3>
-          <p class="card-desc">A centralized campus platform for reporting and recovering lost items. Features a reporting form, item status tracking, and a searchable lost-item board.</p>
-          <div class="stack-row">
-            <span class="stack-pill">HTML</span>
-            <span class="stack-pill">CSS</span>
-            <span class="stack-pill">JavaScript</span>
-          </div>
-          <div class="card-links">
-            <a href=" https://ishan-258.github.io/Lost-and-found-site/" target="_blank" rel="noopener" class="btn-live">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-            <a href="https://github.com/ISHAN-258/Lost-and-found-site" target="_blank" rel="noopener" class="btn-code">
-              <i class="fab fa-github"></i> Source Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── 3. Milano Mode ── -->
-      <!-- Image: dark luxury fashion clothing rack — matches premium fashion aesthetic -->
-      <div class="project-card reveal" data-tags="live web">
-        <div class="card-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&q=75"
-            alt="Milano Mode — luxury fashion ecommerce"
-            loading="lazy">
-          <span class="card-badge badge-live">● Live</span>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Fashion & E-commerce</span>
-          <h3 class="card-title">Milano Mode</h3>
-          <p class="card-desc">A premium fashion landing page with editorial typography, product showcase sections, animated hero, and a refined dark aesthetic throughout.</p>
-          <div class="stack-row">
-            <span class="stack-pill">HTML</span>
-            <span class="stack-pill">CSS</span>
-            <span class="stack-pill">Bootstrap</span>
-          </div>
-          <div class="card-links">
-            <a href="https://ishan-258.github.io/MILANO-MODE/" target="_blank" rel="noopener" class="btn-live">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-            <a href="https://github.com/ISHAN-258/MILANO-MODE" target="_blank" rel="noopener" class="btn-code">
-              <i class="fab fa-github"></i> Source Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── 4. EduFocus ── -->
-      <!-- Image: student at desk with laptop and notes — matches education/study focus theme -->
-      <div class="project-card reveal" data-tags="live web utility">
-        <div class="card-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&q=75"
-            alt="EduFocus — student study focus platform"
-            loading="lazy">
-          <span class="card-badge badge-live">● Live</span>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Education</span>
-          <h3 class="card-title">EduFocus</h3>
-          <p class="card-desc">An education-focused web interface to help students organise learning resources, track progress, and stay focused during study sessions.</p>
-          <div class="stack-row">
-            <span class="stack-pill">HTML</span>
-            <span class="stack-pill">CSS</span>
-            <span class="stack-pill">JavaScript</span>
-          </div>
-          <div class="card-links">
-            <a href="https://ishan-258.github.io/EduFocus/" target="_blank" rel="noopener" class="btn-live">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-            <a href="https://github.com/ISHAN-258/EduFocus" target="_blank" rel="noopener" class="btn-code">
-              <i class="fab fa-github"></i> Source Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── 5. Library Management System (WIP) ── -->
-      <!-- Image: library bookshelves rows — directly matches library theme -->
-      <div class="project-card reveal" data-tags="wip utility">
-        <div class="card-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&q=75"
-            alt="Library Smart Hub — book management system"
-            loading="lazy">
-          <span class="card-badge badge-wip">⚙ In Progress</span>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Management System</span>
-          <h3 class="card-title">Library Smart Hub</h3>
-          <p class="card-desc">An automated library management system — member authentication, book cataloguing, fine calculation, and inventory alerts. Currently in active development.</p>
-          <div class="stack-row">
-            <span class="stack-pill">HTML</span>
-            <span class="stack-pill">CSS</span>
-            <span class="stack-pill">JavaScript</span>
-            <span class="stack-pill">Python</span>
-          </div>
-          <div class="card-links">
-            <span class="btn-disabled">
-              <i class="fas fa-hammer"></i> In Progress
-            </span>
-            <a href="https://github.com/ISHAN-258/Library-Management-System" target="_blank" rel="noopener" class="btn-code">
-              <i class="fab fa-github"></i> Source Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── 6. Family Lineage Map (WIP) ── -->
-      <!-- Image: old family photo / ancestry connections — directly matches genealogy theme -->
-      <div class="project-card reveal" data-tags="wip utility">
-        <div class="card-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1506755855567-92ff770e8d00?w=700&q=75"
-            alt="Family Lineage Map — genealogy tree visualization"
-            loading="lazy">
-          <span class="card-badge badge-wip">⚙ In Progress</span>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Data Visualization</span>
-          <h3 class="card-title">Family Lineage Map</h3>
-          <p class="card-desc">An interactive node-based visualization tool to map complex genealogy and historical family connections across generations using a dynamic tree structure.</p>
-          <div class="stack-row">
-            <span class="stack-pill">HTML</span>
-            <span class="stack-pill">CSS</span>
-            <span class="stack-pill">JavaScript</span>
-            <span class="stack-pill">D3.js</span>
-          </div>
-          <div class="card-links">
-            <span class="btn-disabled">
-              <i class="fas fa-hammer"></i> In Progress
-            </span>
-            <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="btn-code">
-              <i class="fab fa-github"></i> Source Code
-            </a>
-          </div>
-        </div>
-      </div>
-
+    <a class="navbar-brand" href="index.html">ishan.dev<span style="color:var(--cyan)">_</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      style="border:none;outline:none;box-shadow:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="var(--cyan)" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mt-3 mt-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+        <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item d-none d-lg-flex align-items-center ms-2">
+          <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="nav-icon-link"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" class="nav-icon-link"><i class="fab fa-linkedin-in"></i></a>
+        </li>
+      </ul>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <!-- ═══════════════════ FOOTER ═══════════════════ -->
-  <footer>
-    <div class="container">
-      <div class="footer-socials">
-        <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="contact.html" title="Contact"><i class="fas fa-envelope"></i></a>
+<!-- ══════════ HERO ══════════ -->
+<section class="page-hero">
+  <canvas id="proj-canvas"></canvas>
+  <div class="page-hero-bg-text" aria-hidden="true">PROJECTS</div>
+  <div class="page-hero-content">
+    <span class="eyebrow">⚡ My Work</span>
+    <h1 class="hero-title glitch" data-text="Projects">Projects</h1>
+    <p class="hero-sub"><span>&gt; </span>7 projects shipped · hover cards to explore · click to launch</p>
+  </div>
+</section>
+
+<!-- ══════════ FILTER ══════════ -->
+<div class="filter-bar fade-s">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="live">● Live</button>
+  <button class="filter-btn" data-filter="wip">⚙ In Progress</button>
+  <button class="filter-btn" data-filter="web">Web Dev</button>
+  <button class="filter-btn" data-filter="utility">Utility</button>
+</div>
+
+<!-- ══════════ PROJECT GRID ══════════ -->
+<section class="project-section">
+  <div class="project-grid" id="projectGrid">
+
+    <!-- 1. Tripathi Travels -->
+    <div class="project-card" data-tags="live web" id="pc0">
+      <div class="card-spotlight"></div>
+      <span class="card-num">01</span>
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=700&q=75" alt="Tripathi Travels" loading="lazy">
+        <span class="card-badge badge-live">● Live</span>
       </div>
-      <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; Built with caffeine and code.</p>
+      <div class="card-body">
+        <span class="card-tag">Travel &amp; Logistics</span>
+        <h3 class="card-title">Tripathi Travels</h3>
+        <p class="card-desc">High-conversion booking landing page for a family travel business — parallax hero, fleet showcase cards, interactive route chips, and a WhatsApp inquiry flow built in.</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML</span><span class="stack-pill">CSS</span><span class="stack-pill">JavaScript</span>
+        </div>
+        <div class="card-links">
+          <a href="https://ishan-258.github.io/Travel-site-/" target="_blank" rel="noopener" class="btn-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          <a href="https://github.com/ISHAN-258/Travel-site-" target="_blank" rel="noopener" class="btn-code"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
     </div>
-  </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 2. Reunite (upgraded Lost & Found) -->
+    <div class="project-card" data-tags="live web utility" id="pc1">
+      <div class="card-spotlight"></div>
+      <span class="card-num">02</span>
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=75" alt="Reunite Lost and Found" loading="lazy">
+        <span class="card-badge badge-new">★ Upgraded</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Campus Utility</span>
+        <h3 class="card-title">Reunite</h3>
+        <p class="card-desc">The evolved version of Lost &amp; Found — a smarter, faster campus reunion platform with improved UI, item matching logic, real-time status updates, and a cleaner reporting flow. Replaces the original portal.</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML</span><span class="stack-pill">CSS</span><span class="stack-pill">JavaScript</span>
+        </div>
+        <div class="card-links">
+          <a href="https://ishan-258.github.io/Reunite/" target="_blank" rel="noopener" class="btn-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          <a href="https://github.com/ISHAN-258/Reunite" target="_blank" rel="noopener" class="btn-code"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
 
-  <script>
-    // ── Scroll reveal
-    function revealCards() {
-      document.querySelectorAll('.reveal').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-          el.classList.add('active');
-        }
-      });
+    <!-- 3. Lost & Found (original) -->
+    <div class="project-card" data-tags="live web utility" id="pc2">
+      <div class="card-spotlight"></div>
+      <span class="card-num">03</span>
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=700&q=75" alt="Lost and Found Portal" loading="lazy">
+        <span class="card-badge badge-live">● Live</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Campus Utility · v1</span>
+        <h3 class="card-title">Lost &amp; Found Portal</h3>
+        <p class="card-desc">The original campus platform for reporting and recovering lost items — reporting form, item status tracking, and a searchable lost-item board. Succeeded by Reunite.</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML</span><span class="stack-pill">CSS</span><span class="stack-pill">JavaScript</span>
+        </div>
+        <div class="card-links">
+          <a href="https://ishan-258.github.io/Lost-found-/" target="_blank" rel="noopener" class="btn-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          <a href="https://github.com/ISHAN-258/Lost-and-found-site" target="_blank" rel="noopener" class="btn-code"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Milano Mode -->
+    <div class="project-card" data-tags="live web" id="pc3">
+      <div class="card-spotlight"></div>
+      <span class="card-num">04</span>
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&q=75" alt="Milano Mode fashion" loading="lazy">
+        <span class="card-badge badge-live">● Live</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Fashion &amp; E-commerce</span>
+        <h3 class="card-title">Milano Mode</h3>
+        <p class="card-desc">A premium fashion landing page with editorial typography, dark luxury aesthetic, animated hero sections, and product showcase — built to look and feel like a real high-end brand.</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML</span><span class="stack-pill">CSS</span><span class="stack-pill">Bootstrap</span>
+        </div>
+        <div class="card-links">
+          <a href="https://ishan-258.github.io/MILANO-MODE/" target="_blank" rel="noopener" class="btn-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          <a href="https://github.com/ISHAN-258/MILANO-MODE" target="_blank" rel="noopener" class="btn-code"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. EduFocus -->
+    <div class="project-card" data-tags="live web utility" id="pc4">
+      <div class="card-spotlight"></div>
+      <span class="card-num">05</span>
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&q=75" alt="EduFocus education platform" loading="lazy">
+        <span class="card-badge badge-live">● Live</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Education</span>
+        <h3 class="card-title">EduFocus</h3>
+        <p class="card-desc">An education-focused web interface to help students organise learning resources, track study progress, and stay focused — built with students like me in mind.</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML</span><span class="stack-pill">CSS</span><span class="stack-pill">JavaScript</span>
+        </div>
+        <div class="card-links">
+          <a href="https://ishan-258.github.io/EduFocus/" target="_blank" rel="noopener" class="btn-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          <a href="https://github.com/ISHAN-258/EduFocus" target="_blank" rel="noopener" class="btn-code"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Family Tree -->
+    <div class="project-card" data-tags="live web utility" id="pc5">
+      <div class="card-spotlight"></div>
+      <span class="card-num">06</span>
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=75" alt="Family Tree visualization" loading="lazy">
+        <span class="card-badge badge-live">● Live</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Data Visualization</span>
+        <h3 class="card-title">Family Tree</h3>
+        <p class="card-desc">An interactive web-based family genealogy tool — visualize and map relationships across multiple generations with a clean node-based tree interface built in pure HTML/CSS/JS.</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML</span><span class="stack-pill">CSS</span><span class="stack-pill">JavaScript</span>
+        </div>
+        <div class="card-links">
+          <a href="https://ishan-258.github.io/Family-Tree/" target="_blank" rel="noopener" class="btn-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          <a href="https://github.com/ISHAN-258/Family-Tree" target="_blank" rel="noopener" class="btn-code"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Library Smart Hub (WIP) -->
+    <div class="project-card" data-tags="wip utility" id="pc6">
+      <div class="card-spotlight"></div>
+      <span class="card-num">07</span>
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&q=75" alt="Library Smart Hub" loading="lazy">
+        <span class="card-badge badge-wip">⚙ In Progress</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Management System</span>
+        <h3 class="card-title">Library Smart Hub</h3>
+        <p class="card-desc">An automated library management system — member authentication, book cataloguing, fine calculation, due-date alerts, and inventory management. Currently in active development.</p>
+        <div class="stack-row">
+          <span class="stack-pill">HTML</span><span class="stack-pill">CSS</span><span class="stack-pill">JavaScript</span><span class="stack-pill">Python</span>
+        </div>
+        <div class="card-links">
+          <span class="btn-disabled"><i class="fas fa-hammer"></i> Building...</span>
+          <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="btn-code"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<div class="container px-3 fade-s">
+  <div class="cta-wrap">
+    <span style="font-family:var(--mono);font-size:.76rem;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:14px">// What's next?</span>
+    <h2 class="glitch" data-text="More coming soon" style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:18px">More coming soon</h2>
+    <p style="color:var(--text);max-width:480px;margin:0 auto 32px;font-size:.9rem;line-height:1.85">
+      Every week I'm building something new. Check GitHub for the latest repos or reach out if you want to collaborate.
+    </p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener" class="btn-glow"><i class="fab fa-github"></i> GitHub Profile</a>
+      <a href="contact.html" class="btn-glow" style="border-color:var(--purple);color:var(--purple)"><i class="fas fa-handshake"></i> Collaborate</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-socials">
+      <a href="https://github.com/ISHAN-258" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="contact.html"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; designed with caffeine &amp; cyan.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ── CURSOR ── */
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let rx=0,ry=0,mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function ar(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
+
+/* ── PARTICLES ── */
+const canvas=document.getElementById('proj-canvas'),ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=canvas.parentElement.offsetHeight;}
+resize();window.addEventListener('resize',()=>{resize();init();});
+class Pt{constructor(){this.reset();}reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.4;this.a=Math.random()*.5;}}
+function init(){pts=[];for(let i=0;i<55;i++)pts.push(new Pt());}
+init();
+function drawP(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,245,255,${p.a})`;ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W||p.y<0||p.y>H)p.reset();});
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+    const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+    if(d<100){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,245,255,${(1-d/100)*.1})`;ctx.lineWidth=.6;ctx.stroke();}
+  }
+  requestAnimationFrame(drawP);
+}
+drawP();
+
+/* ── PAGE TRANSITIONS ── */
+const trans=document.getElementById('page-trans');
+document.querySelectorAll('a[href]').forEach(a=>{
+  const h=a.getAttribute('href');
+  if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto'))return;
+  a.addEventListener('click',e=>{e.preventDefault();trans.classList.add('active');setTimeout(()=>window.location.href=h,420);});
+});
+window.addEventListener('pageshow',()=>trans.classList.remove('active'));
+
+/* ── FADE SECTIONS ── */
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}),{threshold:.06});
+document.querySelectorAll('.fade-s').forEach(el=>io.observe(el));
+
+/* ── SCROLL REVEAL cards ── */
+const cards=document.querySelectorAll('.project-card');
+const rio=new IntersectionObserver((entries,obs)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('revealed'),i*80);
+      obs.unobserve(e.target);
     }
-    window.addEventListener('scroll', revealCards);
-    revealCards();
+  });
+},{threshold:.08});
+cards.forEach(c=>rio.observe(c));
 
-    // ── Navbar compact on scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 60) {
-        nav.style.padding = '8px 0';
-        nav.style.boxShadow = '0 4px 20px rgba(2,12,27,0.55)';
-      } else {
-        nav.style.padding = '14px 0';
-        nav.style.boxShadow = 'none';
-      }
+/* ── 3D TILT + SPOTLIGHT ── */
+cards.forEach((card,idx)=>{
+  const spot=card.querySelector('.card-spotlight');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.classList.add('tilt-active');
+    card.style.transform=`perspective(700px) rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-8px)`;
+    // spotlight
+    const mx=((e.clientX-r.left)/r.width*100).toFixed(1)+'%';
+    const my=((e.clientY-r.top)/r.height*100).toFixed(1)+'%';
+    spot.style.setProperty('--mx',mx);
+    spot.style.setProperty('--my',my);
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.classList.remove('tilt-active');
+    card.style.transform='';
+  });
+});
+
+/* ── FILTER ── */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    cards.forEach(card=>{
+      const tags=card.dataset.tags||'';
+      const show=f==='all'||tags.includes(f);
+      card.style.transition='opacity .35s,transform .35s';
+      if(show){card.style.opacity='1';card.style.pointerEvents='auto';card.style.display='flex';}
+      else{card.style.opacity='0';card.style.transform='scale(.94)';card.style.pointerEvents='none';setTimeout(()=>{if(card.style.opacity==='0')card.style.display='none';},340);}
     });
+  });
+});
 
-    // ── Filter tabs
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards      = document.querySelectorAll('.project-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-
-        cards.forEach(card => {
-          const tags = card.dataset.tags || '';
-          const show = filter === 'all' || tags.includes(filter);
-          if (show) {
-            card.style.opacity    = '1';
-            card.style.transform  = 'translateY(0)';
-            card.style.display    = 'flex';
-          } else {
-            card.style.opacity    = '0';
-            card.style.transform  = 'translateY(16px)';
-            setTimeout(() => { card.style.display = 'none'; }, 300);
-          }
-        });
-      });
-    });
-  </script>
-
+/* ── NAVBAR COMPACT ── */
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('.navbar');
+  nav.style.padding=window.scrollY>60?'8px 0':'14px 0';
+  nav.style.boxShadow=window.scrollY>60?'0 4px 24px rgba(0,0,0,.6)':'none';
+});
+</script>
 </body>
 </html>
