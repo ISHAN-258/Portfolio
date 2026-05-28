@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Gallery of Ishan Tripathi — workspace, coding, travel, and creative life.">
+  <meta name="description" content="Gallery of Ishan Tripathi — workspace, projects, and life in Varanasi & Jaunpur.">
   <meta name="author" content="Ishan Tripathi">
+  <meta name="keywords" content="Ishan Tripathi, gallery, workspace, projects, Varanasi, developer life">
   <meta property="og:title" content="Gallery | Ishan Tripathi">
-  <meta property="og:image" content="https://ishantripathi.in/profile.jpeg">
+  <meta property="og:description" content="A visual journey through my workspace, projects, and life.">
+  <meta property="og:image" content="https://ishantripathi.in/ishan3.jpeg">
   <meta property="og:url" content="https://ishantripathi.in/gallery.html">
+  <meta property="og:type" content="website">
   <title>Gallery | Ishan Tripathi</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -31,16 +34,13 @@
     html{scroll-behavior:smooth;}
     body{font-family:var(--main);background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;}
 
-    /* grain */
     body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
       background-size:200px 200px;opacity:.5;}
 
-    /* cursor */
     #cursor-dot{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--cyan),0 0 20px var(--cyan);transition:width .15s,height .15s;}
     #cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,245,255,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
 
-    /* page transition */
     #page-trans{position:fixed;inset:0;background:linear-gradient(135deg,var(--bg) 0%,#0d0520 100%);z-index:99990;transform:translateY(-100%);transition:transform .45s cubic-bezier(.77,0,.175,1);}
     #page-trans.active{transform:translateY(0);}
 
@@ -54,7 +54,7 @@
     .nav-icon-link{color:var(--text);font-size:1rem;margin-left:14px;transition:color .3s,transform .3s;}
     .nav-icon-link:hover{color:var(--cyan);transform:translateY(-2px);}
 
-    /* PAGE HERO */
+    /* hero */
     .page-hero{position:relative;min-height:40vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:120px 20px 55px;}
     #gallery-canvas{position:absolute;inset:0;z-index:0;}
     .page-hero-content{position:relative;z-index:1;text-align:center;}
@@ -66,129 +66,136 @@
 
     /* filter bar */
     .filter-bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:34px 20px 0;}
-    .filter-btn{
-      font-family:var(--mono);font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;
-      padding:7px 18px;border-radius:20px;
-      border:1px solid rgba(0,245,255,.15);background:transparent;color:var(--text);
-      cursor:pointer;transition:all .3s;
-    }
-    .filter-btn:hover,.filter-btn.active{
-      background:rgba(0,245,255,.1);border-color:var(--cyan);color:var(--cyan);
-      box-shadow:0 0 12px rgba(0,245,255,.15);
-    }
+    .filter-btn{font-family:var(--mono);font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;padding:7px 18px;border-radius:20px;border:1px solid rgba(0,245,255,.15);background:transparent;color:var(--text);cursor:pointer;transition:all .3s;}
+    .filter-btn:hover,.filter-btn.active{background:rgba(0,245,255,.1);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(0,245,255,.15);}
 
-    /* ── MASONRY GALLERY ── */
+    /* ── MASONRY ── */
     .gallery-container{padding:36px 20px 100px;max-width:1200px;margin:0 auto;}
+    .masonry-grid{columns:3;column-gap:16px;}
 
-    .masonry-grid{
-      columns:3;column-gap:16px;
-    }
-    .gallery-item{
+    /* ── SECTION LABEL ── */
+    .section-divider{
+      column-span:all;
+      display:flex;align-items:center;gap:14px;
+      margin:10px 0 18px;
       break-inside:avoid;
-      margin-bottom:16px;
-      border-radius:16px;overflow:hidden;
-      position:relative;cursor:zoom-in;
-      border:1px solid rgba(0,245,255,.06);
+    }
+    .section-divider span{
+      font-family:var(--mono);font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--cyan);white-space:nowrap;
+    }
+    .section-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,245,255,.25),transparent);}
+
+    /* ── PHOTO CARDS ── */
+    .gallery-item{
+      break-inside:avoid;margin-bottom:16px;border-radius:16px;overflow:hidden;
+      position:relative;cursor:zoom-in;border:1px solid rgba(0,245,255,.06);
       opacity:0;transform:translateY(28px);
-      transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),
-                 border-color .3s,filter .4s;
+      transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),border-color .3s,filter .4s;
       display:block;
     }
     .gallery-item.visible{opacity:1;transform:translateY(0);}
-
-    /* blur-others effect */
-    .masonry-grid.has-hover .gallery-item:not(:hover){
-      filter:blur(2px) brightness(.55);
-      transform:scale(.98);
-    }
-    .masonry-grid.has-hover .gallery-item:hover{
-      filter:none;
-      transform:scale(1.02);
-      border-color:rgba(0,245,255,.4);
-      box-shadow:0 0 30px rgba(0,245,255,.15),0 20px 40px rgba(0,0,0,.5);
-      z-index:2;
-    }
-
+    .masonry-grid.has-hover .gallery-item:not(:hover){filter:blur(2px) brightness(.55);transform:scale(.98);}
+    .masonry-grid.has-hover .gallery-item:hover{filter:none;transform:scale(1.02);border-color:rgba(0,245,255,.4);box-shadow:0 0 30px rgba(0,245,255,.15),0 20px 40px rgba(0,0,0,.5);z-index:2;}
     .gallery-image{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
     .gallery-item:hover .gallery-image{transform:scale(1.04);}
-
-    /* glitch reveal overlay on hover */
-    .gallery-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(to top,rgba(6,11,20,.95) 0%,rgba(6,11,20,.5) 45%,transparent 100%);
-      display:flex;flex-direction:column;justify-content:flex-end;
-      padding:20px;opacity:0;transition:opacity .4s;
-    }
+    .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,11,20,.95) 0%,rgba(6,11,20,.5) 45%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;opacity:0;transition:opacity .4s;}
     .gallery-item:hover .gallery-overlay{opacity:1;}
-
-    /* glitch lines on image hover */
-    .gallery-item::after{
-      content:'';position:absolute;inset:0;
-      background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,245,255,.015) 2px,rgba(0,245,255,.015) 4px);
-      opacity:0;transition:opacity .3s;pointer-events:none;
-    }
+    .gallery-item::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,245,255,.015) 2px,rgba(0,245,255,.015) 4px);opacity:0;transition:opacity .3s;pointer-events:none;}
     .gallery-item:hover::after{opacity:1;}
-
     .overlay-tag{font-family:var(--mono);font-size:.64rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;transform:translateY(10px);transition:transform .4s;}
     .overlay-title{color:var(--bright);font-size:1rem;font-weight:600;transform:translateY(10px);transition:transform .4s .05s;}
     .gallery-item:hover .overlay-tag,.gallery-item:hover .overlay-title{transform:translateY(0);}
-
-    .zoom-hint{
-      position:absolute;top:12px;right:12px;
-      width:30px;height:30px;border-radius:50%;
-      background:rgba(0,245,255,.12);border:1px solid rgba(0,245,255,.3);
-      display:flex;align-items:center;justify-content:center;
-      color:var(--cyan);font-size:.7rem;
-      opacity:0;transform:scale(.7);transition:opacity .3s,transform .3s;
-    }
+    .zoom-hint{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(0,245,255,.12);border:1px solid rgba(0,245,255,.3);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:.7rem;opacity:0;transform:scale(.7);transition:opacity .3s,transform .3s;}
     .gallery-item:hover .zoom-hint{opacity:1;transform:scale(1);}
 
-    /* ── LIGHTBOX ── */
-    .lightbox-backdrop{
-      display:none;position:fixed;inset:0;
-      background:rgba(3,6,12,.96);backdrop-filter:blur(18px);
-      z-index:20000;align-items:center;justify-content:center;padding:20px;
+    /* ── PROJECT PREVIEW CARDS ── */
+    .proj-preview-card{
+      break-inside:avoid;margin-bottom:16px;border-radius:16px;overflow:hidden;
+      border:1px solid rgba(0,245,255,.12);
+      background:var(--glass);backdrop-filter:blur(16px);
+      opacity:0;transform:translateY(28px);
+      transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s;
+      cursor:pointer;display:block;text-decoration:none;
     }
+    .proj-preview-card.visible{opacity:1;transform:translateY(0);}
+    .proj-preview-card:hover{
+      border-color:rgba(0,245,255,.35);
+      box-shadow:0 0 30px rgba(0,245,255,.12),0 20px 40px rgba(0,0,0,.5);
+      transform:translateY(-6px) scale(1.01);
+    }
+
+    /* browser chrome bar */
+    .proj-browser-bar{
+      background:#0a1322;border-bottom:1px solid rgba(0,245,255,.08);
+      padding:8px 14px;display:flex;align-items:center;gap:8px;
+    }
+    .browser-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .browser-dot.r{background:#ff5f57;}.browser-dot.y{background:#febc2e;}.browser-dot.g{background:#28c840;}
+    .browser-url{
+      flex:1;background:rgba(0,245,255,.05);border:1px solid rgba(0,245,255,.1);
+      border-radius:4px;padding:3px 10px;
+      font-family:var(--mono);font-size:.64rem;color:rgba(200,214,240,.4);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-left:8px;
+    }
+
+    /* iframe wrapper */
+    .proj-iframe-wrap{
+      position:relative;width:100%;height:200px;overflow:hidden;
+      background:#050a14;pointer-events:none;
+    }
+    .proj-iframe-wrap iframe{
+      width:170%;height:170%;
+      border:none;
+      transform:scale(0.588);
+      transform-origin:top left;
+      pointer-events:none;
+    }
+
+    /* overlay on iframe to prevent interaction + show label */
+    .proj-iframe-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(6,11,20,.9) 0%,rgba(6,11,20,.3) 50%,transparent 100%);
+      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:16px 18px;
+      transition:background .4s;
+    }
+    .proj-preview-card:hover .proj-iframe-overlay{
+      background:linear-gradient(to top,rgba(6,11,20,.95) 0%,rgba(6,11,20,.5) 55%,transparent 100%);
+    }
+    .proj-preview-footer{
+      padding:14px 18px;
+      display:flex;align-items:center;justify-content:space-between;
+      border-top:1px solid rgba(0,245,255,.07);
+    }
+    .proj-preview-tag{font-family:var(--mono);font-size:.64rem;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;}
+    .proj-preview-title{color:var(--bright);font-size:.92rem;font-weight:600;margin-top:2px;}
+    .proj-preview-arrow{
+      color:var(--cyan);font-size:.8rem;opacity:0;transform:translateX(-6px);
+      transition:opacity .3s,transform .3s;
+    }
+    .proj-preview-card:hover .proj-preview-arrow{opacity:1;transform:translateX(0);}
+
+    /* stack pills */
+    .proj-stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+    .stack-pill{font-family:var(--mono);font-size:.6rem;padding:2px 8px;border-radius:4px;background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.12);color:var(--cyan);}
+
+    /* ── LIGHTBOX ── */
+    .lightbox-backdrop{display:none;position:fixed;inset:0;background:rgba(3,6,12,.96);backdrop-filter:blur(18px);z-index:20000;align-items:center;justify-content:center;padding:20px;}
     .lightbox-backdrop.open{display:flex;animation:lbFade .25s ease;}
     @keyframes lbFade{from{opacity:0}to{opacity:1}}
-
     .lightbox-inner{position:relative;max-width:88vw;max-height:88vh;display:flex;align-items:center;justify-content:center;}
     .lightbox-img{max-width:88vw;max-height:84vh;border-radius:12px;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.8),0 0 40px rgba(0,245,255,.05);animation:lbZoom .3s ease;}
     @keyframes lbZoom{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
-
-    .lightbox-close{
-      position:absolute;top:-48px;right:0;
-      width:38px;height:38px;border-radius:50%;
-      background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.3);
-      color:var(--cyan);font-size:1rem;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:all .3s;
-    }
+    .lightbox-close{position:absolute;top:-48px;right:0;width:38px;height:38px;border-radius:50%;background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.3);color:var(--cyan);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;}
     .lightbox-close:hover{background:var(--cyan);color:var(--bg);transform:rotate(90deg);}
-
-    .lightbox-arrow{
-      position:fixed;top:50%;transform:translateY(-50%);
-      width:48px;height:48px;border-radius:50%;
-      background:rgba(0,245,255,.07);border:1px solid rgba(0,245,255,.2);
-      color:var(--cyan);font-size:1rem;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:all .3s;z-index:20001;
-    }
+    .lightbox-arrow{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(0,245,255,.07);border:1px solid rgba(0,245,255,.2);color:var(--cyan);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:20001;}
     .lightbox-arrow:hover{background:rgba(0,245,255,.18);box-shadow:0 0 20px rgba(0,245,255,.2);}
     .lightbox-prev{left:16px;}.lightbox-next{right:16px;}
-
     .lightbox-caption{position:absolute;bottom:-46px;left:0;right:0;text-align:center;}
     .cap-tag{font-family:var(--mono);font-size:.68rem;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-right:10px;}
     .cap-title{font-size:.88rem;color:var(--bright);}
-
-    /* counter */
-    .lightbox-counter{
-      position:absolute;top:-46px;left:0;
-      font-family:var(--mono);font-size:.72rem;color:rgba(200,214,240,.4);
-    }
-
-    /* swipe hint */
-    .swipe-hint{position:absolute;bottom:-72px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:.66rem;color:rgba(200,214,240,.25);}
+    .lightbox-counter{position:absolute;top:-46px;left:0;font-family:var(--mono);font-size:.72rem;color:rgba(200,214,240,.4);}
 
     /* fade */
     .fade-s{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
@@ -250,26 +257,42 @@
   <div class="page-hero-content">
     <span class="eyebrow">⚡ Visual Journal</span>
     <h1 class="hero-title">My Gallery</h1>
-    <p class="hero-sub"><span>&gt; </span>Workspace · Dev · Travel · Creative · Learning</p>
+    <p class="hero-sub"><span>&gt; </span>Me · Gear · Projects · Life</p>
   </div>
 </section>
 
 <!-- ══════════ FILTER BAR ══════════ -->
 <div class="filter-bar fade-s">
   <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="workspace">Workspace</button>
-  <button class="filter-btn" data-filter="dev">Development</button>
-  <button class="filter-btn" data-filter="travel">Travel</button>
-  <button class="filter-btn" data-filter="creative">Creative</button>
-  <button class="filter-btn" data-filter="learning">Learning</button>
+  <button class="filter-btn" data-filter="me">Me</button>
+  <button class="filter-btn" data-filter="gear">Gear</button>
+  <button class="filter-btn" data-filter="projects">Projects</button>
+  <button class="filter-btn" data-filter="life">Life</button>
 </div>
 
 <!-- ══════════ MASONRY GRID ══════════ -->
 <div class="gallery-container">
   <div class="masonry-grid" id="galleryGrid">
 
-    <!-- 1. HP EliteBook x360 1040 G8 — official HP product image -->
-    <div class="gallery-item" data-category="workspace"
+    <!-- ── ME ── -->
+
+    <!-- Real photo -->
+    <div class="gallery-item" data-category="me"
+         data-tag="The Developer" data-title="Ishan Tripathi"
+         data-src="ishan3.jpeg">
+      <img src="ishan3.jpeg" alt="Ishan Tripathi" class="gallery-image" loading="eager"
+           onerror="this.src='https://ui-avatars.com/api/?name=Ishan+Tripathi&background=0d1528&color=00f5ff&size=600&bold=true'">
+      <div class="gallery-overlay">
+        <span class="overlay-tag">The Developer</span>
+        <h3 class="overlay-title">Ishan Tripathi</h3>
+      </div>
+      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
+    </div>
+
+    <!-- ── GEAR ── -->
+
+    <!-- HP EliteBook -->
+    <div class="gallery-item" data-category="gear"
          data-tag="My Gear" data-title="HP EliteBook x360 1040 G8"
          data-src="https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08234511.png">
       <img src="https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08234511.png"
@@ -282,192 +305,128 @@
       <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
     </div>
 
-    <!-- 2. Late night coding — dark IDE screen -->
-    <div class="gallery-item" data-category="dev"
-         data-tag="Development" data-title="Late Night Code"
-         data-src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=600&q=75"
-           alt="Late Night Code" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Development</span>
-        <h3 class="overlay-title">Late Night Code</h3>
-      </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
+    <!-- ── LIFE ── -->
 
-    <!-- 3. Varanasi Ghats — personal city connection -->
-    <div class="gallery-item" data-category="travel"
-         data-tag="Travel · Life" data-title="Varanasi Ghats"
+    <!-- Varanasi Ghats -->
+    <div class="gallery-item" data-category="life"
+         data-tag="Varanasi · My City" data-title="The Ghats of Varanasi"
          data-src="https://images.unsplash.com/photo-1561361522-589571981d34?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1561361522-589571981d34?w=600&q=75"
+      <img src="https://images.unsplash.com/photo-1561361522-589571981d34?w=700&q=75"
            alt="Varanasi Ghats" class="gallery-image" loading="lazy">
       <div class="gallery-overlay">
-        <span class="overlay-tag">Travel · Life</span>
-        <h3 class="overlay-title">Varanasi Ghats</h3>
+        <span class="overlay-tag">Varanasi · My City</span>
+        <h3 class="overlay-title">The Ghats of Varanasi</h3>
       </div>
       <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
     </div>
 
-    <!-- 4. Clean minimal desk setup -->
-    <div class="gallery-item" data-category="workspace"
-         data-tag="Workspace" data-title="Focus Mode"
-         data-src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=700&q=75"
-           alt="Clean desk focus mode" class="gallery-image" loading="lazy">
+    <!-- Varanasi evening -->
+    <div class="gallery-item" data-category="life"
+         data-tag="Varanasi · My City" data-title="Evening Aarti"
+         data-src="https://images.unsplash.com/photo-1588416936097-41850ab3d86d?w=1200&q=85">
+      <img src="https://images.unsplash.com/photo-1588416936097-41850ab3d86d?w=700&q=75"
+           alt="Varanasi Evening Aarti" class="gallery-image" loading="lazy"
+           onerror="this.src='https://images.unsplash.com/photo-1561361522-589571981d34?w=700&q=75'">
       <div class="gallery-overlay">
-        <span class="overlay-tag">Workspace</span>
-        <h3 class="overlay-title">Focus Mode</h3>
+        <span class="overlay-tag">Varanasi · My City</span>
+        <h3 class="overlay-title">Evening Aarti</h3>
       </div>
       <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
     </div>
 
-    <!-- 5. Cybersecurity / hacking terminal -->
-    <div class="gallery-item" data-category="dev"
-         data-tag="Cybersecurity" data-title="Digital Defence"
-         data-src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=75"
-           alt="Cybersecurity Digital Defence" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Cybersecurity</span>
-        <h3 class="overlay-title">Digital Defence</h3>
-      </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
+    <!-- ── PROJECTS ── -->
 
-    <!-- 6. Phone & mobile editing — CapCut -->
-    <div class="gallery-item" data-category="creative"
-         data-tag="Creative" data-title="Mobile Editing"
-         data-src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&q=75"
-           alt="Mobile video editing creative" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Creative</span>
-        <h3 class="overlay-title">Mobile Editing</h3>
+    <!-- Tripathi Travels preview -->
+    <a class="proj-preview-card" data-category="projects"
+       href="https://ishan-258.github.io/Travel-site-/" target="_blank" rel="noopener">
+      <div class="proj-browser-bar">
+        <div class="browser-dot r"></div>
+        <div class="browser-dot y"></div>
+        <div class="browser-dot g"></div>
+        <span class="browser-url">ishan-258.github.io/Travel-site-/</span>
       </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
+      <div class="proj-iframe-wrap">
+        <iframe src="https://ishan-258.github.io/Travel-site-/" title="Tripathi Travels" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="proj-iframe-overlay">
+          <span style="font-family:var(--mono);font-size:.62rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;">Live Preview</span>
+        </div>
+      </div>
+      <div class="proj-preview-footer">
+        <div>
+          <div class="proj-preview-tag">Travel &amp; Logistics</div>
+          <div class="proj-preview-title">Tripathi Travels</div>
+          <div class="proj-stack">
+            <span class="stack-pill">HTML</span>
+            <span class="stack-pill">CSS</span>
+            <span class="stack-pill">JS</span>
+          </div>
+        </div>
+        <span class="proj-preview-arrow"><i class="fas fa-external-link-alt"></i></span>
+      </div>
+    </a>
 
-    <!-- 7. Books & learning -->
-    <div class="gallery-item" data-category="learning"
-         data-tag="Knowledge" data-title="Always Learning"
-         data-src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&q=75"
-           alt="Books always learning" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Knowledge</span>
-        <h3 class="overlay-title">Always Learning</h3>
+    <!-- Lost & Found preview -->
+    <a class="proj-preview-card" data-category="projects"
+       href="https://ishan-258.github.io/Lost-found-/" target="_blank" rel="noopener">
+      <div class="proj-browser-bar">
+        <div class="browser-dot r"></div>
+        <div class="browser-dot y"></div>
+        <div class="browser-dot g"></div>
+        <span class="browser-url">ishan-258.github.io/Lost-found-/</span>
       </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
+      <div class="proj-iframe-wrap">
+        <iframe src="https://ishan-258.github.io/Lost-found-/" title="Lost and Found Portal" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="proj-iframe-overlay">
+          <span style="font-family:var(--mono);font-size:.62rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;">Live Preview</span>
+        </div>
+      </div>
+      <div class="proj-preview-footer">
+        <div>
+          <div class="proj-preview-tag">Campus Utility</div>
+          <div class="proj-preview-title">Lost &amp; Found Portal</div>
+          <div class="proj-stack">
+            <span class="stack-pill">HTML</span>
+            <span class="stack-pill">CSS</span>
+            <span class="stack-pill">JS</span>
+          </div>
+        </div>
+        <span class="proj-preview-arrow"><i class="fas fa-external-link-alt"></i></span>
+      </div>
+    </a>
 
-    <!-- 8. Portrait — profile / person at laptop -->
-    <div class="gallery-item" data-category="workspace"
-         data-tag="Dev Life" data-title="The Developer"
-         data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=75"
-           alt="The Developer portrait" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Dev Life</span>
-        <h3 class="overlay-title">The Developer</h3>
+    <!-- Milano Mode preview -->
+    <a class="proj-preview-card" data-category="projects"
+       href="https://ishan-258.github.io/MILANO-MODE/" target="_blank" rel="noopener">
+      <div class="proj-browser-bar">
+        <div class="browser-dot r"></div>
+        <div class="browser-dot y"></div>
+        <div class="browser-dot g"></div>
+        <span class="browser-url">ishan-258.github.io/MILANO-MODE/</span>
       </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
-
-    <!-- 9. HTML/CSS/JS code on screen closeup -->
-    <div class="gallery-item" data-category="dev"
-         data-tag="Development" data-title="Writing the Web"
-         data-src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=75"
-           alt="HTML CSS code on screen" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Development</span>
-        <h3 class="overlay-title">Writing the Web</h3>
+      <div class="proj-iframe-wrap">
+        <iframe src="https://ishan-258.github.io/MILANO-MODE/" title="Milano Mode" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <div class="proj-iframe-overlay">
+          <span style="font-family:var(--mono);font-size:.62rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;">Live Preview</span>
+        </div>
       </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
-
-    <!-- 10. Roads of UP — Jaunpur hometown -->
-    <div class="gallery-item" data-category="travel"
-         data-tag="Travel · Life" data-title="Roads of Jaunpur"
-         data-src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=75"
-           alt="Roads of Jaunpur UP India" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Travel · Life</span>
-        <h3 class="overlay-title">Roads of Jaunpur</h3>
+      <div class="proj-preview-footer">
+        <div>
+          <div class="proj-preview-tag">Fashion &amp; E-commerce</div>
+          <div class="proj-preview-title">Milano Mode</div>
+          <div class="proj-stack">
+            <span class="stack-pill">HTML</span>
+            <span class="stack-pill">CSS</span>
+            <span class="stack-pill">Bootstrap</span>
+          </div>
+        </div>
+        <span class="proj-preview-arrow"><i class="fas fa-external-link-alt"></i></span>
       </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
-
-    <!-- 11. Multi-monitor / battlestation -->
-    <div class="gallery-item" data-category="workspace"
-         data-tag="Workspace" data-title="The Battlestation"
-         data-src="https://images.unsplash.com/photo-1555949963-ff98c872d82b?w=1400&q=85">
-      <img src="https://images.unsplash.com/photo-1555949963-ff98c872d82b?w=700&q=75"
-           alt="The Battlestation multi monitor" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Workspace</span>
-        <h3 class="overlay-title">The Battlestation</h3>
-      </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
-
-    <!-- 12. Udemy / online learning screen -->
-    <div class="gallery-item" data-category="learning"
-         data-tag="Learning" data-title="Cybersec Course — Udemy"
-         data-src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=75"
-           alt="Udemy cybersecurity course online learning" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Learning</span>
-        <h3 class="overlay-title">Cybersec Course — Udemy</h3>
-      </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
-
-    <!-- 13. Creative thumbnail / design work -->
-    <div class="gallery-item" data-category="creative"
-         data-tag="Creative" data-title="Designing Stuff"
-         data-src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&q=75"
-           alt="Designing thumbnails creative work" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Creative</span>
-        <h3 class="overlay-title">Designing Stuff</h3>
-      </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
-
-    <!-- 14. Sunset / nature — Jaunpur life -->
-    <div class="gallery-item" data-category="travel"
-         data-tag="Travel · Life" data-title="Golden Hour"
-         data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=75"
-           alt="Golden hour sunset life" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Travel · Life</span>
-        <h3 class="overlay-title">Golden Hour</h3>
-      </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
-
-    <!-- 15. Python / terminal green screen -->
-    <div class="gallery-item" data-category="dev"
-         data-tag="Development" data-title="Terminal Session"
-         data-src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=1200&q=85">
-      <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&q=75"
-           alt="Terminal green screen Python dev" class="gallery-image" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="overlay-tag">Development</span>
-        <h3 class="overlay-title">Terminal Session</h3>
-      </div>
-      <div class="zoom-hint"><i class="fas fa-expand-alt"></i></div>
-    </div>
+    </a>
 
   </div>
 </div>
 
-<!-- ══════════ LIGHTBOX ══════════ -->
+<!-- ══════════ LIGHTBOX (photo items only) ══════════ -->
 <div class="lightbox-backdrop" id="lightbox">
   <button class="lightbox-arrow lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
   <div class="lightbox-inner">
@@ -478,7 +437,6 @@
       <span class="cap-tag" id="lbTag"></span>
       <span class="cap-title" id="lbTitle"></span>
     </div>
-    <div class="swipe-hint" id="swipeHint">← swipe or use arrow keys →</div>
   </div>
   <button class="lightbox-arrow lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
 </div>
@@ -491,12 +449,15 @@
       <a href="https://www.linkedin.com/in/ishan-tripathi-762ba925a" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
       <a href="contact.html"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>© 2026 Ishan Tripathi &nbsp;—&nbsp; designed with caffeine &amp; cyan.</p>
+    <p>© <span id="footer-year"></span> Ishan Tripathi &nbsp;—&nbsp; designed with caffeine &amp; cyan.</p>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+/* ── FOOTER YEAR ── */
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+
 /* ── CURSOR ── */
 const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
 let rx=0,ry=0,mx=0,my=0;
@@ -513,12 +474,7 @@ function init(){pts=[];for(let i=0;i<50;i++)pts.push(new Pt());}
 init();
 function draw(){
   ctx.clearRect(0,0,W,H);
-  pts.forEach(p=>{
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(0,245,255,${p.a})`;ctx.fill();
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0||p.x>W||p.y<0||p.y>H)p.reset();
-  });
+  pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,245,255,${p.a})`;ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W||p.y<0||p.y>H)p.reset();});
   requestAnimationFrame(draw);
 }
 draw();
@@ -532,24 +488,25 @@ document.querySelectorAll('a[href]').forEach(a=>{
 });
 window.addEventListener('pageshow',()=>trans.classList.remove('active'));
 
-/* ── FADE SECTIONS ── */
+/* ── FADE ── */
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}),{threshold:.05});
 document.querySelectorAll('.fade-s').forEach(el=>io.observe(el));
 
-/* ── STAGGERED GALLERY REVEAL ── */
-const items=document.querySelectorAll('.gallery-item');
+/* ── STAGGERED REVEAL (photo + project cards) ── */
+const allCards=[...document.querySelectorAll('.gallery-item, .proj-preview-card')];
 const revObs=new IntersectionObserver((entries,obs)=>{
   entries.forEach((entry,i)=>{
     if(entry.isIntersecting){
-      setTimeout(()=>entry.target.classList.add('visible'),i*60);
+      setTimeout(()=>entry.target.classList.add('visible'),i*80);
       obs.unobserve(entry.target);
     }
   });
-},{threshold:.08});
-items.forEach(el=>revObs.observe(el));
+},{threshold:.06});
+allCards.forEach(el=>revObs.observe(el));
 
-/* ── BLUR-OTHERS ON HOVER ── */
+/* ── BLUR-OTHERS (photo items only) ── */
 const grid=document.getElementById('galleryGrid');
+const photoItems=document.querySelectorAll('.gallery-item');
 grid.addEventListener('mouseenter',()=>grid.classList.add('has-hover'));
 grid.addEventListener('mouseleave',()=>grid.classList.remove('has-hover'));
 
@@ -559,7 +516,7 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const f=btn.dataset.filter;
-    items.forEach(card=>{
+    allCards.forEach(card=>{
       const show=f==='all'||card.dataset.category===f;
       card.style.transition='opacity .35s,transform .35s';
       if(show){
@@ -577,7 +534,7 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
   });
 });
 
-/* ── LIGHTBOX ── */
+/* ── LIGHTBOX (photo items only, not project previews) ── */
 const lb=document.getElementById('lightbox');
 const lbImg=document.getElementById('lbImg');
 const lbTag=document.getElementById('lbTag');
@@ -585,38 +542,25 @@ const lbTitle=document.getElementById('lbTitle');
 const lbCounter=document.getElementById('lbCounter');
 let visItems=[],curIdx=0;
 
-function getVisible(){return[...items].filter(el=>el.style.display!=='none'&&el.style.opacity!=='0');}
+function getVisible(){return[...photoItems].filter(el=>el.style.display!=='none'&&el.style.opacity!=='0');}
 
-function openLb(idx){
-  visItems=getVisible();
-  curIdx=idx;
-  showLbItem();
-  lb.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-
+function openLb(idx){visItems=getVisible();curIdx=idx;showLbItem();lb.classList.add('open');document.body.style.overflow='hidden';}
 function showLbItem(){
   const item=visItems[curIdx];
   lbImg.style.opacity='0';
   setTimeout(()=>{
-    lbImg.src=item.dataset.src;
-    lbImg.alt=item.dataset.title;
-    lbTag.textContent=item.dataset.tag;
-    lbTitle.textContent=item.dataset.title;
+    lbImg.src=item.dataset.src;lbImg.alt=item.dataset.title;
+    lbTag.textContent=item.dataset.tag;lbTitle.textContent=item.dataset.title;
     lbCounter.textContent=(curIdx+1)+' / '+visItems.length;
-    lbImg.style.opacity='1';
-    lbImg.style.transition='opacity .25s';
-  },curIdx===0?0:160);
+    lbImg.style.opacity='1';lbImg.style.transition='opacity .25s';
+  },160);
 }
-
 function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
 function nav(d){visItems=getVisible();curIdx=(curIdx+d+visItems.length)%visItems.length;showLbItem();}
 
-items.forEach(item=>{
+photoItems.forEach(item=>{
   item.addEventListener('click',()=>{
-    visItems=getVisible();
-    const idx=visItems.indexOf(item);
-    openLb(idx>=0?idx:0);
+    visItems=getVisible();const idx=visItems.indexOf(item);openLb(idx>=0?idx:0);
   });
 });
 
@@ -624,7 +568,6 @@ document.getElementById('lbClose').addEventListener('click',closeLb);
 lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
 document.getElementById('lbPrev').addEventListener('click',()=>nav(-1));
 document.getElementById('lbNext').addEventListener('click',()=>nav(1));
-
 document.addEventListener('keydown',e=>{
   if(!lb.classList.contains('open'))return;
   if(e.key==='Escape')closeLb();
@@ -632,13 +575,9 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight')nav(1);
 });
 
-/* ── TOUCH SWIPE in lightbox ── */
 let touchStartX=0;
 lb.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].clientX;},{passive:true});
-lb.addEventListener('touchend',e=>{
-  const dx=e.changedTouches[0].clientX-touchStartX;
-  if(Math.abs(dx)>50) nav(dx<0?1:-1);
-});
+lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchStartX;if(Math.abs(dx)>50)nav(dx<0?1:-1);});
 
 /* ── NAVBAR COMPACT ── */
 window.addEventListener('scroll',()=>{
